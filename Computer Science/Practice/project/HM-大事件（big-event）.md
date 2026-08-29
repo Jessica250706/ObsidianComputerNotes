@@ -94,7 +94,7 @@ spring:
 ![Pasted image 20260829123832](images/Pasted%20image%2020260829123832.png)
 
 ```
-结构:
+目录结构:
 com.xq
 	controller
 	mapper

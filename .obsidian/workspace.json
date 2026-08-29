@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "HM-大事件（big-event）"
+              "title": "Stack-栈"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -191,7 +191,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
@@ -213,13 +213,22 @@
   },
   "active": "fc04cb2233078510",
   "lastOpenFiles": [
+    "Computer Science/Front End/jQuery.md",
+    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Queue-队列.md",
+    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
+    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Data Structure-数据结构.md",
+    "Computer Science/Data Structures and Algorithms/Algorithm-算法/回溯与搜索.md",
+    "Computer Science/Data Structures and Algorithms/Algorithm-算法/DP/背包问题.md",
+    "Computer Science/Back End/GO.md",
+    "Computer Science/Android/Android Study Notes.md",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/JAVA学习目录.md",
     "Computer Science/Front End/常用组件.md",
     "欢迎.md",
     "Computer Science/Front End/React.md",
     "Computer Science/Front End/VUE3.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Blogs/Front End/Vue3/images",
     "Computer Science/Android/images",
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/DP/images",
@@ -241,15 +250,6 @@
     "Computer Science/Practice/微信小程序/微信小程序.md",
     "Computer Science/Practice/微信小程序/API.md",
     "Computer Science/Practice/微信小程序/WXML模板语法.md",
-    "Computer Science/Practice/project/tips/如何创建一个后端项目.md",
-    "Computer Science/Practice/project/tips/如何使用 Vite 创建一个 Vue 项目.md",
-    "Computer Science/Practice/project/tips/VSCode常用前端相关插件总结.md",
-    "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
-    "Computer Science/Practice/project/zero-one-12psi/init.md",
-    "Computer Science/Practice/project/EducationalManagementSystem.md",
-    "Computer Science/Practice/统计代码行数-工具汇总.md",
-    "Computer Science/Practice/Docker.md",
-    "Computer Science/High-Level Language/Python/Tuple-元组.md",
     "Blogs/Front End/Vue3/images/屏幕截图 2025-08-22 142901.png",
     "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-21_223650.png",
     "Computer Science/Front End/images/自动补充value.png",
