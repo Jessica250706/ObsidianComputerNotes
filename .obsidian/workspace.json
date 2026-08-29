@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Stack-栈"
+              "title": "Linear List-线性表"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+                "file": "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -213,11 +213,11 @@
   },
   "active": "fc04cb2233078510",
   "lastOpenFiles": [
-    "Computer Science/Front End/jQuery.md",
-    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
     "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Queue-队列.md",
     "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
     "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Data Structure-数据结构.md",
+    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
+    "Computer Science/Front End/jQuery.md",
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/回溯与搜索.md",
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/DP/背包问题.md",
     "Computer Science/Back End/GO.md",
