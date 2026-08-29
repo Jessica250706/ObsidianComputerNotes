@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "插件下载.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "插件下载"
+              "title": "HM-大事件（big-event）"
             }
           }
         ],
@@ -114,7 +114,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "插件下载.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -133,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "插件下载.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -176,7 +176,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "插件下载.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -217,25 +217,42 @@
   },
   "active": "22d9cbef9cc5e43a",
   "lastOpenFiles": [
-    "插件下载.md.baiduyun.uploading.cfg",
-    "Diary",
-    "欢迎.md",
-    "插件下载.md",
-    "欢迎.md.baiduyun.uploading.cfg",
-    "Blogs/Front End/Vue3/api-index封装.md",
+    "Computer Science/Practice/Git/Git讲义-部分代码.md",
+    "Computer Science/JAVA学习目录.md",
+    "Computer Science/Solidity/solidity智能合约概述.md",
     "Blogs/Front End/Vue3/修改el-table树形结构的默认箭头样式.md",
-    "Blogs/Front End/Vue3/修改el-dropdown（下拉菜单）的默认样式.md",
-    "Blogs/Front End/Vue3/卡片.md",
-    "Blogs/Front End/React/关于ProFormDateRangePicker等时间选择器的样式（宽度）.md",
-    "Blogs/Front End/React/关于文件上传通用hooks.md",
-    "images/自动补充value.png.baiduyun.uploading.cfg",
-    "images/屏幕截图_2025-02-22_185754.png.baiduyun.uploading.cfg",
-    "images/屏幕截图_2025-02-21_223934.png.baiduyun.uploading.cfg",
-    "images/屏幕截图_2025-02-21_223650.png.baiduyun.uploading.cfg",
-    "images/屏幕截图 2025-09-17 111854.png.baiduyun.uploading.cfg",
-    "images/屏幕截图 2025-08-22 142916.png.baiduyun.uploading.cfg",
-    "images/屏幕截图 2025-08-22 142901.png.baiduyun.uploading.cfg",
-    "images/屏幕截图 2025-08-22 142513.png.baiduyun.uploading.cfg",
+    "Computer Science/Solidity/web3.md",
+    "Computer Science/Solidity",
+    "Computer Science/Practice/微信小程序/组件.md",
+    "Computer Science/Practice/微信小程序/微信小程序.md",
+    "Computer Science/Practice/微信小程序/API.md",
+    "Computer Science/Practice/微信小程序/WXML模板语法.md",
+    "Computer Science/Practice/微信小程序",
+    "Computer Science/Practice/project/tips/如何创建一个后端项目.md",
+    "Computer Science/Practice/project/tips/如何使用 Vite 创建一个 Vue 项目.md",
+    "Computer Science/Practice/project/tips/VSCode常用前端相关插件总结.md",
+    "Computer Science/Practice/project/tips",
+    "Computer Science/Practice/project/big-project/zero-one-12psi/reference-project-analysis.md",
+    "Computer Science/Practice/project/big-project/zero-one-12psi/init.md",
+    "Computer Science/Practice/project/big-project/zero-one-12psi",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
+    "Computer Science/Practice/project/ForumProject.md",
+    "Computer Science/Practice/project/FirstProject.md",
+    "Computer Science/Practice/project/EducationalManagementSystem.md",
+    "Computer Science/Practice/project/big-project",
+    "Computer Science/Practice/Git/Git讲义.pdf",
+    "Computer Science/Practice/统计代码行数-工具汇总.md",
+    "Computer Science/Practice/Docker.md",
+    "Computer Science/Practice/project",
+    "Computer Science/Practice/Git",
+    "Computer Science/Practice",
+    "Computer Science/High-Level Language/Python/Tuple-元组.md",
+    "Computer Science/High-Level Language/Python/String-字符串.md",
+    "Computer Science/High-Level Language/Python/Python.md",
+    "Computer Science/High-Level Language/Python/Set-集合.md",
+    "Computer Science/High-Level Language/Python/List-列表.md",
+    "Computer Science/High-Level Language/Python/Dict-字典.md",
+    "Computer Science/High-Level Language/Python",
     "images/屏幕截图 2025-08-22 142901.png",
     "images/屏幕截图_2025-02-21_223650.png",
     "images/自动补充value.png",
@@ -245,7 +262,6 @@
     "images/屏幕截图 2025-09-17 111854.png",
     "images/Pasted image 20260829124236.png",
     "images/屏幕截图 2025-08-22 142513.png",
-    "images/屏幕截图 2025-08-22 135450.png",
-    "Blogs/Front End/Vue3/Hooks-轮询函数.md"
+    "images/屏幕截图 2025-08-22 135450.png"
   ]
 }
