@@ -89,7 +89,7 @@ CSS 样式引入也具有优先级：行内样式 > 内部样式 > 外部样式
 
 ```HTML
 <div style="color:red;font-size:20px;">
-		这是行内样式
+	这是行内样式
 </div>
 ```
 
@@ -97,29 +97,27 @@ CSS 样式引入也具有优先级：行内样式 > 内部样式 > 外部样式
 
 ```HTML
 <style>
-		#demo{
-				color:red;
-				font-size:20px;
-		}
+	#demo{
+		color:red;
+		font-size:20px;
+	}
 </style>
 
 <div id="demo">
-		这是内部样式
+	这是内部样式
 </div>
 ```
 
 ### 1.4.3 外部样式
 
-```CSS
-/*demo.css*/
+```CSS title:demo.css
 #demo {
-		color:red;
-		font-size:20px;
+	color:red;
+	font-size:20px;
 }
 ```
 
-```HTML
-<!-- demo.html -->
+```HTML title:demo.html
 <head>
 	<link type="text/css" href="demo.css" rel="stylesheet">
 </head>
@@ -337,7 +335,7 @@ p {
 }
 ```
 
-![](images/Pasted%20image%2020250505154531.png)
+![416](images/Pasted%20image%2020250505154531.png)
 
 ## 2.4 边框 + 边距
 
@@ -629,7 +627,7 @@ html,body {
 }
 ```
 
-![](images/Pasted%20image%2020250505175446.png)
+![434](images/Pasted%20image%2020250505175446.png)
 
 ## 2.7 定位
 
@@ -779,7 +777,7 @@ ul {
 
 ```CSS
 div:hover{
-		background: red;
+	background: red;
 }
 ```
 
@@ -1114,19 +1112,19 @@ transition:[transition-property  transition-duration  transition-timing-function
 
 @media screen and (min-width: 700px){
 	.box{
-			width: 200px;
+		width: 200px;
 	}
 }
 
 @media screen and (min-width: 900px){
 	.box{
-			width: 300px;
+		width: 300px;
 	}
 }
 
 @media screen and (min-width: 1200px){
 	.box{
-			width: 400px;
+		width: 400px;
 	}
 }
 ```

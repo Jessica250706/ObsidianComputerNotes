@@ -686,7 +686,7 @@ linklist insert_tail(linklist head, int k)
 }
 ```
 
-删除
+#### 4.删除
 
 ```C
 //删除
@@ -709,7 +709,7 @@ linklist del(linklist head, int x)
 }
 ```
 
-1. 修改
+#### 5.修改
 
 ```C
 //改变

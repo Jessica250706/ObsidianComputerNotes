@@ -1480,9 +1480,7 @@ class Person implements PersonInterface {
 	1. `interface` ：更专注于定义==对象==和==类==的结构，支持==继承==、==合并==。
 	2. `type` ：可以定义==类型别名、联合类型、交叉类型==，但不支持继承和自动合并。
 
-```ts
-// interface 和 type 都可以定义对象结构 TypeScript
-
+```ts title:'interface 和 type 都可以定义对象结构 TypeScript'
 // 使用 interface 定义 Person 对象
 interface PersonInterface {
   name: string;
@@ -1516,9 +1514,7 @@ let person: PersonType = {
 }
 ```
 
-```ts
-// interface 可以继承、合并
-
+```ts title:'interface 可以继承、合并'
 interface PersonInterface {
   name: string; // 姓名
   age: number; // 年龄
@@ -1540,9 +1536,7 @@ const student: StudentInterface = {
 }
 ```
 
-```ts
-<!-- type 的交叉类型 -->
-
+```ts title:'type 的交叉类型'
 // 使用 type 定义 Person 类型，并通过交叉类型实现属性的合并
 type PersonType = {
   name: string; // 姓名
@@ -1573,9 +1567,7 @@ const student: StudentType = {
 	1. 接口：==只能==描述==结构==，==不能==有任何==实现代码==，一个类可以实现==多个==接口。
 	2. 抽象类：既可以包含==抽象方法==，也可以包含==具体方法==，一个类只能继承==一个==抽象类。
 
-```ts
-// 一个类可以实现多个接口
-
+```ts title:'一个类可以实现多个接口'
 // FlyInterface 接口
 interface FlyInterface {
   fly(): void;
@@ -1609,9 +1601,7 @@ duck.swim(); // 输出: 鸭子可以游泳
 
 举例：如下代码中 `<T>` 就是泛型，(不一定非叫 `T` )，设置泛型后即可在函数中使用 `T` 来表示该类型：
 
-```ts
-// 泛型函数
-
+```ts title:泛型函数
 function logData<T>(data: T): T {
     console.log(data)
     return data
@@ -1621,9 +1611,7 @@ logData<number>(100)
 logData<string>('hello')
 ```
 
-```ts
-// 泛型可以有多个
-
+```ts title:泛型可以有多个
 function logData<T, U>(data 1: T, data 2: U): T | U {
     console.log(data 1, data 2)
     return Date.now() % 2 ? data 1 : data 2
@@ -1633,9 +1621,7 @@ logData<number, string>(100, 'hello')
 logData<string, boolean>('ok', false)
 ```
 
-```ts
-// 泛型接口
-
+```ts title:泛型接口
 interface PersonInterface<T> {
     name: string,
     age: number,
@@ -1649,9 +1635,7 @@ p 1 = { name: '张三', age: 18, extraInfo: '一个好人' }
 p 2 = { name: '李四', age: 18, extraInfo: 250 }
 ```
 
-```ts
-// 泛型约束
-
+```ts title:泛型约束
 interface LengthInterface {
     length: number
 }
@@ -1666,9 +1650,7 @@ logPerson<string>('hello')
 // logPerson<number>(100)
 ```
 
-```ts
-// 泛型类
-
+```ts title:泛型类
 class Person<T> {
     constructor(
     	public name: string,
@@ -1698,9 +1680,7 @@ const p2 = new Person("tom", 30, { title: '研发总监', company: '发发发科
 
 > 类型声明文件是 `TypeScript` 中的一种特殊文件，通常以 `.d.ts` 作为扩展名。它的主要作用是为现有的 `JavaScript` 代码提供==类型信息==，使得 `TypeScript` 能够在使用这些 `JavaScript` 库或模块时进行==类型检查和提示==。
 
-```ts
-// demo.js
-
+```ts title:demo.js
 export function add(a, b) {
     return a + b;
 }
@@ -1710,18 +1690,14 @@ export function mul(a, b) {
 }
 ```
 
-```ts
-// demo.d.ts
-
+```ts title:demo.d.ts
 declare function add(a: number, b: number): number;
 declare function mul(a: number, b: number): number;
 
 export { add, mul };
 ```
 
-```ts
-// index.ts
-
+```ts title:index.ts
 // example.ts
 import { add, mul } from "./demo.js";
 
@@ -1839,9 +1815,7 @@ console.log(Person)
 
 > 在 `TypeScript` 中，`Function` 类型所表示的范围十分广泛，包括：普通函数、箭头函数、方法等等。但并非 `Function` 类型的函数都可以被 `new` 关键字实例化，例如箭头函数是不能被实例化的，那么 `TypeScript` 中概如何声明一个构造类型呢？有以下两种方式：
 
-```typescript
-// 仅声明构造类型
-
+```typescript title:仅声明构造类型
 /*
   ○ new     表示：该类型是可以用 new 操作符调用。
   ○ ...args 表示：构造器可以接受【任意数量】的参数。
@@ -1857,9 +1831,7 @@ class Person {}
 test(Person)
 ```
 
-```typescript
-// 声明构造类型 ＋ 指定静态属性
-
+```typescript title:'声明构造类型 ＋ 指定静态属性'
 // 定义一个构造类型，且包含一个静态属性 wife
 type Constructor = {
   new(...args: any[]): {}; // 构造签名
@@ -1965,9 +1937,7 @@ p1.introduce();
 
 ### 4.1 执行顺序
 
-```typescript
-// 装饰器组合 —— 执⾏顺序
-
+```typescript title:'装饰器组合 —— 执⾏顺序'
 // 装饰器
 function test1(target: Function) {
   console.log('test1');
@@ -2013,9 +1983,7 @@ class Person {}
 
 ### 4.2 组合应用
 
-```typescript
-// 装饰器组合 —— 应用
-
+```typescript title:'装饰器组合 —— 应用'
 // 自定义类型 Class
 type Constructor = new (...args: any[]) => {};
 

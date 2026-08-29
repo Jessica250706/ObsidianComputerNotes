@@ -609,7 +609,6 @@ function test(){
     return firstName.value + '-' + lastName.value
   }) */
 
-
   // 计算属性——既读取又修改
   let fullName = computed({
     // 读取
@@ -732,7 +731,7 @@ watch(person, (newValue, oldValue) => {
 
 第二次对 `person` 重新赋值（修改整个对象，地址变化），新值与旧值不一致；
 
-![](images/Pasted%20image%2020260823143739.png)
+![587](images/Pasted%20image%2020260823143739.png)
 
 ### 3.9.3 情况三
 
@@ -755,6 +754,7 @@ watch(person, (newValue, oldValue) => {
 
 <script lang="ts" setup name="Person">
 import { reactive, watch } from 'vue'
+
 // 数据
 let person = reactive({
   name: '张三',
@@ -1086,8 +1086,7 @@ function showLog() {
 
 用在组件标签上：
 
-```vue
-<!-- 父组件App.vue -->
+```vue title:'父组件App.vue'
 <template>
   <Person ref="ren" />
   <button @click="test">测试</button>
@@ -1135,8 +1134,7 @@ export type Persons = Array<PersonInter>
 
 `App.vue` 中代码：
 
-```vue
-<!-- 父组件App.vue -->
+```vue title:'父组件App.vue'
 <template>
   <Person :list="persons" />
 </template>
@@ -1266,8 +1264,7 @@ onUnmounted(() => {
 </script>
 ```
 
-```vue
-<!-- 父组件App.vue -->
+```vue title:'父组件App.vue'
 <template>
   <Person v-if="isShow" />
 </template>
@@ -1323,7 +1320,7 @@ onUnmounted(() => {
 
 - `useSum.ts` 中内容如下：
 
-```ts
+```ts title:'useSum.ts'
 import { ref, onMounted } from 'vue'
 
 export default function () {
@@ -1346,7 +1343,7 @@ export default function () {
 
 - `useDog.ts` 中内容如下：
 
-```ts
+```ts title:'useDog.ts'
 import { reactive, onMounted } from 'vue'
 import axios, { AxiosError } from 'axios'
 
@@ -1471,7 +1468,7 @@ app.mount('#app')
 
 - `App.vue` 代码如下
 
-```vue
+```vue title:'App.vue'
 <template>
   <div class="app">
     <h2 class="title">Vue路由测试</h2>
@@ -1881,7 +1878,7 @@ console.log(router.replace)
 
 ## 5.1 准备一个效果
 
-![](images/pinia_example.gif)
+![575](images/pinia_example.gif)
 
 ## 5.2 搭建 pinia 环境
 
@@ -2248,7 +2245,7 @@ export const useTalkStore = defineStore('talk', () => {
 
 父组件：
 
-```vue
+```vue title:父组件
 <template>
 	<div class="father">
 		<h3>父组件</h3>

@@ -580,15 +580,13 @@ JavaScript 的引入方式与 CSS 样式引入方式是一致的，分为**行�
 
 ### 外部脚本
 
-```JavaScript
-// demo.js
+```JavaScript title:demo.js
 document.getElementById("btn").onclick=function(){
 	alert('你点击了按钮');
 }
 ```
 
-```HTML
-<!-- demo.html -->
+```HTML title:demo.html
 <input type="button" value="点击" id="btn">
 <script type="text/javascript" src="demo.js"></script>
 ```
