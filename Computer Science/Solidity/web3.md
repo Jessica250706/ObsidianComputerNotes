@@ -62,7 +62,7 @@ Web 3
 
 ### 1.6.1 以太坊的账户类型
 
-![[Pasted image 20260617185405.png]]
+![](images/Pasted%20image%2020260617185405.png)
 
 ❌️：找回密码
 
@@ -74,47 +74,47 @@ metamask.io
 
 在浏览器中安装插件
 
-![[Pasted image 20260617193451.png]]
+![](images/Pasted%20image%2020260617193451.png)
 
 ## 1.9 密码学基础知识
 
-![[Pasted image 20260617193547.png]]
+![](images/Pasted%20image%2020260617193547.png)
 
 ### 1.9.1 哈希函数
 
-![[Pasted image 20260617193650.png]]
+![](images/Pasted%20image%2020260617193650.png)
 
 哈希值模拟：[Blockchain Demo](https://andersbrownworth.com/blockchain/hash)
 
 ### 1.9.2 公钥和私钥
 
-![[Pasted image 20260617193923.png]]
+![](images/Pasted%20image%2020260617193923.png)
 
-![[Pasted image 20260617193942.png]]
+![](images/Pasted%20image%2020260617193942.png)
 
-![[Pasted image 20260617194123.png|512]]
+![512](images/Pasted%20image%2020260617194123.png)
 
 ## 1.10 领取测试通证
 
 网址：https://faucets.chain.link/
 
-![[Pasted image 20260617194542.png]]
+![](images/Pasted%20image%2020260617194542.png)
 
 第一个失败了。
 
-![[Pasted image 20260617194940.png]]
+![](images/Pasted%20image%2020260617194940.png)
 
 ## 1.11 第一笔链上 transfer
 
-![[Pasted image 20260618131008.png]]
+![](images/Pasted%20image%2020260618131008.png)
 
-![[Pasted image 20260618131018.png]]
+![](images/Pasted%20image%2020260618131018.png)
 
 ## 1 .12 gas 介绍
 
 ## 1.13 EIP-1559
 
-![[Pasted image 20260618131312.png]]
+![](images/Pasted%20image%2020260618131312.png)
 
 ## 1.14 小结
 
@@ -134,13 +134,13 @@ metamask.io
 
 [Remix](https://remix.ethereum.org/)
 
-![[Pasted image 20260618181313.png]]
+![](images/Pasted%20image%2020260618181313.png)
 
 ## 2.2 Solidity 编译器介绍
 
 部署。
 
-![[Pasted image 20260618193620.png]]
+![](images/Pasted%20image%2020260618193620.png)
 
 ## 2.3 开源协议
 
@@ -176,7 +176,7 @@ contract HelloWorld {
 }
 ```
 
-![[Pasted image 20260618195224.png]]
+![](images/Pasted%20image%2020260618195224.png)
 
 ## 2.6 Solidity 函数
 
@@ -203,9 +203,9 @@ contract HelloWorld {
 }
 ```
 
-![[Pasted image 20260618203536.png]]
+![](images/Pasted%20image%2020260618203536.png)
 
-![[Pasted image 20260618203757.png]]
+![](images/Pasted%20image%2020260618203757.png)
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -227,15 +227,15 @@ contract HelloWorld {
 }
 ```
 
-![[Pasted image 20260618204110.png]]
+![](images/Pasted%20image%2020260618204110.png)
 
 修改变量。
 
-![[Pasted image 20260618204250.png]]
+![](images/Pasted%20image%2020260618204250.png)
 
 结果。
 
-![[Pasted image 20260618204325.png]]
+![](images/Pasted%20image%2020260618204325.png)
 
 
 
@@ -289,11 +289,11 @@ contract HelloWorld {
 
 ## 4 .1 主流开发框架对比
 
-![[Pasted image 20260623192636.png|509]]
+![509](images/Pasted%20image%2020260623192636.png)
 
 ## 4 .2 环境变量
 
-![[Pasted image 20260623192926.png]]
+![](images/Pasted%20image%2020260623192926.png)
 
 ## 4 .3 安装 node.js
 

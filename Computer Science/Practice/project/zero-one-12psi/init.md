@@ -28,7 +28,7 @@ beginDate: 2025-10-14
 
 参考：[[[12 进销存 | 阮喵喵的01星球笔记](https://01s-doc.ruan-cat.com/12psi/#%E6%9C%AC%E6%AC%A1%E9%A1%B9%E7%9B%AE%E6%88%91%E9%9C%80%E8%A6%81%E7%9A%84%E5%88%B0%E7%9A%84%E6%9D%83%E9%99%90)]]
 
-![[Pasted image 20251014153243.png]]
+![](images/Pasted%20image%2020251014153243.png)
 
 ## 3.1.NodeJS
 
@@ -143,9 +143,9 @@ https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph
 
 ## 5.1.阅读须知
 
-![[72c067bd42f79fff45c2d89ef746149f.png]]
+![](images/72c067bd42f79fff45c2d89ef746149f.png)
 
-![[a0c76aeb02a43131628941105d6fb281.png]]
+![](images/a0c76aeb02a43131628941105d6fb281.png)
 
 这些是开发文档，包括vue2源码，项目代码文档，这些在15 16号的时候看吧。
 

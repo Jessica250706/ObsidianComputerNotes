@@ -4,7 +4,7 @@
 
 ## 序列类型
 
-![[image.png]]
+![](images/image.png)
 
 ### 比较
 

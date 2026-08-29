@@ -151,7 +151,7 @@ HTML 标签分为两大类：
 <h6>六级标题</h6>
 ```
 
-![[image 24.png|image 24.png]]
+![image 24.png](images/image%2024.png)
 
 ### 2.2.3 水平线标签
 
@@ -161,7 +161,7 @@ HTML 标签分为两大类：
 <hr>
 ```
 
-![[image 1 9.png|image 1 9.png]]
+![image 1 9.png](images/image%201%209.png)
 
 ### 2.2.4 段落标签
 
@@ -173,7 +173,7 @@ HTML 标签分为两大类：
 </p>
 ```
 
-![[image 2 8.png|image 2 8.png]]
+![image 2 8.png](images/image%202%208.png)
 
 ### 2.2.5 无序列表标签
 
@@ -195,7 +195,7 @@ HTML 标签分为两大类：
 </ul>
 ```
 
-![[image 3 5.png|image 3 5.png]]
+![image 3 5.png](images/image%203%205.png)
 
 ### 2.2.6 有序列表标签
 
@@ -217,7 +217,7 @@ HTML 标签分为两大类：
 </ol>
 ```
 
-![[image 4 4.png|image 4 4.png]]
+![image 4 4.png](images/image%204%204.png)
 
 ```HTML
 <h1>热搜</h1>  
@@ -230,7 +230,7 @@ HTML 标签分为两大类：
 </ol>
 ```
 
-![[Pasted image 20250502220342.png]]
+![](images/Pasted%20image%2020250502220342.png)
 
 ### 2.2.7 定义列表
 
@@ -309,7 +309,7 @@ HTML 标签分为两大类：
 </table>
 ```
 
-![[image 5 4.png|image 5 4.png]]
+![image 5 4.png](images/image%205%204.png)
 
 #### 2.2.8.1 不规则表格
 
@@ -355,7 +355,7 @@ HTML 标签分为两大类：
 </table>
 ```
 
-![[Pasted image 20250502222432.png]]
+![](images/Pasted%20image%2020250502222432.png)
 
 ### 2.2.9 层标签
 
@@ -365,7 +365,7 @@ HTML 标签分为两大类：
 </div>
 ```
 
-![[image 6 3.png|image 6 3.png]]
+![image 6 3.png](images/image%206%203.png)
 
 ### 2.2.10 表单
 
@@ -383,7 +383,7 @@ HTML 标签分为两大类：
 </form>
 ```
 
-![[image 7 2.png|image 7 2.png]]
+![image 7 2.png](images/image%207%202.png)
 
 ## 2.3 行级标签
 
@@ -403,7 +403,7 @@ HTML 标签分为两大类：
 <img src="logo.png" title="鼠标放在上面显示的内容" alt="图片未加载时显示">
 ```
 
-![[image 8 2.png|image 8 2.png]]
+![image 8 2.png](images/image%208%202.png)
 
 ### 2.3.3 范围标签
 
@@ -411,7 +411,7 @@ HTML 标签分为两大类：
 <span>内容</span>
 ```
 
-![[image 9 2.png|image 9 2.png]]
+![image 9 2.png](images/image%209%202.png)
 
 ### 2.3.4 超链接标签
 
@@ -427,7 +427,7 @@ _blank <!--在新窗口中打开-->
 _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 ```
 
-![[image 10 2.png|image 10 2.png]]
+![image 10 2.png](images/image%2010%202.png)
 
 超链接通常分为**页面间链接**、**锚链接**和**功能性链接**。
 
@@ -441,7 +441,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
     <a href="http://www.baidu.com" target="_self">前往百度</a>
     ```
     
-    ![[image 11 2.png|image 11 2.png]]
+    ![image 11 2.png](images/image%2011%202.png)
     
 - 锚链接
     
@@ -459,13 +459,13 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 	</p>
     ```
     
-    ![[image 12 2.png|image 12 2.png]]
+    ![image 12 2.png](images/image%2012%202.png)
     
-    ![[image 13 2.png|image 13 2.png]]
+    ![image 13 2.png](images/image%2013%202.png)
     
 - 功能性链接
     
-    ![[image 14 2.png|image 14 2.png]]
+    ![image 14 2.png](images/image%2014%202.png)
     
 
 ### 2.3.5 输入标签
@@ -483,7 +483,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 | maxlength | type 为 text 或 password 时，输入的最大字符数。                                                                                   |
 | checked   | type 为 radio 或 checkbox 时，指定按钮是否被选中。                                                                                 |
 
-![[image 15 2.png|image 15 2.png]]
+![image 15 2.png](images/image%2015%202.png)
 
 ```HTML
 <form>  
@@ -515,7 +515,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 <textarea name="名称" placeholder="提示信息"></textarea>
 ```
 
-![[image 16 2.png|image 16 2.png]]
+![image 16 2.png](images/image%2016%202.png)
 
 ```HTML
 <!-- label标签和span标签都具有范围选择的功能 -->  
@@ -544,7 +544,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 </select>
 ```
 
-![[image 17 2.png|image 17 2.png]]
+![image 17 2.png](images/image%2017%202.png)
 
 ### 2.3.8 只读和禁用
 
@@ -561,7 +561,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 <textarea name="名称" placeholder="提示信息" disabled></textarea><!-- 禁用 -->
 ```
 
-![[image 18 2.png|image 18 2.png]]
+![image 18 2.png](images/image%2018%202.png)
 
 ### 2.3.9 字体加粗
 
@@ -572,7 +572,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 <strong>加粗文本</strong>
 ```
 
-![[Pasted image 20260613224149.png]]
+![](images/Pasted%20image%2020260613224149.png)
 
 ### 2.3.10 字体倾斜
 
@@ -581,7 +581,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 <em>倾斜文本</em>
 ```
 
-![[Pasted image 20260614173959.png]]
+![](images/Pasted%20image%2020260614173959.png)
 
 ### 2.3.11 换行标签
 
@@ -593,13 +593,13 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 <div>换行</div>
 ```
 
-![[Pasted image 20260614174458.png]]
+![](images/Pasted%20image%2020260614174458.png)
 
 # 3. 综合应用
 
 ## 3.1 登录表单
 
-![[Pasted image 20250503105936.png]]
+![](images/Pasted%20image%2020250503105936.png)
 
 ```HTML
 <!DOCTYPE html>  
@@ -630,7 +630,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 
 ## 3.2 注册表单
 
-![[Pasted image 20250503111236.png]]
+![](images/Pasted%20image%2020250503111236.png)
 
 ```HTML
 <!DOCTYPE html>  
@@ -681,7 +681,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 
 ## 3.3 查询页面
 
-![[Pasted image 20250503112445.png]]
+![](images/Pasted%20image%2020250503112445.png)
 
 ```HTML
 <!DOCTYPE html>  
@@ -808,7 +808,7 @@ _self <!--在当前窗口中打开，是超链接target属性的默认值-->
 </html>
 ```
 
-![[image 19 2.png|image 19 2.png]]
+![image 19 2.png](images/image%2019%202.png)
 
 ## 4.2 其他标签
 

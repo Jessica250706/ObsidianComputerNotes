@@ -300,7 +300,7 @@ jQuery Validate 插件为表单提供了强大的验证功能，让客户端表�
 
 验证结果。
 
-![[Pasted image 20250509203702.png]]
+![](images/Pasted%20image%2020250509203702.png)
 
 jQuery validate 提供了国际化的支持，可以将 messages_zh.js 引入，以支持中文。
 
@@ -308,7 +308,7 @@ jQuery validate 提供了国际化的支持，可以将 messages_zh.js 引入，
 <script type="text/javascript" src="js/messages_zh.js"></script>
 ```
 
-![[Pasted image 20250509203730.png]]
+![](images/Pasted%20image%2020250509203730.png)
 
 ## 5.3 自定义校验规则
 
@@ -318,4 +318,4 @@ jQuery validate 提供了国际化的支持，可以将 messages_zh.js 引入，
 
 验证结果。
 
-![[Pasted image 20250509203805.png]]
+![](images/Pasted%20image%2020250509203805.png)

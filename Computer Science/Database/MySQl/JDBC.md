@@ -79,7 +79,7 @@ int TRANSACTION_REPEATABLE_READ  = 4;
 int TRANSACTION_SERIALIZABLE     = 8;
 ```
 
-![[image 35.png|image 35.png]]
+![image 35.png](images/image%2035.png)
 
 ### Statement
 
@@ -138,13 +138,13 @@ boolean previous() throws SQLException;
 
 新建工程后，将 mysql-connector-java.jar 引入工程中。
 
-![[Pasted image 20250502172521.png]]
+![](images/Pasted%20image%2020250502172521.png)
 
 记得勾选。
 
-![[Pasted image 20250502190302.png]]
+![](images/Pasted%20image%2020250502190302.png)
 
-![[image 1 14.png|image 1 14.png]]
+![image 1 14.png](images/image%201%2014.png)
 
 ### 加载驱动
 
@@ -395,13 +395,13 @@ public class jdbcTest {
 }
 ```
 
-![[image 2 13.png|image 2 13.png]]
+![image 2 13.png](images/image%202%2013.png)
 
 ## 预处理 SQL
 
 在日常开发中，我们经常会根据用户输入的信息从数据库中进行数据筛选，现有 stu 表数据如下：
 
-![[image 3 10.png|image 3 10.png]]
+![image 3 10.png](images/image%203%2010.png)
 
 现要根据用户输入的学生姓名查询学生信息。
 
@@ -552,7 +552,7 @@ public class PrepareStatemetTest {
 
 一个类的组成部分。
 
-![[image 4 8.png|image 4 8.png]]
+![image 4 8.png](images/image%204%208.png)
 
 如果要定义一个类来描述所有类的共有特征，应该如何来设计？
 

@@ -19,7 +19,7 @@ endDate:
 - 配置文件 application.yml 中引入 mybatis 的配置信息
 - 创建包结构，并准备实体类
 
-![[Pasted image 20260829111914.png]]
+![Pasted image 20260829111914](images/Pasted%20image%2020260829111914.png)
 
 ## 1.1 创建数据库
 
@@ -27,19 +27,19 @@ endDate:
 
 ## 1.2 创建 SpringBoot 工程
 
-![[Pasted image 20260829114831.png]]
+![Pasted image 20260829114831](images/Pasted%20image%2020260829114831.png)
 
 因缺少结构，故右击 main 文件，选择新建目录，后点击提示，回车，创建成功。
 
-![[Pasted image 20260829115051.png]]
+![Pasted image 20260829115051](images/Pasted%20image%2020260829115051.png)
 
 接着在 `resource` 目录下继续创建文件 `application.yml`
 
-![[Pasted image 20260829115406.png|406]]
+![406](images/Pasted%20image%2020260829115406.png)
 
 引入对应依赖。
 
-![[Pasted image 20260829115613.png]]
+![Pasted image 20260829115613](images/Pasted%20image%2020260829115613.png)
 
 ```xml
 <parent>
@@ -51,7 +51,7 @@ endDate:
 
 删除原有依赖，添加三个新依赖，随后点击刷新 Maven 的按钮。
 
-![[Pasted image 20260829122043.png]]
+![Pasted image 20260829122043](images/Pasted%20image%2020260829122043.png)
 
 ```xml
 <dependencies>
@@ -76,7 +76,7 @@ endDate:
 
 ## 1.3 引入 `myBatis` 的配置信息
 
-![[Pasted image 20260829123154.png]]
+![Pasted image 20260829123154](images/Pasted%20image%2020260829123154.png)
 
 ```yml
 spring:  
@@ -91,7 +91,7 @@ spring:
 
 实体类的代码在资料文件夹中，对应数据库中的三张表。
 
-![[Pasted image 20260829123832.png]]
+![Pasted image 20260829123832](images/Pasted%20image%2020260829123832.png)
 
 ```
 结构:
@@ -109,7 +109,7 @@ com.xq
 
 重命名 APP 启动类，并添加代码。
 
-![[Pasted image 20260829124236.png]]
+![Pasted image 20260829124236](images/Pasted%20image%2020260829124236.png)
 
 ```java file:BigEventApplication.java
 package com.xq;

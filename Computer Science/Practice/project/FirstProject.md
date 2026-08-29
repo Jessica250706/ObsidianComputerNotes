@@ -123,7 +123,7 @@ npm install element-plus
 npm install @element-plus/icons-vue
 ```
 
-![[Pasted image 20250511222737.png]]
+![](images/Pasted%20image%2020250511222737.png)
 
 ### 1.3.5 别名
 
@@ -186,7 +186,7 @@ h2 {
 }
 ```
 
-![[Pasted image 20250511230800.png]]
+![](images/Pasted%20image%2020250511230800.png)
 
 网页如图，别名配置成功。
 
@@ -200,7 +200,7 @@ h2 {
 
 在 `src` 文件夹下新建文件夹 `router` 并创建文件 `index.js`
 
-![[Pasted image 20250513204549.png]]
+![](images/Pasted%20image%2020250513204549.png)
 
 ```JavaScript
 // src\router\index.js
@@ -263,13 +263,13 @@ app.use(router).mount('#app');
 </style>
 ```
 
-![[Pasted image 20250513205625.png]]
+![](images/Pasted%20image%2020250513205625.png)
 
 ## 2.3 `views` 文件夹
 
 在 src 文件夹下新建文件夹 `views` 并创建文件 `Main.vue`
 
-![[Pasted image 20250513205016.png]]
+![](images/Pasted%20image%2020250513205016.png)
 
 # 3 `element-plus` 的使用
 
@@ -323,7 +323,7 @@ app.use(router).mount('#app');
 
 结果如图。
 
-![[Pasted image 20250513223713.png]]
+![](images/Pasted%20image%2020250513223713.png)
 
 ### 3.1.2 按需导入：自动导入
 
@@ -465,7 +465,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 参考示意图如下。
 
-![[d6e64857073fddbde8b85d30283cced0.png]]
+![](images/d6e64857073fddbde8b85d30283cced0.png)
 
 ### 3.3.1 初步搭建
 
@@ -507,13 +507,13 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 效果展示。
 
-![[Pasted image 20250513231026.png]]
+![](images/Pasted%20image%2020250513231026.png)
 
 ### 3.3.2 菜单栏：`commonAside` 组件静态搭建
 
 在 `components` 文件夹下新建 `CommonAside.vue` 文件。
 
-![[Pasted image 20250513231632.png]]
+![](images/Pasted%20image%2020250513231632.png)
 
 ```vue
 <!-- src\components\CommonAside.vue -->
@@ -711,7 +711,7 @@ body {
 
 效果如下。
 
-![[Pasted image 20250515175525.png]]
+![](images/Pasted%20image%2020250515175525.png)
 
 ### 3.3.3 `header` 组件的静态搭建
 
@@ -837,7 +837,7 @@ import CommonHeader from '@/components/CommonHeader.vue';
 
 效果如下。
 
-![[Pasted image 20250515224832.png]]
+![](images/Pasted%20image%2020250515224832.png)
 
 # 4 使用 `pinia` 管理
 
@@ -880,7 +880,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 在 `src` 下创建 `stores` 文件夹，在其中创建 `index.js`
 
-![[Pasted image 20250516080457.png]]
+![](images/Pasted%20image%2020250516080457.png)
 
 ```js
 // src\stores\index.js
@@ -1158,7 +1158,7 @@ const handleCollapse = ()=> {
 
 效果如下（折叠状态）。
 
-![[Pasted image 20250520074718.png]]
+![](images/Pasted%20image%2020250520074718.png)
 
 ## 4.3 首页左上方的卡片的实现
 
@@ -1315,7 +1315,7 @@ const getImageUrl = (user)  => {
 
 效果如下。
 
-![[Pasted image 20250520074750.png]]
+![](images/Pasted%20image%2020250520074750.png)
 
 ## 4.4 首页左下方 table 的静态实现
 
@@ -1439,7 +1439,7 @@ const tableLabel = ref(
 
 效果如下。
 
-![[Pasted image 20250520191805.png]]
+![](images/Pasted%20image%2020250520191805.png)
 
 # 5 封装 `axios`
 
@@ -1537,11 +1537,11 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 在 `src` 文件夹下新建文件夹 `api`，再新建文件 `mock.js`
 
-![[Pasted image 20250520202505.png]]
+![](images/Pasted%20image%2020250520202505.png)
 
 在 `api` 文件夹下新建文件夹 `mockData`，再新建文件 `home.js`，存档编造的假数据。
 
-![[Pasted image 20250520203415.png]]
+![](images/Pasted%20image%2020250520203415.png)
 
 ```js
 // src\api\mockData\home.js
@@ -1741,7 +1741,7 @@ axios({
 
 效果如下。
 
-![[Pasted image 20250520210431.png]]
+![](images/Pasted%20image%2020250520210431.png)
 
 ## 5.4 引出拦截器
 
@@ -1775,7 +1775,7 @@ axios.interceptors.response.use(function (response) {
 
 在 `api` 文件夹下新建文件 `request.js`
 
-![[Pasted image 20250520210829.png]]
+![](images/Pasted%20image%2020250520210829.png)
 
 ```js
 // src\api\request.js
@@ -1817,7 +1817,7 @@ export default request;
 
 在 `api` 文件夹下新建文件 `api.js`
 
-![[Pasted image 20250520211837.png]]
+![](images/Pasted%20image%2020250520211837.png)
 
 ```js
 // src\api\api.js
@@ -1994,7 +1994,7 @@ onMounted(()=>{
 
 效果如图。
 
-![[Pasted image 20250520213437.png]]
+![](images/Pasted%20image%2020250520213437.png)
 
 ## 5.5 引入三种环境
 
@@ -2002,7 +2002,7 @@ onMounted(()=>{
 
 在 `src` 文件夹下新建文件夹 `config`，再新建文件 `index.js
 
-![[Pasted image 20250522174102.png]]
+![](images/Pasted%20image%2020250522174102.png)
 
 ```js
 // src\config\index.js
@@ -3394,13 +3394,13 @@ const pieOptions = reactive({
 
 效果如下所示。
 
-![[Pasted image 20250525154601.png]]
+![](images/Pasted%20image%2020250525154601.png)
 
 # 7 用户管理
 
 用户界面样式如下。
 
-![[df682a76c90ce5a2ad5bfde0eaa619f7.png]]
+![](images/df682a76c90ce5a2ad5bfde0eaa619f7.png)
 
 ## 7.1 表格渲染
 
@@ -3541,7 +3541,7 @@ const tableData = [
 
 效果如下。
 
-![[Pasted image 20250525165905.png]]
+![](images/Pasted%20image%2020250525165905.png)
 
 ### 7.1.2 用户表格的数获取渲染
 
@@ -4059,7 +4059,7 @@ onMounted(() => {
 
 效果如图。
 
-![[Pasted image 20250526222847.png]]
+![](images/Pasted%20image%2020250526222847.png)
 
 ## 7.4 增删改查
 
@@ -4898,7 +4898,7 @@ onMounted(() => {
 
 效果如下。
 
-![[Pasted image 20250527225611.png]]
+![](images/Pasted%20image%2020250527225611.png)
 
 ### 7.4.3 修改
 
@@ -5437,7 +5437,7 @@ onMounted(() => {
 
 参考效果。
 
-![[acd639fbfc8e1a12b4f21fc59d1df5f0.png]]
+![](images/acd639fbfc8e1a12b4f21fc59d1df5f0.png)
 
 在 `Main.vue` 里添加 `CommonTag.vue` 相关的代码
 
@@ -5486,7 +5486,7 @@ import CommonTag from '../components/CommonTag.vue';
 
 新建 `CommonTag.vue` 文件
 
-![[Pasted image 20250528192257.png]]
+![](images/Pasted%20image%2020250528192257.png)
 
 ```vue
 <!-- src\components\CommonTag.vue -->
@@ -5763,7 +5763,7 @@ const handleMenu = (item) => {
 
 效果如下。
 
-![[Pasted image 20250528211745.png]]
+![](images/Pasted%20image%2020250528211745.png)
 
 # 9 登录
 
@@ -5883,13 +5883,13 @@ const loginForm = reactive({
 
 效果如下。
 
-![[Pasted image 20250529125530.png]]
+![](images/Pasted%20image%2020250529125530.png)
 
 ## 9.2 根据不同角色权限管理
 
 新建文件夹 `permission.js`
 
-![[Pasted image 20250529171334.png]]
+![](images/Pasted%20image%2020250529171334.png)
 
 ```js
 // src\api\mockData\permission.js
@@ -6326,11 +6326,11 @@ const handleMenu = (item) => {
 
 当登录 admin 账号时，
 
-![[Pasted image 20250529180911.png]]
+![](images/Pasted%20image%2020250529180911.png)
 
 当登录 Jessica 账号时，
 
-![[Pasted image 20250529180932.png]]
+![](images/Pasted%20image%2020250529180932.png)
 
 # 10 动态路由
 

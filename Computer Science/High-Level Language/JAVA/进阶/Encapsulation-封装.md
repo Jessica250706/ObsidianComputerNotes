@@ -135,7 +135,7 @@ public class Test {
 
 类成员包括了成员属性和成员方法。类成员访问修饰符换言之就是**成员属性**和**成员方法**的访问修饰符。
 
-![[image 17.png|image 17.png]]
+![image 17.png](images/image%2017.png)
 
 ## static 修饰符
 

@@ -122,13 +122,13 @@ SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
 SELECT * FROM student WHERE score>80 GROUP BY sex;
 ```
 
-![[image 31.png|image 31.png]]
+![image 31.png](images/image%2031.png)
 
 ```SQL
 SELECT * FROM student WHERE score BETWEEN 60 AND 80 GROUP BY sex, age;
 ```
 
-![[image 1 11.png|image 1 11.png]]
+![image 1 11.png](images/image%201%2011.png)
 
 ### 聚合函数
 
@@ -201,7 +201,7 @@ p.ss. 默认是ASC，即正序；DESC为降序；
 SELECT * FROM student WHERE age BETWEEN 18 AND 30 ORDER BY score DESC, age ASC;
 ```
 
-![[image 2 10.png|image 2 10.png]]
+![image 2 10.png](images/image%202%2010.png)
 
 ## 分页
 
@@ -223,10 +223,10 @@ SELECT * FROM student WHERE score>=60 LIMIT 3, 3; # 目标指令
 SELECT * FROM student WHERE score>=60 LIMIT 6, 3;
 ```
 
-![[image 3 7.png|image 3 7.png]]
+![image 3 7.png](images/image%203%207.png)
 
-![[image 4 6.png|image 4 6.png]]
+![image 4 6.png](images/image%204%206.png)
 
-![[image 5 6.png|image 5 6.png]]
+![image 5 6.png](images/image%205%206.png)
 
 p.s. 如果一个查询中包含分组、排序和分页，那么它们之间必须按照**分组->排序->分页**的先后顺序排列。

@@ -47,7 +47,7 @@ INSERT INTO course VALUES(2, '数据库', 3, 20);
 INSERT INTO course(`number`, name, score, `time`) VALUES(4, 'Java基础', 4, 40), (5, '数电', 5, 45);
 ```
 
-![[image 30.png|image 30.png]]
+![image 30.png](images/image%2030.png)
 
 ## UPDATE语句
 

@@ -44,7 +44,7 @@ public class ex1 {
 }
 ```
 
-![[image 20.png|image 20.png]]
+![image 20.png](images/image%2020.png)
 
 ### 常用方法
 
@@ -168,7 +168,7 @@ public FileOutputStream(File file, boolean append) throws
 FileNotFoundException;
 ```
 
-![[image 1 6.png|image 1 6.png]]
+![image 1 6.png](images/image%201%206.png)
 
 ### InputStream 常用方法
 
@@ -188,7 +188,7 @@ public int available() throws IOException;//获取通道中数据的长度
 public FileInputStream(File file) throws FileNotFoundException;//根据提供的文件信息构建一条文件输入通道
 ```
 
-![[image 2 6.png|image 2 6.png]]
+![image 2 6.png](images/image%202%206.png)
 
 ### 字节流应用场景
 

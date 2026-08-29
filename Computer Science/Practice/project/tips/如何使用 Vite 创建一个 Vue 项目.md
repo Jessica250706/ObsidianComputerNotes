@@ -11,27 +11,27 @@ date: 2025-09-17
 
 打开需要创建项目的大文件夹。
 
-![[Pasted image 20250917085734.png]]
+![](images/Pasted%20image%2020250917085734.png)
 
 打开终端，输入 `pnpm create vite@latest`，根据提示输入项目名称，选择框架。
 
-![[Pasted image 20250917085921.png]]
+![](images/Pasted%20image%2020250917085921.png)
 
 再选择语言。
 
-![[Pasted image 20250917085952.png]]
+![](images/Pasted%20image%2020250917085952.png)
 
 根据提示语切换到刚创建的文件夹，并进行初始化。
 
-![[Pasted image 20250917090052.png]]
+![](images/Pasted%20image%2020250917090052.png)
 
-![[Pasted image 20250917090132.png]]
+![](images/Pasted%20image%2020250917090132.png)
 
-![[Pasted image 20250917090202.png]]
+![](images/Pasted%20image%2020250917090202.png)
 
 点击连接，显示页面如下。
 
-![[Pasted image 20250917091353.png]]
+![](images/Pasted%20image%2020250917091353.png)
 
 # 2.安装路由
 
@@ -50,7 +50,7 @@ server: {
 },
 ```
 
-![[Pasted image 20250917094135.png]]
+![](images/Pasted%20image%2020250917094135.png)
 
 ### 2.1.2 vite 配置别名
 
@@ -60,7 +60,7 @@ server: {
 pnpm install @types/node --save-dev
 ```
 
-![[Pasted image 20250917093644.png]]
+![](images/Pasted%20image%2020250917093644.png)
 
 在 `vite.config.ts` 中添加代码。
 
@@ -77,7 +77,7 @@ resolve: {
 },
 ```
 
-![[Pasted image 20250917100617.png]]
+![](images/Pasted%20image%2020250917100617.png)
 
 ### 2.1.3 添加 baseUrl 和 paths
 
@@ -92,7 +92,7 @@ resolve: {
  },
 ```
 
-![[Pasted image 20250917101828.png]]
+![](images/Pasted%20image%2020250917101828.png)
 
 若 `tsconfig.json` 文件中存在 `{ "path": "./tsconfig.app.json" }` ，则在 `tsconfig.app.json` 文件中也添加如下代码。
 
@@ -103,7 +103,7 @@ resolve: {
 },
 ```
 
-![[Pasted image 20250917162058.png]]
+![](images/Pasted%20image%2020250917162058.png)
 
 #### 拓展：了解 `tsconfig.app.json` 和 `tsconfig.node.json` 的不同
 
@@ -132,7 +132,7 @@ pnpm install vue-router@4
 # pnpm add vue-router@4
 ```
 
-![[Pasted image 20250917102025.png]]
+![](images/Pasted%20image%2020250917102025.png)
 
 ### 2.2.2 新建路由文件
 
@@ -162,7 +162,7 @@ const router = createRouter({
 export default router
 ```
 
-![[Pasted image 20250917162812.png]]
+![](images/Pasted%20image%2020250917162812.png)
 
 ### 2.2.3 在 `main.ts` 里面引入路由
 
@@ -178,7 +178,7 @@ app.use(router)
 app.mount('#app')
 ```
 
-![[Pasted image 20250917103531.png]]
+![](images/Pasted%20image%2020250917103531.png)
 
 ### 2.2.4 修改 `App.vue` 和 `HelloWorld.vue`
 
@@ -190,7 +190,7 @@ app.mount('#app')
 </template>
 ```
 
-![[Pasted image 20250917104225.png]]
+![](images/Pasted%20image%2020250917104225.png)
 
 修改 `HelloWorld.vue` 内代码为
 
@@ -208,7 +208,7 @@ app.mount('#app')
 </style>
 ```
 
-![[Pasted image 20250917104254.png]]
+![](images/Pasted%20image%2020250917104254.png)
 
 ### 2.2.5 运行项目，检验结果
 
@@ -218,15 +218,15 @@ app.mount('#app')
 pnpm run dev
 ```
 
-![[Pasted image 20250917104508.png]]
+![](images/Pasted%20image%2020250917104508.png)
 
 若无法正确查看页面，可在终端输入 `pnpm install vite.config.ts` 重启后则可正常显示。
 
-![[屏幕截图 2025-09-17 111854.png]]
+![](images/屏幕截图%202025-09-17%20111854.png)
 
 最终页面显示如下：
 
-![[Pasted image 20250917112202.png]]
+![](images/Pasted%20image%2020250917112202.png)
 
 # 3. 安装 Element Plus
 
@@ -238,9 +238,9 @@ pnpm install element-plus --save
 pnpm install @element-plus/icons-vue
 ```
 
-![[Pasted image 20250917113305.png]]
+![](images/Pasted%20image%2020250917113305.png)
 
-![[Pasted image 20250917113323.png]]
+![](images/Pasted%20image%2020250917113323.png)
 
 ## 3.2 在 `main.ts` 中引入 Element Plus
 
@@ -258,11 +258,11 @@ Object.entries(ElementPlusIconsVue)) {
 }
 ```
 
-![[Pasted image 20250917113923.png]]
+![](images/Pasted%20image%2020250917113923.png)
 
 ## 3.3 安装相关插件
 
-![[Pasted image 20250917113716.png]]
+![](images/Pasted%20image%2020250917113716.png)
 
 ## 3.4 测试
 
@@ -283,7 +283,7 @@ Object.entries(ElementPlusIconsVue)) {
 </style>
 ```
 
-![[Pasted image 20250917114129.png]]
+![](images/Pasted%20image%2020250917114129.png)
 
 成功展示按钮，引入成功。
 
@@ -297,7 +297,7 @@ Object.entries(ElementPlusIconsVue)) {
 pnpm add pinia
 ```
 
-![[Pasted image 20250917120902.png]]
+![](images/Pasted%20image%2020250917120902.png)
 
 ## 4.2 在 `main.ts` 引入 Pinia
 
@@ -311,7 +311,7 @@ const pinia = createPinia()
 app.use(pinia)
 ```
 
-![[Pasted image 20250917143702.png]]
+![](images/Pasted%20image%2020250917143702.png)
 
 ## 4.3 使用 Pinia
 
@@ -376,7 +376,7 @@ export const GlobalStore = defineStore('GlobalState', () => {
 })
 ```
 
-![[Pasted image 20250917145851.png]]
+![](images/Pasted%20image%2020250917145851.png)
 
 ### 4.3.2 修改 `HelloWorld.vue` 并进行测试
 
@@ -402,9 +402,9 @@ function showUserInfoId() {
 </template>
 ```
 
-![[Pasted image 20250917153408.png]]
+![](images/Pasted%20image%2020250917153408.png)
 
-![[Pasted image 20250917150427.png]]
+![](images/Pasted%20image%2020250917150427.png)
 
 # 5. 主界面布局
 
@@ -414,7 +414,7 @@ function showUserInfoId() {
 pnpm add --save-dev sass
 ```
 
-![[Pasted image 20250918085412.png]]
+![](images/Pasted%20image%2020250918085412.png)
 
 ## 5.2 找到 `index.html` 添加如下 style 样式
 
@@ -430,13 +430,13 @@ pnpm add --save-dev sass
 </style>
 ```
 
-![[Pasted image 20250922132616.png]]
+![](images/Pasted%20image%2020250922132616.png)
 
 ## 5.3 在 src 目录下新建 layout 目录，并新建 `index.vue` 主页面组件
 
 从 Element Plus 官网（ https://element-plus.sxtxhy.com/zh-CN/ ）复制页面布局。
 
-![[Pasted image 20250918093904.png]]
+![](images/Pasted%20image%2020250918093904.png)
 
 ```vue
 <template>
@@ -465,17 +465,17 @@ pnpm add --save-dev sass
 </style>
 ```
 
-![[Pasted image 20250922132743.png]]
+![](images/Pasted%20image%2020250922132743.png)
 
 ## 5.4 在 router 中引入主页面组件
 
 在 router 目录下的 `index.ts` 中修改路径。
 
-![[Pasted image 20250922132952.png]]
+![](images/Pasted%20image%2020250922132952.png)
 
 启动项目，查看效果。
 
-![[Pasted image 20250922133019.png]]
+![](images/Pasted%20image%2020250922133019.png)
 
 # 6 左侧导航菜单制作
 
@@ -491,7 +491,7 @@ pnpm add --save-dev sass
 </template>
 ```
 
-![[Pasted image 20251008162115.png]]
+![](images/Pasted%20image%2020251008162115.png)
 
 ## 6.2 创建 Menu 目录
 
@@ -499,7 +499,7 @@ pnpm add --save-dev sass
 
 目录结构如下。
 
-![[Pasted image 20251008162605.png]]
+![](images/Pasted%20image%2020251008162605.png)
 
 ### 6.2.1 `layout\Menu\index.vue` 文件
 
@@ -724,13 +724,13 @@ import CustomMenu from './Menu/index.vue'
 
 ## 6.4 成果展示
 
-![[Pasted image 20251008162455.png]]
+![](images/Pasted%20image%2020251008162455.png)
 
 # 7.菜单logo制作
 
 ## 7.1 项目 `assets` 里面加入logo
 
-![[Pasted image 20251008163628.png]]
+![](images/Pasted%20image%2020251008163628.png)
 
 ## 7.2 修改 `layout\Menu\index.vue` 文件
 
@@ -906,13 +906,13 @@ const menuList = reactive([
 </style>
 ```
 
-![[Pasted image 20251008223801.png]]
+![](images/Pasted%20image%2020251008223801.png)
 
-![[Pasted image 20251008223827.png]]
+![](images/Pasted%20image%2020251008223827.png)
 
 ## 7.3 成果展示
 
-![[Pasted image 20251008223852.png]]
+![](images/Pasted%20image%2020251008223852.png)
 
 # 8.路由配置与页面创建
 
@@ -1048,17 +1048,17 @@ export default router
 
 新建 `views` 文件夹，然后创建对应 vue 文件。
 
-![[Pasted image 20251008231651.png]]
+![](images/Pasted%20image%2020251008231651.png)
 
 ## 8.3 在 `layout\Menu\index.vue` 组件的 `<el-menu>` 添加 router 属性
 
 router: 是否启用 vue-router 模式。启用该模式会在激活导航时以 index 作为 path 进行路由跳转。
 
-![[Pasted image 20251008231848.png]]
+![](images/Pasted%20image%2020251008231848.png)
 
 ## 8.4 在 `layout\index.vue` 的添加路由
 
-![[Pasted image 20251008232002.png]]
+![](images/Pasted%20image%2020251008232002.png)
 
 ```vue
 <script lang="ts" setup>
@@ -1297,7 +1297,7 @@ const activeIndex = computed(()=>{
 </style>
 ```
 
-![[Pasted image 20251008232233.png]]
+![](images/Pasted%20image%2020251008232233.png)
 
 # 9.菜单收缩
 
@@ -1431,7 +1431,7 @@ export interface AuthState {
 
 目录结构如下。
 
-![[Pasted image 20251009205621.png]]
+![](images/Pasted%20image%2020251009205621.png)
 
 ## 9.2 引入 `pinia-plugin-persistedstate` 插件
 
@@ -1471,7 +1471,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 ```
 
-![[Pasted image 20251009205857.png]]
+![](images/Pasted%20image%2020251009205857.png)
 
 ## 9.3 在 `layout/Header` 下新建 `collapse.vue` 组件
 
@@ -1509,7 +1509,7 @@ const setCollapse = () => {
 
 目录结构及代码如下。
 
-![[Pasted image 20251009210033.png]]
+![](images/Pasted%20image%2020251009210033.png)
 
 ## 9.4 修改 `Header` 文件夹中的 `index.ts` 组件
 
@@ -1523,7 +1523,7 @@ import Collapse from './components/collapse.vue';
 </template>
 ```
 
-![[Pasted image 20251009210156.png]]
+![](images/Pasted%20image%2020251009210156.png)
 
 ## 9.5  修改 `layout\index.vue` 的 `header` 样式
 
@@ -1576,7 +1576,7 @@ import CustomMenu from './Menu/index.vue'
 </style>
 ```
 
-![[Pasted image 20251009210325.png]]
+![](images/Pasted%20image%2020251009210325.png)
 
 ## 9.6 修改 `layout\Menu\index.vue` 组件
 
@@ -1780,25 +1780,25 @@ const activeIndex = computed(()=>{
 
 添加 `:collapse` 属性。
 
-![[Pasted image 20251009210512.png]]
+![](images/Pasted%20image%2020251009210512.png)
 
 修改 logo 及标题的缩放属性。
 
-![[Pasted image 20251009210600.png]]
+![](images/Pasted%20image%2020251009210600.png)
 
 添加目录展开时的宽度。
 
-![[Pasted image 20251009210646.png]]
+![](images/Pasted%20image%2020251009210646.png)
 
 ## 9.7 成果展示
 
 目录展开。
 
-![[Pasted image 20251009210741.png]]
+![](images/Pasted%20image%2020251009210741.png)
 
 目录收拢。
 
-![[Pasted image 20251009210759.png]]
+![](images/Pasted%20image%2020251009210759.png)
 
 # 10.面包屑导航制作
 

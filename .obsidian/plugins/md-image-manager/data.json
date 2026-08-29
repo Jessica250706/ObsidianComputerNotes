@@ -36,7 +36,7 @@
   "autoReplaceAfterUpload": false,
   "customReferenceTemplate": "",
   "reorganizeConvertFormat": true,
-  "skipWikiRefsOnReorganize": true,
+  "skipWikiRefsOnReorganize": false,
   "enableImageBrowser": true,
   "managedAutoUploadOnPaste": false,
   "delegatedAutoUploadOnPaste": false,

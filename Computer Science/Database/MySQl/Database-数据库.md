@@ -2,7 +2,7 @@
 
 数据库，英文名称为Database，简称DB。从字面意思来看就是存储数据的仓库；从专业角度解释为存储在计算机磁盘上的有组织、可共享的大量数据的集合。
 
-![[image 29.png|image 29.png]]
+![image 29.png](images/image%2029.png)
 
 ## 类型
 

@@ -71,9 +71,9 @@ export LC_ALL="zh_CN.UTF-8"
 
 ## 3.3 基础操作指令
 
-![[Pasted image 20250429214134.png]]
+![](images/Pasted%20image%2020250429214134.png)
 
-![[Pasted image 20250429214200.png]]
+![](images/Pasted%20image%2020250429214200.png)
 
 添加文件到暂存区。
 
@@ -85,7 +85,7 @@ git add file01.txt
 git add .
 ```
 
-![[Pasted image 20250429214422.png]]
+![](images/Pasted%20image%2020250429214422.png)
 
 将暂存区里的文件添加到仓库里。
 
@@ -95,7 +95,7 @@ git commit -m "add file01"
 // ""内是注释
 ```
 
-![[Pasted image 20250429215110.png]]
+![](images/Pasted%20image%2020250429215110.png)
 
 查看文件提交到那个地方？查看历史记录（日志）。
 
@@ -107,9 +107,9 @@ git log --pretty=oneline --abbrev-commit --graph --decorate
 
 ### 3.3.4 查看提交日志（log）
 
-![[Pasted image 20250429220705.png]]
+![](images/Pasted%20image%2020250429220705.png)
 
-![[Pasted image 20250429215308.png]]
+![](images/Pasted%20image%2020250429215308.png)
 
 修改 file 01.txt 文件。
 
@@ -124,11 +124,11 @@ update count=1
 // 接着连按两次大写字母Z；或者在半角模式下输入:wq
 ```
 
-![[Pasted image 20250429215741.png]]
+![](images/Pasted%20image%2020250429215741.png)
 
 将文件再次放入暂存区及仓库。
 
-![[Pasted image 20250429220450.png]]
+![](images/Pasted%20image%2020250429220450.png)
 
 查看帮助文档。
 
@@ -146,7 +146,7 @@ git reset --hard commitID
 
 黏贴：按住鼠标滚轮。或者鼠标右键。
 
-![[Pasted image 20250429221727.png]]
+![](images/Pasted%20image%2020250429221727.png)
 
 查看已经删除的记录。
 
@@ -154,7 +154,7 @@ git reset --hard commitID
 git reflog
 ```
 
-![[Pasted image 20250429221835.png]]
+![](images/Pasted%20image%2020250429221835.png)
 
 ### 3.3.6 添加文件至忽略列表
 
@@ -170,7 +170,7 @@ touch .gitignore
 // 所有后缀为a的文件
 ```
 
-![[Pasted image 20250429222346.png]]
+![](images/Pasted%20image%2020250429222346.png)
 
 ## 3.4 分支
 
@@ -182,7 +182,7 @@ touch .gitignore
 git branch
 ```
 
-![[Pasted image 20250430092127.png]]
+![](images/Pasted%20image%2020250430092127.png)
 
 ### 3.4.2 创建本地分支
 
@@ -190,7 +190,7 @@ git branch
 git branch <分支名>
 ```
 
-![[Pasted image 20250430092313.png]]
+![](images/Pasted%20image%2020250430092313.png)
 
 ### 3.4.4 切换分支（checkout）
 
@@ -204,19 +204,19 @@ git checkout -b <分支名>
 
 切换到 dev 01 分支。
 
-![[Pasted image 20250430092808.png]]
+![](images/Pasted%20image%2020250430092808.png)
 
-![[Pasted image 20250430092839.png]]
+![](images/Pasted%20image%2020250430092839.png)
 
 切换到 master 分支。
 
-![[Pasted image 20250430092935.png]]
+![](images/Pasted%20image%2020250430092935.png)
 
-![[Pasted image 20250430092942.png]]
+![](images/Pasted%20image%2020250430092942.png)
 
 创建并切换分支。
 
-![[Pasted image 20250430093059.png]]
+![](images/Pasted%20image%2020250430093059.png)
 
 ### 3.4.6 合并分支（merge）
 
@@ -226,15 +226,15 @@ git merge <分支名>
 
 在分支 dev 01 中建立文件 file 03.txt
 
-![[Pasted image 20250430093439.png]]
+![](images/Pasted%20image%2020250430093439.png)
 
 切换到 master 文件，发现没有 file 03.txt 文件。
 
-![[Pasted image 20250430093625.png]]
+![](images/Pasted%20image%2020250430093625.png)
 
 进行合并前，先切换到 master（主线），再合并。
 
-![[Pasted image 20250430093914.png]]
+![](images/Pasted%20image%2020250430093914.png)
 
 ### 3.4.7 删除分支
 
@@ -258,7 +258,7 @@ git branch -D <分支名>
 2. 将解决完冲突的文件加入暂存区（add）；
 3. 提交到仓库（commit）；
 
-![[Pasted image 20250430094707.png]]
+![](images/Pasted%20image%2020250430094707.png)
 
 ### 3.4.9 开发中分支使用原则与流程
 
@@ -277,7 +277,7 @@ git branch -D <分支名>
 - 其他分支
 	如 test 分支（用于代码测试）、pre 分支（预上线分支）等等。
 
-![[Pasted image 20250430095726.png]]
+![](images/Pasted%20image%2020250430095726.png)
 
 # 4 Git 远程仓库
 
@@ -302,7 +302,7 @@ ssh-keygen -t rsa
 // 若公钥已经存在，则自动覆盖
 ```
 
-![[Pasted image 20250501170115.png]]
+![](images/Pasted%20image%2020250501170115.png)
 
 - `Gitee` 设置账户公钥
 
@@ -314,7 +314,7 @@ cat ~/.ssh/id_rsa.pub
 ssh -T git@gitee.com
 ```
 
-![[Pasted image 20250501170528.png]]
+![](images/Pasted%20image%2020250501170528.png)
 
 ## 4.5 操作远程仓库
 
@@ -328,11 +328,11 @@ git remote add <远端名称> <仓库路径>
 // 仓库路径：从远端服务器获取此URL
 ```
 
-![[Pasted image 20250501180302.png]]
+![](images/Pasted%20image%2020250501180302.png)
 
 p.s. 注意，此处为 SSH 的地址，不要误选成 HTTPS 的。
 
-![[Pasted image 20250501180600.png]]
+![](images/Pasted%20image%2020250501180600.png)
 
 ### 4.5.2 查看远程仓库
 
@@ -340,7 +340,7 @@ p.s. 注意，此处为 SSH 的地址，不要误选成 HTTPS 的。
 git remote
 ```
 
-![[Pasted image 20250501171208.png]]
+![](images/Pasted%20image%2020250501171208.png)
 
 ### 4.5.3 推送到远程仓库
 
@@ -360,13 +360,13 @@ git push --set-upstream origin master
 // git push 将 master 分支推送到已关联的远端分支
 ```
 
-![[Pasted image 20250501180641.png]]
+![](images/Pasted%20image%2020250501180641.png)
 
-![[Pasted image 20250501204927.png]]
+![](images/Pasted%20image%2020250501204927.png)
 
 --set-upstream 的作用如下。
 
-![[Pasted image 20250501205633.png]]
+![](images/Pasted%20image%2020250501205633.png)
 
 ### 4.5.4 本地分支与远程分支的关联关系
 
@@ -375,7 +375,7 @@ git push --set-upstream origin master
 git branch -vv
 ```
 
-![[Pasted image 20250501205425.png]]
+![](images/Pasted%20image%2020250501205425.png)
 
 ### 4.5.5 从远程仓库克隆
 
@@ -387,7 +387,7 @@ git clone <仓库路径> [本地目录]
 # 本地目录可以省略，会自动生成一个目录，其名称与远端仓库的名称相同
 ```
 
-![[Pasted image 20250501210239.png]]
+![](images/Pasted%20image%2020250501210239.png)
 
 ### 4.5.6 从远程仓库中抓取和拉取
 
@@ -405,17 +405,17 @@ git pull [remote name] [branch name]
 
 抓取命令演示。
 
-![[Pasted image 20250501214351.png]]
+![](images/Pasted%20image%2020250501214351.png)
 
-![[Pasted image 20250501214723.png]]
+![](images/Pasted%20image%2020250501214723.png)
 
 拉取命令演示。
 
-![[Pasted image 20250501215052.png]]
+![](images/Pasted%20image%2020250501215052.png)
 
 ### 4.5.7 解决合并冲突
 
-![[Pasted image 20250501215913.png]]
+![](images/Pasted%20image%2020250501215913.png)
 
 问题：A 先修改了代码，B 在 push 之前要先 pull，但由于 A push 的代码和 B 在本地工作区的代码修改的是同一位置，此时 pull 指令发生了冲突，需要合并。
 
@@ -435,9 +435,9 @@ git pull [remote name] [branch name]
 
 在确保文件内有 .gitignore 文件后，再进行如下操作。（新版 Ideal 会自带）
 
-![[Pasted image 20250501225006.png]]
+![](images/Pasted%20image%2020250501225006.png)
 
-![[Pasted image 20250501225148.png]]
+![](images/Pasted%20image%2020250501225148.png)
 
 ### 5.2.4 提交到本地仓库
 
@@ -449,13 +449,13 @@ git pull [remote name] [branch name]
 
 ### 5.2.7 克隆远程仓库到本地
 
-![[Pasted image 20250501231009.png]]
+![](images/Pasted%20image%2020250501231009.png)
 
 ## 5.3 Ideal 常用 Git 操作入口
 
-![[Pasted image 20250501231420.png]]
+![](images/Pasted%20image%2020250501231420.png)
 
-![[Pasted image 20250501231432.png]]
+![](images/Pasted%20image%2020250501231432.png)
 
 新版 Ideal 有所区别。
 
@@ -507,7 +507,7 @@ git push -u origin master
 
 ## IDEA 集成 GitBash 作为 Terminal
 
-![[Pasted image 20250501232008.png]]
+![](images/Pasted%20image%2020250501232008.png)
 
 ## 指令速查（待添加）
 

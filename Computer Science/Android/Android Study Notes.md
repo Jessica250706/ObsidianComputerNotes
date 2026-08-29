@@ -53,11 +53,11 @@ Eg. 美团外卖小程序、喜马拉雅 FM 小程序、京东小程序
 
 - 客户端与服务端分别操作的数据库
 
-![[Pasted image 20250924202845.png]]
+![](images/Pasted%20image%2020250924202845.png)
 
 - 客户端与服务端的多对一架构关系
 
-![[Pasted image 20250924202930.png]]
+![](images/Pasted%20image%2020250924202930.png)
 
 #  2.APP 工程
 

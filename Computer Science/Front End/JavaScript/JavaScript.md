@@ -18,7 +18,7 @@ JavaScript 由 **ECMAScript**（简称 ES）、**DOM** （Document Object Model�
 
 BOM （Browser Object Model），即**浏览器对象模型**，BOM 提供了**独立于内容**的对象结构，可以与浏览器窗口进行互动。
 
-![[image 27.png|image 27.png]]
+![image 27.png](images/image%2027.png)
 
 #### 2 window 对象
 
@@ -65,7 +65,7 @@ function changePage() {
 }
 ```
 
-![[Pasted image 20250627162530.png]]
+![](images/Pasted%20image%2020250627162530.png)
 
 ##### 2.3 document 对象
 
@@ -108,7 +108,7 @@ document 对象主要用于操作页面元素。
 </html>
 ```
 
-![[Pasted image 20250627163422.png]]
+![](images/Pasted%20image%2020250627163422.png)
 
 ```js
 <!DOCTYPE html>  
@@ -141,7 +141,7 @@ document 对象主要用于操作页面元素。
 </html>
 ```
 
-![[Pasted image 20250627163704.png]]
+![](images/Pasted%20image%2020250627163704.png)
 
 #### 3 Date 类
 
@@ -183,7 +183,7 @@ document 对象主要用于操作页面元素。
 </html>
 ```
 
-![[Pasted image 20250627164704.png]]
+![](images/Pasted%20image%2020250627164704.png)
 
 #### 4 周期函数和延迟函数
 
@@ -237,7 +237,7 @@ document 对象主要用于操作页面元素。
 </html>
 ```
 
-![[Pasted image 20250627184608.png]]
+![](images/Pasted%20image%2020250627184608.png)
 
 ### 1.1.2 DOM
 
@@ -247,7 +247,7 @@ DOM（Document Object Model），即文档对象模型，DOM 主要提供了对�
 
 #### 2 节点关系
 
-![[image 28.png|image 28.png]]
+![image 28.png](images/image%2028.png)
 
 #### 3 节点属性
 
@@ -555,7 +555,7 @@ calculate(2, 0)
 
 用户从**浏览器**发出页面请求，服务器接收请求并进行处理，处理完成后会将页面返回至浏览器，浏览器开始解释执行该页面，如果页面中包含有 JavaScript 脚本，那么浏览器会再次向服务器发出 JavaScript 脚本获取请求，服务器接收请求并进行处理，处理完成后会将 JavaScript 脚本返回至浏览器，浏览器开始解释执行 JavaScript 脚本。
 
-![[40369b45308373c677dd475a55ec5237_720.png]]
+![](images/40369b45308373c677dd475a55ec5237_720.png)
 
 ## 1.4 引入方式
 
@@ -639,7 +639,7 @@ console.log(innerVar);
 console.log(innerLet);
 ```
 
-![[image 13.png|image 13.png]]
+![image 13.png](images/image%2013.png)
 
 由此可以得出：**let 声明的变量只在它所在的代码块有效。var 声明的变量属于*全局变量*。**
 
@@ -679,7 +679,7 @@ let replaceStr = str.replace("一个", ""); // 将字符串中的"一个"使用�
 console.log(replaceStr);
 ```
 
-![[image 1 3.png|image 1 3.png]]
+![image 1 3.png](images/image%201%203.png)
 
 ## 2.4 数组
 
@@ -737,7 +737,7 @@ let str = num3.join(","); // 将数组num3中所有元素使用","拼接起来
 console.log(str);
 ```
 
-![[image 2 4.png|image 2 4.png]]
+![image 2 4.png](images/image%202%204.png)
 
 ## 2.5 对象
 
@@ -776,7 +776,7 @@ let teacher = {
 console.log(teacher);
 ```
 
-![[image 3 3.png|image 3 3.png]]
+![image 3 3.png](images/image%203%203.png)
 
 # 3 运算符
 

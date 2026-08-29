@@ -41,7 +41,7 @@
     <view>{{ info }}</view>
     ```
     
-    ![[image 22.png|image 22.png]]
+    ![image 22.png](images/image%2022.png)
     
     ② 绑定属性
     
@@ -130,7 +130,7 @@
 
 当前事件所绑定的组件
 
-![[IMG_2442(20250223-220404).jpg]]
+![](images/IMG_2442%2820250223-220404%29.jpg)
 
 ## bindtap的语法格式
 

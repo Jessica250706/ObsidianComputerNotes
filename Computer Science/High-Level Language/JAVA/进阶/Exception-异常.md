@@ -12,7 +12,7 @@ p.s. 异常是由方法抛出。
 
 ## 体系
 
-![[image 19.png|image 19.png]]
+![image 19.png](images/image%2019.png)
 
 ### Throwable/可抛出的
 

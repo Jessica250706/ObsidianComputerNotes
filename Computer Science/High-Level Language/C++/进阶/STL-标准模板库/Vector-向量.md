@@ -46,11 +46,11 @@ vector<int> table(n, p); // 初始化n个值为p（p默认为0，可不写）
 vector<vector<int>> table(size1, vector<int>(size2, p)); // size1是行，size2是列，p是初始化的数字
 ```
 
-![[image 36.png|image 36.png]]
+![image 36.png](images/image%2036.png)
 
   
 
-![[image 1 15.png|image 1 15.png]]
+![image 1 15.png](images/image%201%2015.png)
 
 # 元素访问
 

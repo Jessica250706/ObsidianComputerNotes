@@ -6,7 +6,7 @@
 
 结构如下。
 
-![[7b933d80ea339c98f41257986197963f.png]]
+![](images/7b933d80ea339c98f41257986197963f.png)
 
 ## 2.1.各部分的构成
 
@@ -19,19 +19,19 @@ LineFeed：自动换行组件，该页面在使用它时，内部仍为el-form-i
 
 ### 2.2.1.采购（all）
 
-![[8e3efd6d1bf7ada193d71ccc48ddbeaf.png]]
+![](images/8e3efd6d1bf7ada193d71ccc48ddbeaf.png)
 
 ### 2.2.2.销售（all）
 
-![[e85575c62016d82e9794093c44b0acbb.png]]
+![](images/e85575c62016d82e9794093c44b0acbb.png)
 
 ### 2.2.3.仓库
 
-![[c424a245f44a426574b5a58438bbb9f2.png]]
+![](images/c424a245f44a426574b5a58438bbb9f2.png)
 
 ### 2.2.4.资金
 
-![[1db87c2ad39bafee2cc8818f70a293af.png]]
+![](images/1db87c2ad39bafee2cc8818f70a293af.png)
 
 # 3.自定义表格相关
 
@@ -47,11 +47,11 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 ### 3.2.1.仓库
 
-![[Pasted image 20251016093352.png]]
+![](images/Pasted%20image%2020251016093352.png)
 
 ### 3.2.2.资金
 
-![[Pasted image 20251016093553.png]]
+![](images/Pasted%20image%2020251016093553.png)
 
 ### 3.2.3.报表
 
@@ -59,7 +59,7 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 # 4.自定义弹出框-表格搜索
 
-![[4352ec7e3ffcf6d193ae66457e2bcc3c.png]]
+![](images/4352ec7e3ffcf6d193ae66457e2bcc3c.png)
 
 在 `el-popover` 内嵌套 `el-form`
 
@@ -67,11 +67,11 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 报表详情：全屏对话框，内嵌套含可编辑表格的表单页（同 2）
 
-![[Pasted image 20251016201733.png]]
+![](images/Pasted%20image%2020251016201733.png)
 
 非报表的表格详情：非全屏对话框，内嵌套自定义表格相关（同 3）
 
-![[Pasted image 20251016201930.png]]
+![](images/Pasted%20image%2020251016201930.png)
 
 ## 5.1.新增功能
 
@@ -83,8 +83,8 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 reference-project 中没有进行封装，但介于代码重复度过高，以及确实存在多次使用，可选择进行封装。
 
-![[Pasted image 20251016203228.png]]
+![](images/Pasted%20image%2020251016203228.png)
 
 其代码如下。
 
-![[Pasted image 20251016203615.png]]
+![](images/Pasted%20image%2020251016203615.png)

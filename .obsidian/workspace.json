@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "VUE3"
+              "title": "FirstProject"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -191,7 +191,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "horizontal",
@@ -211,12 +211,13 @@
       "md-image-manager:Markdown Image Manager": false
     }
   },
-  "active": "b03b39026cabe65d",
+  "active": "01dfb859aaa8d824",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/ForumProject.md",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
+    "Computer Science/Front End/VUE3.md",
     "欢迎.md",
     "images/1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png",
-    "Computer Science/Front End/VUE3.md",
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
     "Computer Science/JAVA学习目录.md",
     "Computer Science/Solidity/solidity智能合约概述.md",
@@ -235,7 +236,6 @@
     "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
     "Computer Science/Practice/project/zero-one-12psi/init.md",
     "Computer Science/Practice/project/zero-one-12psi",
-    "Computer Science/Practice/project/ForumProject.md",
     "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/EducationalManagementSystem.md",
     "Computer Science/Practice/project/big-project",

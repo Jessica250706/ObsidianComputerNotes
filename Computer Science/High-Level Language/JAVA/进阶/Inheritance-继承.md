@@ -169,7 +169,7 @@ An instance method in a subclass with the same signature(name, plus the number a
     重写方法时，您可能需要使用**@Override注解**，该注释指示编译器您打算重写父类中的方法。 如果由于某种原因，编译器检测到该方法在父类中不存在，则它将生成错误。
     
 
-![[image 18.png|image 18.png]]
+![image 18.png](images/image%2018.png)
 
 ## 举例
 
@@ -464,9 +464,9 @@ public class StaticTest {
 
 所有类都是Object的子类，因此，创建对象时都需要调用Object类中的无参构造方法，而Object本身就表示对象，因此创建出来的都是对象。
 
-![[image 1 5.png|image 1 5.png]]
+![image 1 5.png](images/image%201%205.png)
 
-![[image 2 5.png|image 2 5.png]]
+![image 2 5.png](images/image%202%205.png)
 
 # final修饰符
 

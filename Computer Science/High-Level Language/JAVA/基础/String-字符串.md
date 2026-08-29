@@ -24,7 +24,7 @@ public String(byte bytes[], Charset charset);
 
 p.s. **当使用一个字面量给字符串赋值时，首先会去字符串常量池中检测是否存在这个字面量。**若存在，则直接使用这个字面量的地址赋值即可。若不存在，则需要在字符串常量池中创建这个字面量，然后再将地址赋值过去。（字符串拼接动作发生在堆内存上）
 
-![[image 15.png|image 15.png]]
+![image 15.png](images/image%2015.png)
 
 ### 举例
 

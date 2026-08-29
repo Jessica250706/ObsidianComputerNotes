@@ -666,7 +666,7 @@ CSS盒子模型(Box Model)是网页布局的基础概念，它描述了每个元
 4. **外边距(Margin)** - 盒子与其他元素之间的透明区域（盒子外部的空间）
     - 使用`margin`及相关属性控制
 
-![[Pasted image 20250630212430.png]]
+![](images/Pasted%20image%2020250630212430.png)
 
 ### 2.标准盒子模型（content-box）-默认
 
@@ -681,7 +681,7 @@ box-sizing: content-box /* W3C盒子模型（默认） */
 
 ### 3.怪异盒子模型（IE-box）
 
-![[Pasted image 20250701144002.png]]
+![](images/Pasted%20image%2020250701144002.png)
 
 ```css
 box-sizing: border-box /* IE盒子模型 */
@@ -2214,11 +2214,11 @@ app.use(cors({
 
 建立一个中转服务器。
 
-![[Pasted image 20250704224324.png]]
+![](images/Pasted%20image%2020250704224324.png)
 
 #### 1.3 自建中转服务器
 
-![[Pasted image 20250704224408.png]]
+![](images/Pasted%20image%2020250704224408.png)
 
 ### 2.后端
 
@@ -2281,7 +2281,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
 ### 4.增加反向代理服务器：`Nginx` 或 `Apache`
 
-![[Pasted image 20250704235550.png]]
+![](images/Pasted%20image%2020250704235550.png)
 
 ### 5.搭建 BFF 层
 

@@ -16,7 +16,7 @@ beginDate: 2026-06-08
 
 - 2. `TypeScript` 包含了 `JavaScript` 的所有内容，即： `TypeScript` 是 `JavaScript` 的超集。
 
-  ![[Typora 2025-01-07 11.53.14.png|215]]
+  ![215](images/Typora%202025-01-07%2011.53.14.png)
   
 - 3. `TypeScript` 增加了：静态类型检查、接口、泛型等很多**现代开发特性**，更适合**大型项目**的开发。
 
@@ -759,7 +759,7 @@ console.log(Direction[0]); // Up
 Direction.Up = 'shang'
 ```
 
-![[Pasted image 20250107175053.png|492]]
+![492](images/Pasted%20image%2020250107175053.png)
 
 也可以指定枚举成员的初始值，其后的成员值会自动递增。
 

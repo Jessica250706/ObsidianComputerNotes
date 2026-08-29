@@ -189,7 +189,7 @@ div > ul > li{
 }
 ```
 
-![[Pasted image 20250505141657.png]]
+![](images/Pasted%20image%2020250505141657.png)
 
 # 2 CSS 样式
 
@@ -291,7 +291,7 @@ p {
 }
 ```
 
-![[Pasted image 20250505153318.png]]
+![](images/Pasted%20image%2020250505153318.png)
 
 ## 2.3 背景
 
@@ -337,7 +337,7 @@ p {
 }
 ```
 
-![[Pasted image 20250505154531.png]]
+![](images/Pasted%20image%2020250505154531.png)
 
 ## 2.4 边框 + 边距
 
@@ -420,7 +420,7 @@ div {
 }
 ```
 
-![[Pasted image 20250505173928.png]]
+![](images/Pasted%20image%2020250505173928.png)
 
 ## 2.5 浮动
 
@@ -460,7 +460,7 @@ float: left;
 
 CSS 同 2.4.3 中的举例。
 
-![[Pasted image 20250505174237.png]]
+![](images/Pasted%20image%2020250505174237.png)
 
 #### 2.5.1.2 有浮动
 
@@ -497,7 +497,7 @@ div {
 }
 ```
 
-![[Pasted image 20250505174309.png]]
+![](images/Pasted%20image%2020250505174309.png)
 
 ```CSS
 .f1,  
@@ -507,7 +507,7 @@ div {
 }
 ```
 
-![[Pasted image 20250505174633.png]]
+![](images/Pasted%20image%2020250505174633.png)
 
 ## 2.6 清除浮动
 
@@ -629,7 +629,7 @@ html,body {
 }
 ```
 
-![[Pasted image 20250505175446.png]]
+![](images/Pasted%20image%2020250505175446.png)
 
 ## 2.7 定位
 
@@ -722,7 +722,7 @@ html, body {
 }
 ```
 
-![[Pasted image 20250505181719.png]]
+![](images/Pasted%20image%2020250505181719.png)
 
 ## 2.8 列表样式
 
@@ -761,7 +761,7 @@ ul {
 ```
 
 
-![[Pasted image 20250505182154.png]]
+![](images/Pasted%20image%2020250505182154.png)
 
 ```CSS
 ul {  
@@ -771,7 +771,7 @@ ul {
 }
 ```
 
-![[Pasted image 20250505182340.png]]
+![](images/Pasted%20image%2020250505182340.png)
 
 ## 2.9 伪类样式
 
@@ -838,15 +838,15 @@ a:active {
 }
 ```
 
-![[Pasted image 20250505182636.png]]
+![](images/Pasted%20image%2020250505182636.png)
 
-![[Pasted image 20250505183123.png]]
+![](images/Pasted%20image%2020250505183123.png)
 
 # 3 盒子模型
 
 HTML 中的每一个元素都是一个容器，这个容器就像是一个盒子，它包括：外边距，边框，填充，和实际内容。
 
-![[image 25.png|image 25.png]]
+![image 25.png](images/image%2025.png)
 
 元素的总宽度 = 左外边距 + 左边框 + 左内边距 + 宽度 + 右内边距 + 右边框 + 右外边距
 
