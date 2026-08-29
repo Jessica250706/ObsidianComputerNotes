@@ -822,7 +822,7 @@
       "enableBracketHighlight": true,
       "highlightNonMatchingBrackets": true,
       "enableSelectionMatching": true,
-      "usePrismHighlight": false,
+      "usePrismHighlight": true,
       "unwrapcode": false,
       "hideFenceLines": false,
       "lineNumberSeparatorStyle": "dashed",
@@ -1066,7 +1066,7 @@
   "newThemeName": "",
   "newPromptName": "",
   "alternateHighlightColorName": "",
-  "settingsType": "general",
+  "settingsType": "appearance",
   "langSpecificSettingsType": "",
   "languageSpecificLanguageName": "",
   "SyntaxThemes": {

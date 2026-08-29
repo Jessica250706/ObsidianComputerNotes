@@ -1,5 +1,6 @@
 {
   "attachmentFolderPath": "images",
   "alwaysUpdateLinks": true,
-  "strictLineBreaks": true
+  "strictLineBreaks": true,
+  "useMarkdownLinks": true
 }
