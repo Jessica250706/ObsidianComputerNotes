@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "插件下载.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "FirstProject"
+              "title": "插件下载"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "插件下载.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "插件下载.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "插件下载.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -213,6 +213,7 @@
   },
   "active": "01dfb859aaa8d824",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/ForumProject.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Front End/VUE3.md",
@@ -236,7 +237,6 @@
     "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
     "Computer Science/Practice/project/zero-one-12psi/init.md",
     "Computer Science/Practice/project/zero-one-12psi",
-    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/EducationalManagementSystem.md",
     "Computer Science/Practice/project/big-project",
     "Computer Science/Practice/Git/Git讲义.pdf",
