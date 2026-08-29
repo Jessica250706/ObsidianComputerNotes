@@ -1,7 +1,7 @@
 {
   "locale": "zh",
   "imagePathTemplate": "images",
-  "imagePathBase": "vault",
+  "imagePathBase": "note",
   "supportedExtensions": [
     "png",
     "jpg",
