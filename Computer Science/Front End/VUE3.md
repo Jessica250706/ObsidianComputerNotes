@@ -33,7 +33,7 @@ p.s.本笔记主要摘录自尚硅谷，部分为 AI 或本人补充
 
 - 截止 2023 年 10 月，最新的公开版本为：`3.3.4`
 
-![[1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png]]
+![[1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png|500]]
 
 ## 1.1 性能的提升
 
@@ -224,13 +224,13 @@ npm create vue@latest
 
 `Options` 类型的 `API`，数据、方法、计算属性等，是分散在：`data`、`methods`、`computed` 中的，若想新增或者修改一个需求，就需要分别修改：`data`、`methods`、`computed`，不便于维护和复用。
 
-<img src="images/1696662197101-55d2b251-f6e5-47f4-b3f1-d8531bbf9279.gif" alt="1.gif" style="zoom:70%;border-radius:20px" /><img src="images/1696662200734-1bad8249-d7a2-423e-a3c3-ab4c110628be.gif" alt="2.gif" style="zoom:70%;border-radius:20px" />
+![[images/1696662197101-55d2b251-f6e5-47f4-b3f1-d8531bbf9279.gif|245]]![[images/1696662200734-1bad8249-d7a2-423e-a3c3-ab4c110628be.gif|310]]
 
 ### 3.1.2 Composition API 的优势
 
 可以用函数的方式，更加优雅的组织代码，让相关功能的代码更加有序的组织在一起。
 
-<img src="images/1696662249851-db6403a1-acb5-481a-88e0-e1e34d2ef53a.gif" alt="3.gif" style="height:300px;border-radius:10px"  /><img src="images/1696662256560-7239b9f9-a770-43c1-9386-6cc12ef1e9c0.gif" alt="4.gif" style="height:300px;border-radius:10px"  />
+![[images/1696662249851-db6403a1-acb5-481a-88e0-e1e34d2ef53a.gif|341]] ![[images/1696662256560-7239b9f9-a770-43c1-9386-6cc12ef1e9c0.gif|354]]
 
 > 说明：以上四张动图原创作者：大帅老猿
 
@@ -528,8 +528,8 @@ function test(){
 - 区别：
 
 > 1. `ref` 创建的变量必须使用 `.value`（可以使用 `volar` 插件自动添加 `.value`）。
->
->    <img src="images/自动补充value.png" alt="自动补充value" style="zoom:50%;border-radius:20px" /> 
+> 
+> ![[images/自动补充value.png|452]] 
 >
 > 2. `reactive` 重新分配一个新对象，会**失去**响应式（可以使用 `Object.assign` 去整体替换）。
 
@@ -586,7 +586,7 @@ function test(){
 
 作用：根据已有数据计算出新数据（和 `Vue 2` 中的 `computed` 作用一致）。
 
-<img src="images/computed.gif" style="zoom:20%;" />  
+![[images/computed.gif|320]]
 
 ```vue
 <template>
@@ -1413,7 +1413,7 @@ const { dogList, getDog } = useDog()
 
 ## 4.1 对路由的理解
 
-<img src="images/image-20231018144351536.png" alt="image-20231018144351536" style="zoom:20%;border-radius:40px" /> 
+![[images/image-20231018144351536.png]]
 
 ## 4.2 基本切换效果
 
@@ -1509,7 +1509,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 ```js
 const router = createRouter({
-	history:createWebHistory(), //history模式
+	history:createWebHistory(), // history模式
 	/******/
 })
 ```
@@ -1522,7 +1522,7 @@ const router = createRouter({
 
 ```js
 const router = createRouter({
-	history:createWebHashHistory(), //hash模式
+	history:createWebHashHistory(), // hash模式
 	/******/
 })
 ```
