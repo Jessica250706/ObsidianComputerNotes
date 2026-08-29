@@ -2243,8 +2243,6 @@ export const useTalkStore = defineStore('talk', () => {
 - 若 **父传子**：属性值是**非函数**。
 - 若 **子传父**：属性值是**函数**。
 
-父组件：
-
 ```vue title:父组件
 <template>
 	<div class="father">
@@ -2269,9 +2267,7 @@ function getToy(value: string) {
 </script>
 ```
 
-子组件
-
-```vue
+```vue title:子组件
 <template>
 	<div class="child">
 		<h3>子组件</h3>
@@ -2380,7 +2376,7 @@ npm i mitt
 
 新建文件：`src\utils\emitter.ts`
 
-```javascript
+```ts title:'emitter.ts'
 // 引入 mitt 
 import mitt from "mitt";
 
@@ -2431,7 +2427,7 @@ onUnmounted(()=>{
 
 提供数据的组件，在合适的时候触发事件
 
-```javascript
+```ts
 import emitter from "@/utils/emitter";
 
 function sendToy(){
@@ -2536,11 +2532,9 @@ function sendToy(){
 
 2. 具体说明：`$attrs`是一个对象，包含所有父组件传入的标签属性。
 
-   >  注意：`$attrs`会自动排除`props`中声明的属性(可以认为声明过的 `props` 被子组件自己“消费”了)
+>  注意：`$attrs`会自动排除`props`中声明的属性(可以认为声明过的 `props` 被子组件自己“消费”了)
 
-父组件：
-
-```vue
+```vue title:父组件
 <template>
   <div class="father">
     <h3>父组件</h3>
@@ -2562,9 +2556,7 @@ function sendToy(){
 </script>
 ```
 
-子组件：
-
-```vue
+```vue title:子组件
 <template>
 	<div class="child">
 		<h3>子组件</h3>
@@ -2577,9 +2569,7 @@ function sendToy(){
 </script>
 ```
 
-孙组件：
-
-```vue
+```vue title:孙组件
 <template>
 	<div class="grand-child">
 		<h3>孙组件</h3>
@@ -2625,7 +2615,7 @@ function sendToy(){
 
    【第一步】父组件中，使用`provide`提供数据
 
-```vue
+```vue title:父组件
 <template>
  <div class="father">
    <h3>父组件</h3>
@@ -2660,23 +2650,23 @@ function sendToy(){
 
    【第二步】孙组件中使用`inject`配置项接受数据。
 
-   ```vue
-   <template>
-     <div class="grand-child">
-       <h3>我是孙组件</h3>
-       <h4>资产： {{ money }}</h4>
-       <h4>汽车： {{ car }}</h4>
-       <button @click="updateMoney(6)">点我</button>
-     </div>
-   </template>
-   
-   <script setup lang="ts" name="GrandChild">
-     import { inject } from 'vue';
-     // 注入数据
-    let {money,updateMoney} = inject('moneyContext',{money:0,updateMoney:(x:number)=>{}})
-     let car = inject('car')
-   </script>
-   ```
+```vue title:孙组件
+<template>
+ <div class="grand-child">
+   <h3>我是孙组件</h3>
+   <h4>资产： {{ money }}</h4>
+   <h4>汽车： {{ car }}</h4>
+   <button @click="updateMoney(6)">点我</button>
+ </div>
+</template>
+
+<script setup lang="ts" name="GrandChild">
+ import { inject } from 'vue';
+ // 注入数据
+let {money,updateMoney} = inject('moneyContext',{money:0,updateMoney:(x:number)=>{}})
+ let car = inject('car')
+</script>
+```
 
 ## 6.8 pinia
 
@@ -2686,45 +2676,47 @@ function sendToy(){
 
 ### 6.9.1 默认插槽
 
-```vue
-父组件中：
-        <Category title="今日热门游戏">
-          <ul>
-            <li v-for="g in games" :key="g.id">{{ g.name }}</li>
-          </ul>
-        </Category>
-子组件中：
-        <template>
-          <div class="item">
-            <h3>{{ title }}</h3>
-            <!-- 默认插槽 -->
-            <slot></slot>
-          </div>
-        </template>
+```vue title:父组件
+<Category title="今日热门游戏">
+  <ul>
+    <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+  </ul>
+</Category>
+```
+
+```vue title:子组件
+<template>
+  <div class="item">
+    <h3>{{ title }}</h3>
+    <!-- 默认插槽 -->
+    <slot></slot>
+  </div>
+</template>
 ```
 
 ### 6.9.2 具名插槽
 
-```vue
-父组件中：
-        <Category title="今日热门游戏">
-          <template v-slot:s1>
-            <ul>
-              <li v-for="g in games" :key="g.id">{{ g.name }}</li>
-            </ul>
-          </template>
-          <template #s2>
-            <a href="">更多</a>
-          </template>
-        </Category>
-子组件中：
-        <template>
-          <div class="item">
-            <h3>{{ title }}</h3>
-            <slot name="s1"></slot>
-            <slot name="s2"></slot>
-          </div>
-        </template>
+```vue title:父组件
+<Category title="今日热门游戏">
+  <template v-slot:s1>
+    <ul>
+      <li v-for="g in games" :key="g.id">{{ g.name }}</li>
+    </ul>
+  </template>
+  <template #s2>
+    <a href="">更多</a>
+  </template>
+</Category>
+```
+
+```vue title:子组件
+<template>
+  <div class="item">
+    <h3>{{ title }}</h3>
+    <slot name="s1"></slot>
+    <slot name="s2"></slot>
+  </div>
+</template>
 ```
 
 ### 6.9.3 作用域插槽 
@@ -2733,33 +2725,33 @@ function sendToy(){
 
 2. 具体编码：
 
-```vue
-父组件中：
-	 <Game v-slot="params">
-	 <!-- <Game v-slot:default="params"> -->
-	 <!-- <Game #default="params"> -->
-	   <ul>
-		 <li v-for="g in params.games" :key="g.id">{{ g.name }}</li>
-	   </ul>
-	 </Game>
+```vue title:父组件
+<Game v-slot="params">
+<!-- <Game v-slot:default="params"> -->
+<!-- <Game #default="params"> -->
+  <ul>
+ <li v-for="g in params.games" :key="g.id">{{ g.name }}</li>
+  </ul>
+</Game>
+```
 
-子组件中：
-	 <template>
-	   <div class="category">
-		 <h2>今日游戏榜单</h2>
-		 <slot :games="games" a="哈哈"></slot>
-	   </div>
-	 </template>
+```vue title:子组件
+<template>
+  <div class="category">
+ <h2>今日游戏榜单</h2>
+ <slot :games="games" a="哈哈"></slot>
+  </div>
+</template>
 
-	 <script setup lang="ts" name="Category">
-	   import {reactive} from 'vue'
-	   let games = reactive([
-		 {id:'asgdytsa 01',name:'英雄联盟'},
-		 {id:'asgdytsa 02',name:'王者荣耀'},
-		 {id:'asgdytsa 03',name:'红色警戒'},
-		 {id:'asgdytsa 04',name:'斗罗大陆'}
-	   ])
-	 </script>
+<script setup lang="ts" name="Category">
+  import {reactive} from 'vue'
+  let games = reactive([
+ {id:'asgdytsa 01',name:'英雄联盟'},
+ {id:'asgdytsa 02',name:'王者荣耀'},
+ {id:'asgdytsa 03',name:'红色警戒'},
+ {id:'asgdytsa 04',name:'斗罗大陆'}
+  ])
+</script>
 ```
 
 # 7. 其它 API
@@ -2839,9 +2831,9 @@ const shallowReadOnlyCopy = shallowReadonly(original);
 
 1. 作用：用于获取一个响应式对象的原始对象， `toRaw` 返回的对象不再是响应式的，不会触发视图更新。
 
-   > 官网描述：这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。不建议保存对原始对象的持久引用，请谨慎使用。
+> 官网描述：这是一个可以用于临时读取而不引起代理访问/跟踪开销，或是写入而不触发更改的特殊方法。不建议保存对原始对象的持久引用，请谨慎使用。
 
-   > 何时使用？ —— 在需要将响应式对象传递给非 `Vue` 的库或外部系统时，使用 `toRaw` 可以确保它们收到的是普通对象
+> 何时使用？ —— 在需要将响应式对象传递给非 `Vue` 的库或外部系统时，使用 `toRaw` 可以确保它们收到的是普通对象
 
 2. 具体编码：
 

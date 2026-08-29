@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -28,7 +28,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "VUE3"
+              "title": "FirstProject"
             }
           }
         ]
@@ -109,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -128,7 +128,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -171,7 +171,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/FirstProject.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -213,6 +213,23 @@
   },
   "active": "fc04cb2233078510",
   "lastOpenFiles": [
+    "Computer Science/Practice/Git/Git讲义-部分代码.md",
+    "Computer Science/Practice/微信小程序/微信小程序.md",
+    "Computer Science/High-Level Language/Python/Tuple-元组.md",
+    "Computer Science/High-Level Language/Python/String-字符串.md",
+    "Computer Science/High-Level Language/Python/Set-集合.md",
+    "Computer Science/High-Level Language/Python/Python.md",
+    "Computer Science/High-Level Language/Python/List-列表.md",
+    "Computer Science/High-Level Language/Python/Dict-字典.md",
+    "Computer Science/High-Level Language/JAVA/函数/Scanner.md",
+    "Computer Science/High-Level Language/JAVA/高级/XML解析.md",
+    "Computer Science/High-Level Language/JAVA/高级/Stream流.md",
+    "Computer Science/High-Level Language/JAVA/高级/集合与泛型.md",
+    "Computer Science/High-Level Language/JAVA/高级/函数式接口和方法引用.md",
+    "Computer Science/High-Level Language/JAVA/高级/多线程.md",
+    "Computer Science/High-Level Language/C++/进阶/STL-标准模板库/Map-映射.md",
+    "Computer Science/High-Level Language/C++/进阶/STL-标准模板库/List-列表.md",
+    "Computer Science/Front End/VUE3.md",
     "Computer Science/Front End/TypeScript.md",
     "Computer Science/Front End/React.md",
     "Computer Science/Front End/Question.md",
@@ -222,23 +239,6 @@
     "Computer Science/Front End/JavaScript/JavaScript.md",
     "Computer Science/Front End/JavaScript/函数&方法.md",
     "Computer Science/Front End/HTML/HTML.md",
-    "Computer Science/Front End/HTML/CSS.md",
-    "Computer Science/Front End/HTML/页面布局.md",
-    "Computer Science/Database/MySQl/JDBC.md",
-    "Computer Science/Front End/书写规范/表单-组件拆分.md",
-    "Computer Science/Database/MySQl/DQL语句.md",
-    "Computer Science/Database/MySQl/DML语句.md",
-    "Computer Science/Database/MySQl/Database-数据库.md",
-    "Computer Science/Database/MySQl/数据库设计.md",
-    "Computer Science/Database/MySQl/分层开发.md",
-    "Computer Science/Database/MySQl/多表查询.md",
-    "Computer Science/Database/MySQl/存储过程、函数、触发器和视图.md",
-    "Computer Science/Database/MySQl/常用函数.md",
-    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Queue-队列.md",
-    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Linear List-线性表.md",
-    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Data Structure-数据结构.md",
-    "Computer Science/Data Structures and Algorithms/Data Structure-数据结构/Stack-栈.md",
-    "Computer Science/Data Structures and Algorithms/Algorithm-算法/回溯与搜索.md",
     "Blogs/Front End/Vue3/images",
     "Computer Science/Android/images",
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/DP/images",

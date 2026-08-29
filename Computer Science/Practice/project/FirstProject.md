@@ -127,9 +127,7 @@ npm install @element-plus/icons-vue
 
 ### 1.3.5 别名
 
-```JavaScript
-// vite.config.js
-
+```JavaScript title:vite.config.js
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 
@@ -150,9 +148,7 @@ export default defineConfig({
 
 测试：引入 `less`（先在 `assets` 文件夹下新建 `less` 文件夹和 `images` 文件夹）
 
-```JavaScript
-// main.js
-
+```JavaScript title:main.js
 import { createApp } from 'vue'
 import App from './App.vue'
 import "@/assets/less/index.less"; // 引入less中的index.less
@@ -160,15 +156,11 @@ import "@/assets/less/index.less"; // 引入less中的index.less
 createApp(App).mount('#app')
 ```
 
-```less
-// src\assets\less\index.less
-
+```less title:'src\assets\less\index.less'
 @import './reset.less';
 ```
 
-```less
-// src\assets\less\reset.less
-
+```less title:'src\assets\less\reset.less'
 @color: #4D926F; 
 
 html,
@@ -202,9 +194,7 @@ h2 {
 
 ![](images/Pasted%20image%2020250513204549.png)
 
-```JavaScript
-// src\router\index.js
-
+```JavaScript title:'src\router\index.js'
 import component from 'element-plus/es/components/tree-select/src/tree-select-option.mjs'
 import { createRouter, createWebHashHistory } from 'vue-router'
 
@@ -229,9 +219,7 @@ export default router; // 不添加会报错
 
 在 `main.js` 文件中引入 `router`
 
-```Javascript
-// src\main.js
-
+```Javascript title:'src\main.js'
 import { createApp } from 'vue'
 import App from './App.vue'
 import "@/assets/less/index.less"; // 引入less中的index.less
@@ -243,9 +231,7 @@ app.use(router).mount('#app');
 
 修改 `App.vue` 的代码，显示如下，即 `router` 生效。
 
-```vue
-<!-- src\App.vue -->
-
+```vue title:'src\App.vue'
 <script setup>
 
 </script>
@@ -281,9 +267,7 @@ app.use(router).mount('#app');
 
 先下载，详情见 1.3.4，然后更新 `main.js`
 
-```Javascript
-// src\main.js
-
+```Javascript title:'src\main.js'
 import { createApp } from 'vue'
 import App from './App.vue'
 import "@/assets/less/index.less"; // 引入less中的index.less
@@ -298,9 +282,7 @@ app.use(router).mount('#app');
 
 测试：在 `App.vue` 修改代码，添加按钮进行测试。
 
-```vue
-<!-- src\App.vue -->
-
+```vue title:'src\App.vue'
 <script setup>
 
 </script>
@@ -337,9 +319,7 @@ npm install -D unplugin-vue-components unplugin-auto-import
 
 **`Vite`**
 
-```ts
-// vite.config.ts
-
+```ts title:'vite.config.ts'
 import { defineConfig } from 'vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
@@ -361,9 +341,7 @@ export default defineConfig({
 
 **`Webpack`**
 
-```js
-// webpack.config.js
-
+```js title:'webpack.config.js'
 const AutoImport = require('unplugin-auto-import/webpack')
 const Components = require('unplugin-vue-components/webpack')
 const { ElementPlusResolver } = require('unplugin-vue-components/resolvers')
@@ -391,9 +369,7 @@ module.exports = {
 npm install unplugin-element-plus -D
 ```
 
-```vue
-<!-- src\App.vue -->
-
+```vue title:'src\App.vue'
 <template>
   <el-button>I am ElButton</el-button>
 </template>
@@ -406,9 +382,7 @@ export default {
 </script>
 ```
 
-```ts
-// vite.config.ts
-
+```ts title:'vite.config.ts'
 import { defineConfig } from 'vite'
 import ElementPlus from 'unplugin-element-plus/vite'
 
