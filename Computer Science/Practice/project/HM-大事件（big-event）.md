@@ -441,9 +441,34 @@ public class UserController {
 }
 ```
 
-### 2.1.6 
+### 2.1.6 参数校验失败异常处理
+
+新建 exception/GlobalExceptionHandler.java 文件。（全局异常处理器）
+
+```java title:'com/xq/exception/GlobalExceptionHandler.java' hl:4
+package com.xq.exception;  
+  
+import com.xq.pojo.Result;  
+import org.springframework.util.StringUtils;  
+import org.springframework.web.bind.annotation.ExceptionHandler;  
+import org.springframework.web.bind.annotation.RestControllerAdvice;  
+  
+@RestControllerAdvice  
+public class GlobalExceptionHandler {  
+  
+    @ExceptionHandler(Exception.class)  
+    public Result handleException(Exception e) {  
+        e.printStackTrace();  
+        return Result.error(StringUtils.hasLength(e.getMessage()) ? e.getMessage() : "操作失败");  
+    }  
+}
+```
+
+注意，`StringUtils` 引入的是 `org.springframework.util` 包中的。
 
 ## 2.2 登录
+
+### 2.
 
 ## 2.3 获取用户详细信息
 
