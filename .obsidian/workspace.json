@@ -57,7 +57,8 @@
               "title": "Git讲义-部分代码"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -197,7 +198,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
+                "file": "Computer Science/Practice/Git/Git讲义-部分代码.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -237,8 +238,9 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "fc04cb2233078510",
+  "active": "d82495bc199ad874",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-大事件（big-event）-1788066252055.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-大事件（big-event）-1788066252055.png",
@@ -249,7 +251,6 @@
     "Computer Science/Practice/project/images/image-HM-大事件（big-event）-引入lombok依赖并重新编译.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-大事件（big-event）-引入lombok依赖并重新编译.png",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/微信小程序/微信小程序.md",
     "Computer Science/High-Level Language/Python/Tuple-元组.md",
@@ -278,7 +279,6 @@
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/DP/images",
     "Computer Science/Data Structures and Algorithms/Algorithm-算法/images",
     "Computer Science/Database/MySQl/images",
-    "Computer Science/Front End/HTML/images",
     "Computer Science/Front End/images/1695089947298-161c1b47-eb86-42fb-b1f8-d6a4fcab8ee2.png",
     "Blogs/Front End/Vue3/images/屏幕截图 2025-08-22 142901.png",
     "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-21_223650.png",

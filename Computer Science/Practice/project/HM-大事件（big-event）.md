@@ -168,8 +168,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;  
   
 //统一响应结果  
-@NoArgsConstructor  
+@NoArgsConstructor
 @AllArgsConstructor  
+@Data
 public class Result<T> {  
     private Integer code;//业务状态码  0-成功  1-失败  
     private String message;//提示信息  
@@ -385,7 +386,7 @@ public interface UserMapper {
 
 老师选择的是 postman，因博主此前已下载过 Apifox，所以选择用 Apifox 进行测试。
 
-
+这里不做详细说明。
 
 ## 2.2 登录
 
