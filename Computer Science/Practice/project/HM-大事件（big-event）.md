@@ -490,9 +490,33 @@ public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @P
 }
 ```
 
-### 2.2.2 登录认证
+### 2.2.2 JWT 令牌
 
+简介。
 
+![image-HM-大事件（big-event）-JWT简介.png](images/image-HM-大事件（big-event）-JWT简介.png)
+
+引入依赖，并刷新 Maven。
+
+```xml title:'pom.xml'
+<!--  JWT依赖  -->  
+<dependency>  
+  <groupId>com.auth0</groupId>  
+  <artifactId>java-jwt</artifactId>  
+  <version>4.4.0</version>  
+</dependency>  
+<!--  单元测试的坐标  -->  
+<dependency>  
+  <groupId>org.springframework.boot</groupId>  
+  <artifactId>spring-boot-starter-test</artifactId>  
+</dependency>
+```
+
+新增 `JwtTest` 文件。若 JWT 无对应导入包，则“文件->清除缓存->勾选清除文件系统缓存和本地历史记录->失效并重启”。
+
+```java title:''
+
+```
 
 ## 2.3 获取用户详细信息
 
