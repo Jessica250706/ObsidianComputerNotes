@@ -934,7 +934,7 @@
         "codeblock": {
           "activeLineColor": "--color-base-30",
           "backgroundColor": "--code-background",
-          "highlightColor": "--text-highlight-bg",
+          "highlightColor": "#FFD0003B",
           "alternateHighlightColors": {},
           "languageBorderColors": {},
           "textColor": "#A30505",
@@ -1066,7 +1066,7 @@
   "newThemeName": "",
   "newPromptName": "",
   "alternateHighlightColorName": "",
-  "settingsType": "appearance",
+  "settingsType": "highlighting",
   "langSpecificSettingsType": "",
   "languageSpecificLanguageName": "",
   "SyntaxThemes": {

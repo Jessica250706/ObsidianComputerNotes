@@ -388,6 +388,61 @@ public interface UserMapper {
 
 这里不做详细说明。
 
+### 2.1.5 使用 Spring Validation 对注册接口的参数进行合法性校验
+
+Step 1）引入 Spring Validation 起步依赖
+
+```xml title:'pom.xml'
+<!--  Validation依赖  -->  
+<dependency>  
+  <groupId>org.springframework.boot</groupId>  
+  <artifactId>spring-boot-starter-validation</artifactId>  
+</dependency>
+```
+
+Step 2）在参数前面添加@Pattern注解
+
+Step 3）在Controller类上添加@Validated注解
+
+```java title:'com/xq/controller/UserController.java' hl:15,22
+package com.xq.controller;  
+  
+import com.xq.pojo.Result;  
+import com.xq.pojo.User;  
+import com.xq.service.UserService;  
+import jakarta.validation.constraints.Pattern;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.validation.annotation.Validated;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+  
+@RestController  
+@RequestMapping("/user")  
+@Validated  
+public class UserController {  
+  
+    @Autowired  
+    private UserService userService;  
+  
+    @PostMapping("/register")  
+    public Result register(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {  
+        // 查询用户（是否占用）  
+        User user = userService.findByUserName(username);  
+        if (user == null) {  
+            // 没有占用，进行注册  
+            userService.register(username, password);  
+            return Result.success();  
+        } else {  
+            // 占用  
+            return Result.error("用户名已被占用");  
+        }  
+    }  
+}
+```
+
+### 2.1.6 
+
 ## 2.2 登录
 
 ## 2.3 获取用户详细信息
