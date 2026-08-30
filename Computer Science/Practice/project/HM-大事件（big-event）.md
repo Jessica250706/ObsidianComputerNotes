@@ -159,7 +159,233 @@ public class BigEventApplication
 
 ### 2.1.2 导入 Result 实体类
 
-从资料中复制
+从资料中复制 Result 实体类到代码中，并加上注释。
+
+```java title:'com/xq/pojo/Result.java'
+package com.xq.pojo;  
+  
+import lombok.AllArgsConstructor;  
+import lombok.NoArgsConstructor;  
+  
+//统一响应结果  
+@NoArgsConstructor  
+@AllArgsConstructor  
+public class Result<T> {  
+    private Integer code;//业务状态码  0-成功  1-失败  
+    private String message;//提示信息  
+    private T data;//响应数据  
+  
+    //快速返回操作成功响应结果(带响应数据)  
+    public static <E> Result<E> success(E data) {  
+        return new Result<>(0, "操作成功", data);  
+    }  
+  
+    //快速返回操作成功响应结果  
+    public static Result success() {  
+        return new Result(0, "操作成功", null);  
+    }  
+  
+    public static Result error(String message) {  
+        return new Result(1, message, null);  
+    }  
+}
+```
+
+### 2.1.3 实现注册逻辑
+
+添加 `Md5` 加密密码工具类。
+
+![image-HM-大事件（big-event）-Md5工具类.png](images/image-HM-大事件（big-event）-Md5工具类.png)
+
+```java title:'com/xq/utils/Md5Util.java'
+package com.xq.utils;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Md5Util {
+    /**
+     * 默认的密码字符串组合，用来将字节转换成 16 进制表示的字符,apache校验下载的文件的正确性用的就是默认的这个组合
+     */
+    protected static char hexDigits[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'};
+
+    protected static MessageDigest messagedigest = null;
+
+    static {
+        try {
+            messagedigest = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException nsaex) {
+            System.err.println(Md5Util.class.getName() + "初始化失败，MessageDigest不支持MD5Util。");
+            nsaex.printStackTrace();
+        }
+    }
+
+    /**
+     * 生成字符串的md5校验值
+     *
+     * @param s
+     * @return
+     */
+    public static String getMD5String(String s) {
+        return getMD5String(s.getBytes());
+    }
+
+    /**
+     * 判断字符串的md5校验码是否与一个已知的md5码相匹配
+     *
+     * @param password  要校验的字符串
+     * @param md5PwdStr 已知的md5校验码
+     * @return
+     */
+    public static boolean checkPassword(String password, String md5PwdStr) {
+        String s = getMD5String(password);
+        return s.equals(md5PwdStr);
+    }
+
+
+    public static String getMD5String(byte[] bytes) {
+        messagedigest.update(bytes);
+        return bufferToHex(messagedigest.digest());
+    }
+
+    private static String bufferToHex(byte bytes[]) {
+        return bufferToHex(bytes, 0, bytes.length);
+    }
+
+    private static String bufferToHex(byte bytes[], int m, int n) {
+        StringBuffer stringbuffer = new StringBuffer(2 * n);
+        int k = m + n;
+        for (int l = m; l < k; l++) {
+            appendHexPair(bytes[l], stringbuffer);
+        }
+        return stringbuffer.toString();
+    }
+
+    private static void appendHexPair(byte bt, StringBuffer stringbuffer) {
+        char c0 = hexDigits[(bt & 0xf0) >> 4];// 取字节中高 4 位的数字转换, >>>
+        // 为逻辑右移，将符号位一起右移,此处未发现两种符号有何不同
+        char c1 = hexDigits[bt & 0xf];// 取字节中低 4 位的数字转换
+        stringbuffer.append(c0);
+        stringbuffer.append(c1);
+    }
+
+}
+```
+
+依次新建功能所需文件。
+
+![image-HM-大事件（big-event）-1788066252055.png|324](images/image-HM-大事件（big-event）-1788066252055.png)
+
+以下是代码。
+
+```java title:'com/xq/controller/UserController.java'
+package com.xq.controller;
+
+import com.xq.pojo.Result;
+import com.xq.pojo.User;
+import com.xq.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/user")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    @PostMapping("/register")
+    public Result register(String username, String password) {
+        // 查询用户（是否占用）
+        User user = userService.findByUserName(username);
+        if (user == null) {
+            // 没有占用，进行注册
+            userService.register(username, password);
+            return Result.success();
+        } else {
+            // 占用
+            return Result.error("用户名已被占用");
+        }
+    }
+}
+```
+
+```java title:'com/xq/service/UserService.java'
+package com.xq.service;  
+  
+import com.xq.pojo.User;  
+  
+public interface UserService {  
+    // 根据用户名查询用户  
+    User findByUserName(String username);  
+  
+    // 注册  
+    void register(String username, String password);  
+}
+```
+
+```java title:'com/xq/service/impl/UserServiceImpl.java'
+package com.xq.service.impl;  
+  
+import com.xq.mapper.UserMapper;  
+import com.xq.pojo.User;  
+import com.xq.service.UserService;  
+import com.xq.utils.Md5Util;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Service;  
+  
+@Service  
+public class UserServiceImpl implements UserService {  
+  
+    @Autowired  
+    private UserMapper userMapper;  
+  
+    @Override  
+    public User findByUserName(String username) {  
+        User user = userMapper.findByUserName(username);  
+        return user;  
+    }  
+  
+    @Override  
+    public void register(String username, String password) {  
+        // 加密密码  
+        String md5String = Md5Util.getMD5String(password);  
+        // 注册  
+        userMapper.add(username, password);  
+    }  
+}
+```
+
+参数 `create_time` 和 `update_time` 可以添加注释，使其在需要生成时自动添加。此处为手动添加。
+
+```java title:'com/xq/mapper/UserMapper.java'
+package com.xq.mapper;  
+  
+import com.xq.pojo.User;  
+import org.apache.ibatis.annotations.Insert;  
+import org.apache.ibatis.annotations.Mapper;  
+import org.apache.ibatis.annotations.Select;  
+  
+@Mapper  
+public interface UserMapper {  
+    // 根据用户名查询用户  
+    @Select("select * from user where username=#{username}")  
+    User findByUserName(String username);  
+  
+    // 注册新用户  
+    @Insert("insert into user(username, password, create_time, update_time)" +  
+            " values(#{username}, #{password}, now(), now())")  
+    void add(String username, String password);  
+}
+```
+
+### 2.1.4 测试（后端自测）
+
+老师选择的是 postman，因博主此前已下载过 Apifox，所以选择用 Apifox 进行测试。
+
+
 
 ## 2.2 登录
 
