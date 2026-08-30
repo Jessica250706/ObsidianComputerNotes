@@ -400,9 +400,9 @@ Step 1）引入 Spring Validation 起步依赖
 </dependency>
 ```
 
-Step 2）在参数前面添加@Pattern注解
+Step 2）在参数前面添加@Pattern 注解
 
-Step 3）在Controller类上添加@Validated注解
+Step 3）在 Controller 类上添加@Validated 注解
 
 ```java title:'com/xq/controller/UserController.java' hl:15,22
 package com.xq.controller;  
@@ -512,10 +512,137 @@ public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @P
 </dependency>
 ```
 
-新增 `JwtTest` 文件。若 JWT 无对应导入包，则“文件->清除缓存->勾选清除文件系统缓存和本地历史记录->失效并重启”。
+新增 `JwtTest` 文件，进行单元测试。若 JWT 无对应导入包，则“文件->清除缓存->勾选清除文件系统缓存和本地历史记录->失效并重启”。
 
-```java title:''
+```java title:'big-event-back-end/src/test/java/com/xq/JwtTest.java'
+package com.xq;  
+  
+import com.auth0.jwt.JWT;  
+import com.auth0.jwt.JWTVerifier;  
+import com.auth0.jwt.algorithms.Algorithm;  
+import com.auth0.jwt.interfaces.Claim;  
+import com.auth0.jwt.interfaces.DecodedJWT;  
+import org.junit.jupiter.api.Test;  
+  
+import java.util.Date;  
+import java.util.HashMap;  
+import java.util.Map;  
+  
+public class JwtTest {  
+  
+    @Test  
+    public  void testGen() {  
+        Map<String, Object> claims = new HashMap<>();  
+        claims.put("id", 1);  
+        claims.put("username", "test");  
+        // 生成JWT的代码  
+        String token = JWT.create()  
+                .withClaim("user", claims) // 添加载荷  
+                .withExpiresAt(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24)) // 添加过期时间（24H）  
+                .sign(Algorithm.HMAC256("itheima")); // 指定算法，配置秘钥  
+  
+        System.out.println(token);  
+    }  
+  
+    @Test  
+    public void testParse() {  
+        // 定义字符串，模拟用户传递过来的token  
+        String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9" +  
+                ".eyJ1c2VyIjp7ImlkIjoxLCJ1c2VybmFtZSI6InRlc3QifSwiZXhwIjoxNzg4MTIyMTYyfQ" +  
+                ".X2TfThPCLbYgUXzrhuvjqlAmWv9RxgMjfctgDe8kFfU";  
+  
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256("itheima")).build();  
+  
+        DecodedJWT decodedJWT = jwtVerifier.verify(token); // 验证token，生成一个解析后的JWT对象  
+        Map<String, Claim> claims = decodedJWT.getClaims();  
+        System.out.println(claims.get("user"));  
+    }  
+  
+}
+```
 
+### 2.2.3 登录认证
+
+引入资料中的 `JwtUtil.java` 到文件夹 `utils` 中。
+
+修改登录逻辑。
+
+```java title:'UserController.java（节选）'
+@PostMapping("/login")  
+public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {  
+    // 根据用户名查询用户  
+    User loginUser = userService.findByUserName(username);  
+    // 判断该用户是否存在  
+    if (loginUser == null) {  
+        return Result.error("用户名错误！");  
+    }  
+    // 判断密码是否正确（loginUser对象中的password是密文）  
+    if (Md5Util.getMD5String(password).equals(loginUser.getPassword())) {  
+        // 登陆成功  
+        Map<String, Object> claims = new HashMap<>();  
+        claims.put("id", loginUser.getId());  
+        claims.put("username", loginUser.getUsername());  
+        String token = JwtUtil.genToken(claims);  
+        return Result.success(token);  
+    }  
+    return Result.error("密码错误！");  
+}
+```
+
+创建 `interceptors/LoginInterceptor.java` 拦截器文件。
+
+```java title:'com/xq/interceptors/LoginInterceptor.java'
+package com.xq.interceptors;  
+  
+import com.xq.utils.JwtUtil;  
+import jakarta.servlet.http.HttpServletRequest;  
+import jakarta.servlet.http.HttpServletResponse;  
+import org.springframework.stereotype.Component;  
+import org.springframework.web.servlet.HandlerInterceptor;  
+  
+import java.util.Map;  
+  
+@Component  
+public class LoginInterceptor implements HandlerInterceptor {  
+  
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {  
+        // 令牌验证  
+        String token = request.getHeader("Authorization");  
+        try {  
+            Map<String, Object> claims = JwtUtil.parseToken(token);  
+            return true; // 放行  
+        } catch (Exception e) {  
+            // http响应状态码为401  
+            response.setStatus(401);  
+            return false; // 拦截  
+        }  
+    }  
+}
+```
+
+新建 `config/WebConfig.java` 文件
+
+```java title:'com/xq/config/WebConfig.java'
+package com.xq.config;  
+  
+import com.xq.interceptors.LoginInterceptor;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.context.annotation.Configuration;  
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;  
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;  
+  
+@Configuration  
+public class WebConfig implements WebMvcConfigurer {  
+  
+    @Autowired  
+    private LoginInterceptor loginInterceptor;  
+  
+    @Override  
+    public void addInterceptors(InterceptorRegistry registry) {  
+        // 登录和注册接口不拦截  
+        registry.addInterceptor(loginInterceptor).excludePathPatterns("/user/login", "/user/register");  
+    }  
+}
 ```
 
 ## 2.3 获取用户详细信息
