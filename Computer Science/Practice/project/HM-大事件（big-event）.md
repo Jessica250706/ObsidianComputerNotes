@@ -691,3 +691,9 @@ public class WebConfig implements WebMvcConfigurer {
 
 # 7.SpringBoot 项目部署
 
+# 8.属性配置方式
+
+# 9.多环境开发-Profiles
+
+# 10.新特性-原生镜像
+
