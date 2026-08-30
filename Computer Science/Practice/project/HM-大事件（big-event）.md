@@ -137,6 +137,30 @@ public class BigEventApplication
 
 ## 2.1 注册
 
+### 2.1.1 引入 `lombok` 依赖
+
+```xml title:'pom.xml'
+<!--  lombok依赖  -->  
+<dependency>  
+  <groupId>org.projectlombok</groupId>  
+  <artifactId>lombok</artifactId>  
+</dependency>
+```
+
+引入 `lombok` 依赖后，在 `User` 实体类中添加注释，接着点击 Maven 中的 compile 重新编译。
+
+![image-HM-大事件（big-event）-引入lombok依赖并重新编译.png](images/image-HM-大事件（big-event）-引入lombok依赖并重新编译.png)
+
+然后可以看到对应 target 中已有 getter 等。
+
+![image-HM-大事件（big-event）-1788064331709.png](images/image-HM-大事件（big-event）-1788064331709.png)
+
+如法炮制，在其他实体类中同样添加 `@Data` 注释。
+
+### 2.1.2 导入 Result 实体类
+
+从资料中复制
+
 ## 2.2 登录
 
 ## 2.3 获取用户详细信息
