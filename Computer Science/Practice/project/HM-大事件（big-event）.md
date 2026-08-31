@@ -697,11 +697,105 @@ mybatis:
     map-underscore-to-camel-case: true # 开启驼峰命名和下划线命名的自动转换
 ```
 
-### 2.3.2 
+### 2.3.2 `ThreadLocal` 优化
 
+`ThreadLocal` 提供线程局部变量。以下代码用于测试 `ThreadLocal` 的作用。
 
+```java title:'com/xq/ThreadLocalTest.java' group:ThreadLocalTest
+package com.xq;  
+  
+import org.junit.jupiter.api.Test;  
+  
+public class ThreadLocalTest {  
+  
+    @Test  
+    public void testThreadLocalSetAndGet() {  
+        // 提供一个 ThreadLocal 对象  
+        ThreadLocal tl = new ThreadLocal();  
+        // 开启两个线程  
+        new Thread(() -> {  
+            tl.set("Yuki");  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+        }, "绿色").start();  
+        new Thread(() -> {  
+            tl.set("Momo");  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+            System.out.println(Thread.currentThread().getName() + "：" + tl.get());  
+        }, "粉色").start();  
+    }  
+}
+```
+```text title:'输出' group:ThreadLocalTest
+绿色：Yuki
+粉色：Momo
+绿色：Yuki
+粉色：Momo
+粉色：Momo
+绿色：Yuki
+```
+
+从资料中 copy `ThreadLocalUtil` 工具类放入项目的工具类文件夹中。
+
+在登录拦截器中添加代码。
+
+```java title:'com/xq/interceptors/LoginInterceptor.java' hl:20-21,30-34
+package com.xq.interceptors;  
+  
+import com.xq.utils.JwtUtil;  
+import com.xq.utils.ThreadLocalUtil;  
+import jakarta.servlet.http.HttpServletRequest;  
+import jakarta.servlet.http.HttpServletResponse;  
+import org.springframework.stereotype.Component;  
+import org.springframework.web.servlet.HandlerInterceptor;  
+  
+import java.util.Map;  
+  
+@Component  
+public class LoginInterceptor implements HandlerInterceptor {  
+  
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {  
+        // 令牌验证  
+        String token = request.getHeader("Authorization");  
+        try {  
+            Map<String, Object> claims = JwtUtil.parseToken(token);  
+            // 把业务数据存储到 ThreadLocal 中  
+            ThreadLocalUtil.set(claims);  
+            return true; // 放行  
+        } catch (Exception e) {  
+            // http响应状态码为401  
+            response.setStatus(401);  
+            return false; // 拦截  
+        }  
+    }  
+  
+    @Override  
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {  
+        // 清空 ThreadLocal 中的数据，防止内存泄漏  
+        ThreadLocalUtil.remove();  
+    }  
+}
+```
+
+修改接口中的逻辑。
+
+```java title:'com/xq/controller/UserController.java' hl:4
+@GetMapping("/userInfo")  
+public Result<User> userInfo(@RequestHeader(name = "Authorization") String token) {  
+    // 根据用户名查询用户  
+    Map<String, Object> map = ThreadLocalUtil.get();  
+    String username = (String) map.get("username");  
+  
+    User user = userService.findByUserName(username);  
+    return Result.success(user);  
+}
+```
 
 ## 2.4 更新用户基本信息
+
+
 
 ## 2.5 更新用户头像
 
