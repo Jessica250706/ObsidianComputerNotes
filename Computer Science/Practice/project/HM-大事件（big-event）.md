@@ -834,11 +834,119 @@ void update(User user);
 | NotEmpty | 值不能为null,并且内容不为空 |
 | Email    | 满足邮箱格式           |
 
+在实体类中的参数前添加注释。
 
+```java title:'User.java' hl:19,36-37,43-44
+package com.xq.pojo;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+// lombok 在编译阶段，为实体类自动生成setter、getter、toString
+// 1）pom文件中引入依赖；2）在实体类上添加注解；
+@Data
+public class User {
+    /*
+    * 主键ID
+    * */
+    @NotNull
+    private Integer id;
+
+    /*
+    * 用户名
+    * */
+    private String username;
+
+    /*
+    * 密码
+    * */
+    @JsonIgnore // 让 SpringMVC 把当前对象转换成 json 字符串的时候，忽略 password，最终的 json 字符串中就没有 password 这个属性了
+    private String password;
+
+    /*
+    * 昵称
+    * */
+    @NotEmpty
+    @Pattern(regexp = "^\\S{1,10}$")
+    private String nickname;
+
+    /*
+    * 邮箱
+    * */
+    @NotEmpty
+    @Email
+    private String email;
+
+    /*
+    * 用户头像地址
+    * */
+    private String userPic;
+
+    /*
+    * 创建时间
+    * */
+    private LocalDateTime createTime;
+
+    /*
+    * 更新时间
+    * */
+    private LocalDateTime updateTime;
+}
+```
+
+在接口的参数前添加 `@Validated` 注释。
+
+```java title:'UserController.java' hl:2
+@PutMapping("/update")  
+public Result update(@RequestBody @Validated User user) {  
+    userService.update(user);  
+    return Result.success();  
+}
+```
 
 ## 2.5 更新用户头像
 
+新增接口，并且在参数 `avatarUrl` 前添加 `@URL` 注解，确保传入的参数是一个 URL。
+
+```java title:'UserController.java'
+@PatchMapping("updateAvatar")  
+public Result updateAvatar(@RequestParam @URL String avatarUrl) {  
+    userService.updateAvatar(avatarUrl);  
+    return Result.success();  
+}
+```
+
+```java title:'UserService.java'
+// 更新头像  
+void updateAvatar(String avatarUrl);
+```
+
+```java title:'UserServiceImpl.java'
+@Override  
+public void updateAvatar(String avatarUrl) {  
+    Map<String, Object> map = ThreadLocalUtil.get();  
+    Integer id = (Integer) map.get("id");  
+    userMapper.updateAvatar(avatarUrl, id);  
+}
+```
+
+```java title:'UserMapper.java'
+// 更新头像  
+@Update("update user set user_pic=#{avatarUrl}, update_time=now() where id=#{id}")  
+void updateAvatar(String avatarUrl, Integer id);
+```
+
+随后启动程序，并进行测试。
+
 ## 2.6 更新用户密码
+
+
 
 # 3.文章分类
 
