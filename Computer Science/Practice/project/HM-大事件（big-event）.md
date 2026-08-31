@@ -797,7 +797,44 @@ public Result<User> userInfo(@RequestHeader(name = "Authorization") String token
 
 ### 2.4.1 功能实现
 
-### 
+```java title:'UserController.java'
+@PutMapping("/update")  
+public Result update(@RequestBody User user) {  
+    userService.update(user);  
+    return Result.success();  
+}
+```
+
+```java title:'UserService.java'
+// 更新  
+void update(User user);
+```
+
+```java title:'UserServiceImpl.java'
+@Override  
+public void update(User user) {  
+    user.setUpdateTime(LocalDateTime.now());  
+    userMapper.update(user);  
+}
+```
+
+```java title:'UserMapper.java'
+// 更新  
+@Update("update user set nickname=#{nickname}, email=#{email}, update_time=#{updateTime} where id=#{id}")  
+void update(User user);
+```
+
+添加对应代码后，启动程序，使用 Postman / Apifox 进行测试。发送请求后，若数据库数据更新，则说明功能已实现。
+
+### 2.4.2 参数校验
+
+| 注解       | 作用               |
+| -------- | ---------------- |
+| NotNull  | 值不能为null         |
+| NotEmpty | 值不能为null,并且内容不为空 |
+| Email    | 满足邮箱格式           |
+
+
 
 ## 2.5 更新用户头像
 
