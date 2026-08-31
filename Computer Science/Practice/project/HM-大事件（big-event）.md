@@ -795,7 +795,9 @@ public Result<User> userInfo(@RequestHeader(name = "Authorization") String token
 
 ## 2.4 更新用户基本信息
 
+### 2.4.1 功能实现
 
+### 
 
 ## 2.5 更新用户头像
 
