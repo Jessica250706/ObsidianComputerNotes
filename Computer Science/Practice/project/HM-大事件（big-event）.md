@@ -134,17 +134,31 @@ public class BigEventApplication
 
 # 2.用户
 
-```text title:'项目目录结构'
+```text title:'项目目录结构' hl:5,11,16,18,20
 com.xq
+	config
+		WebConfig.java
 	controller
+		UserController.java
+	exception
+		GlobalExceptionHandler.java
+	interceptors
+		LoginInterceptor.java
 	mapper
+		UserMapper.java
 	pojo
 		Artivle.java
 		Category.java
+		Result.java
 		User.java
 	service
+		UserService.java
 		impl
+			UserServiceImpl.java
 	utils
+		JwtUtil.java
+		Md5Util.java
+		ThreadLocalUtil.java
 ```
 
 ## 2.1 注册
@@ -1013,6 +1027,37 @@ void updatePwd(String md5String, Integer id);
 ```
 
 # 3.文章分类
+
+```text title:'项目目录结构' hl:5,12,16,20,23
+com.xq
+	config
+		WebConfig.java
+	controller
+		CategoryController.java
+		UserController.java
+	exception
+		GlobalExceptionHandler.java
+	interceptors
+		LoginInterceptor.java
+	mapper
+		CategoryMapper.java
+		UserMapper.java
+	pojo
+		Artivle.java
+		Category.java
+		Result.java
+		User.java
+	service
+		CategoryService.java
+		UserService.java
+		impl
+			CategoryServiceImpl.java
+			UserServiceImpl.java
+	utils
+		JwtUtil.java
+		Md5Util.java
+		ThreadLocalUtil.java
+```
 
 ## 3.1 新增文章分类
 
