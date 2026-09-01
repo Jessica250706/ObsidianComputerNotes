@@ -1057,6 +1057,7 @@ com.xq
 		JwtUtil.java
 		Md5Util.java
 		ThreadLocalUtil.java
+		UserContextUtil.java
 ```
 
 ## 3.1 新增文章分类
@@ -1482,7 +1483,51 @@ public class CategoryController {
 
 ## 3.5 删除文章分类【课后练习】
 
+抽取了获取当前用户 id 的逻辑，封装到 `com/xq/utils/UserContextUtil.java` 文件中。
 
+```java title:'UserContextUtil.java'
+package com.xq.utils;  
+  
+import java.util.Map;  
+  
+public class UserContextUtil {  
+  
+    /**  
+     * 获取当前登录用户的 ID  
+     * @return 用户ID  
+     * @throws RuntimeException 如果上下文不存在或用户未登录  
+     */  
+    public static Integer getCurrentUserId() {  
+        Map<String, Object> map = ThreadLocalUtil.get();  
+        if (map == null) {  
+            throw new RuntimeException("未获取到用户上下文，请检查登录拦截器");  
+        }  
+        Object userId = map.get("id");  
+        if (userId == null) {  
+            throw new RuntimeException("用户未登录或登录信息已失效");  
+        }  
+        return (Integer) userId;  
+    }  
+}
+```
+
+实现功能，同时添加 SQL 语句中对当前用户的验证，确保操作分类是属于当前用户，否则无法进行操作。
+
+```java title:'CategoryController.java'
+
+```
+
+```java title:'CategoryService.java'
+
+```
+
+```java title:'CategoryServiceImpl.java'
+
+```
+
+```java title:'CategoryMapper.java'
+
+```
 
 # 4.文章管理
 
