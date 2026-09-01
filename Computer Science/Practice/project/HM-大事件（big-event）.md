@@ -93,8 +93,7 @@ spring:
 
 ![Pasted image 20260829123832](images/Pasted%20image%2020260829123832.png)
 
-```
-目录结构:
+```text title:'项目目录结构'
 com.xq
 	controller
 	mapper
@@ -134,6 +133,19 @@ public class BigEventApplication
 运行 SpringBoot，若成功，则证明上述步骤成功。
 
 # 2.用户
+
+```text title:'项目目录结构'
+com.xq
+	controller
+	mapper
+	pojo
+		Artivle.java
+		Category.java
+		User.java
+	service
+		impl
+	utils
+```
 
 ## 2.1 注册
 
