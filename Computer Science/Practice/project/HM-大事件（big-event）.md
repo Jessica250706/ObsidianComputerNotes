@@ -830,8 +830,8 @@ void update(User user);
 
 | 注解       | 作用               |
 | -------- | ---------------- |
-| NotNull  | 值不能为null         |
-| NotEmpty | 值不能为null,并且内容不为空 |
+| NotNull  | 值不能为 null         |
+| NotEmpty | 值不能为 null,并且内容不为空 |
 | Email    | 满足邮箱格式           |
 
 在实体类中的参数前添加注释。
@@ -1231,38 +1231,156 @@ List<Category> list(Integer userId);
 实现功能。
 
 ```java title:'CategoryController.java'
-@GetMapping  
-public Result<List<Category>> list() {  
-    List<Category> categories = categoryService.list();  
-    return Result.success(categories);  
+@GetMapping("/detail")  
+public Result<Category> detail(Integer id) {  
+    Category category = categoryService.findById(id);  
+    return Result.success(category);  
 }
 ```
 
 ```java title:'CategoryService.java'
-// 列表查询  
-List<Category> list();
+// 根据 id 查询分类信息  
+Category findById(Integer id);
 ```
 
 ```java title:'CategoryServiceImpl.java'
 @Override  
-public List<Category> list() {  
-    Map<String, Object> map = ThreadLocalUtil.get();  
-    Integer userId = (Integer) map.get("id");  
-    return categoryMapper.list(userId);  
+public Category findById(Integer id) {  
+    Category category = categoryMapper.findById(id);  
+    return category;  
 }
 ```
 
 ```java title:'CategoryMapper.java'
-// 列表查询  
-@Select("select * from category where create_user = #{userId}")  
-List<Category> list(Integer userId);
+// 根据 id 查询分类信息  
+@Select("select * from category where id = #{id}")  
+Category findById(Integer id);
 ```
 
 运行并测试。
 
 ## 3.4 更新文章分类
 
+### 3.4.1 功能实现
+
+新增 id 非空注释。
+
+```java title:'Category.java' hl:4
+/*  
+* 主键ID  
+* */  
+@NotNull
+private Integer id;
+```
+
+实现功能。
+
+```java title:'CategoryController.java'
+@PutMapping  
+public Result update(@RequestBody @Validated Category category) {  
+    categoryService.update(category);  
+    return Result.success();  
+}
+```
+
+```java title:'CategoryService.java'
+// 更新分类  
+void update(Category category);
+```
+
+```java title:'CategoryServiceImpl.java'
+@Override  
+public void update(Category category) {  
+    category.setUpdateTime(LocalDateTime.now());  
+    categoryMapper.update(category);  
+}
+```
+
+```java title:'CategoryMapper.java'
+// 更新分类  
+@Update("update category set category_name=#{categoryName}, category_alias=#{categoryAlias}, " +  
+        "update_time=#{updateTime} where id=#{id}")  
+void update(Category category);
+```
+
+运行并测试。
+
+### 3.4.2 分组校验
+
+把校验项进行归类分组，在完成不同的功能的时候，校验指定组中的校验项。
+
+1. 定义分组；
+2. 定义校验项时指定归属的分组；
+3. 校验时指定要校验的分组；
+
+P.s. 定义校验项时如果没有指定分组，则属于 Default 分组，分组可以继承
+
+```java title:'Category.java' hl:16,22,28,48-57
+package com.xq.pojo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.groups.Default;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class Category {
+    /*
+    * 主键ID
+    * */
+    @NotNull(groups = Update.class)
+    private Integer id;
+
+    /*
+    * 分类名称
+    * */
+    @NotEmpty
+    private String categoryName;
+
+    /*
+    * 分类别名
+    * */
+    @NotEmpty
+    private String categoryAlias;
+
+    /*
+    * 创建人ID
+    * */
+    private Integer createUser;
+
+    /*
+    * 创建时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
+
+    /*
+    * 更新时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+
+    // 如果说某个校验项没有指定分组，则默认属于 Default 分组
+    // 分组之间可以继承，A extends B，则 A 中拥有 B 中所有的校验项
+
+    public interface Add extends Default {
+
+    }
+
+    public interface Update extends Default {
+
+    }
+}
+```
+
+
+
 ## 3.5 删除文章分类
+
+
 
 # 4.文章管理
 
