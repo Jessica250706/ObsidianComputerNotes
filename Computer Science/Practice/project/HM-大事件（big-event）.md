@@ -1004,11 +1004,261 @@ void updatePwd(String md5String, Integer id);
 
 ## 3.1 新增文章分类
 
+配合接口需求，添加非空注释。
 
+```java title:'Category.java' hl:18,24
+package com.xq.pojo;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class Category {
+    /*
+    * 主键ID
+    * */
+    private Integer id;
+
+    /*
+    * 分类名称
+    * */
+    @NotEmpty
+    private String categoryName;
+
+    /*
+    * 分类别名
+    * */
+    @NotEmpty
+    private String categoryAlias;
+
+    /*
+    * 创建人ID
+    * */
+    private Integer createUser;
+
+    /*
+    * 创建时间
+    * */
+    private LocalDateTime createTime;
+
+    /*
+    * 更新时间
+    * */
+    private LocalDateTime updateTime;
+}
+```
+
+实现功能。
+
+```java title:'CategoryController.java'
+package com.xq.controller;  
+  
+import com.xq.pojo.Category;  
+import com.xq.pojo.Result;  
+import com.xq.service.CategoryService;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.validation.annotation.Validated;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RequestBody;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+  
+@RestController  
+@RequestMapping("/category")  
+public class CategoryController {  
+  
+    @Autowired  
+    private CategoryService categoryService;  
+  
+    @PostMapping  
+    public Result add(@RequestBody @Validated Category category) {  
+        categoryService.add(category);  
+        return Result.success();  
+    }  
+}
+```
+
+```java title:'CategoryService.java'
+package com.xq.service;  
+  
+import com.xq.pojo.Category;  
+  
+public interface CategoryService {  
+    // 新增分类  
+    void add(Category category);  
+}
+```
+
+```java title:'CategoryServiceImpl.java'
+package com.xq.service.impl;  
+  
+import com.xq.mapper.CategoryMapper;  
+import com.xq.pojo.Category;  
+import com.xq.service.CategoryService;  
+import com.xq.utils.ThreadLocalUtil;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Service;  
+  
+import java.time.LocalDateTime;  
+import java.util.Map;  
+  
+@Service  
+public class CategoryServiceImpl implements CategoryService {  
+  
+    @Autowired  
+    private CategoryMapper categoryMapper;  
+  
+    @Override  
+    public void add(Category category) {  
+        // 补充属性值  
+        category.setCreateTime(LocalDateTime.now());  
+        category.setUpdateTime(LocalDateTime.now());  
+  
+        Map<String, Object> map = ThreadLocalUtil.get();  
+        Integer userId = (Integer) map.get("id");  
+        category.setCreateUser(userId);  
+  
+        categoryMapper.add(category);  
+    }  
+}
+```
+
+```java title:'CategoryMapper.java'
+package com.xq.mapper;  
+  
+import com.xq.pojo.Category;  
+import org.apache.ibatis.annotations.Insert;  
+import org.apache.ibatis.annotations.Mapper;  
+  
+@Mapper  
+public interface CategoryMapper {  
+    // 新增分类  
+    @Insert("insert into category(category_name, category_alias, create_user, create_time, update_time) " +  
+            "values(#{categoryName}, #{categoryAlias}, #{createUser}, #{createTime}, #{updateTime})")  
+    void add(Category category);  
+}
+```
+
+运行并测试。
 
 ## 3.2 文章分类列表
 
+配合接口需求，添加时间戳转固定格式的注解。
+
+```java title:'Category.java' hl:36,42
+package com.xq.pojo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+
+@Data
+public class Category {
+    /*
+    * 主键ID
+    * */
+    private Integer id;
+
+    /*
+    * 分类名称
+    * */
+    @NotEmpty
+    private String categoryName;
+
+    /*
+    * 分类别名
+    * */
+    @NotEmpty
+    private String categoryAlias;
+
+    /*
+    * 创建人ID
+    * */
+    private Integer createUser;
+
+    /*
+    * 创建时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
+
+    /*
+    * 更新时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+}
+```
+
+实现功能。
+
+```java title:'CategoryController.java'
+@GetMapping  
+public Result<List<Category>> list() {  
+    List<Category> categories = categoryService.list();  
+    return Result.success(categories);  
+}
+```
+
+```java title:'CategoryService.java'
+// 列表查询  
+List<Category> list();
+```
+
+```java title:'CategoryServiceImpl.java'
+@Override  
+public List<Category> list() {  
+    Map<String, Object> map = ThreadLocalUtil.get();  
+    Integer userId = (Integer) map.get("id");  
+    return categoryMapper.list(userId);  
+}
+```
+
+```java title:'CategoryMapper.java'
+// 列表查询  
+@Select("select * from category where create_user = #{userId}")  
+List<Category> list(Integer userId);
+```
+
+运行并测试。
+
 ## 3.3 获取文章分类详情
+
+实现功能。
+
+```java title:'CategoryController.java'
+@GetMapping  
+public Result<List<Category>> list() {  
+    List<Category> categories = categoryService.list();  
+    return Result.success(categories);  
+}
+```
+
+```java title:'CategoryService.java'
+// 列表查询  
+List<Category> list();
+```
+
+```java title:'CategoryServiceImpl.java'
+@Override  
+public List<Category> list() {  
+    Map<String, Object> map = ThreadLocalUtil.get();  
+    Integer userId = (Integer) map.get("id");  
+    return categoryMapper.list(userId);  
+}
+```
+
+```java title:'CategoryMapper.java'
+// 列表查询  
+@Select("select * from category where create_user = #{userId}")  
+List<Category> list(Integer userId);
+```
+
+运行并测试。
 
 ## 3.4 更新文章分类
 
