@@ -173,7 +173,7 @@ com.xq
 </dependency>
 ```
 
-引入 `lombok` 依赖后，在 `User` 实体类中添加注释，接着点击 Maven 中的 compile 重新编译。
+引入 `lombok` 依赖后，在 `User` 实体类中添加注解，接着点击 Maven 中的 compile 重新编译。
 
 ![image-HM-大事件（big-event）-引入lombok依赖并重新编译.png](images/image-HM-大事件（big-event）-引入lombok依赖并重新编译.png)
 
@@ -181,11 +181,11 @@ com.xq
 
 ![image-HM-大事件（big-event）-1788064331709.png](images/image-HM-大事件（big-event）-1788064331709.png)
 
-如法炮制，在其他实体类中同样添加 `@Data` 注释。
+如法炮制，在其他实体类中同样添加 `@Data` 注解。
 
 ### 2.1.2 导入 Result 实体类
 
-从资料中复制 Result 实体类到代码中，并加上注释。
+从资料中复制 Result 实体类到代码中，并加上注解。
 
 ```java title:'com/xq/pojo/Result.java'
 package com.xq.pojo;  
@@ -385,7 +385,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-参数 `create_time` 和 `update_time` 可以添加注释，使其在需要生成时自动添加。此处为手动添加。
+参数 `create_time` 和 `update_time` 可以添加注解，使其在需要生成时自动添加。此处为手动添加。
 
 ```java title:'com/xq/mapper/UserMapper.java'
 package com.xq.mapper;  
@@ -689,7 +689,7 @@ public Result<User> userInfo(@RequestHeader(name = "Authorization") String token
 }
 ```
 
-注释 password，使返回参数中没有 password。（注意，`@JsonIgnore` 有两个对应包，请正确引入，否则功能不能正常实现。）
+注解 password，使返回参数中没有 password。（注意，`@JsonIgnore` 有两个对应包，请正确引入，否则功能不能正常实现。）
 
 ```java title:'com/xq/pojo/User.java' hl:3,14
 package com.xq.pojo;  
@@ -860,7 +860,7 @@ void update(User user);
 | NotEmpty | 值不能为 null,并且内容不为空 |
 | Email    | 满足邮箱格式           |
 
-在实体类中的参数前添加注释。
+在实体类中的参数前添加注解。
 
 ```java title:'User.java' hl:19,36-37,43-44
 package com.xq.pojo;
@@ -926,7 +926,7 @@ public class User {
 }
 ```
 
-在接口的参数前添加 `@Validated` 注释。
+在接口的参数前添加 `@Validated` 注解。
 
 ```java title:'UserController.java' hl:2
 @PutMapping("/update")  
@@ -1062,7 +1062,7 @@ com.xq
 
 ## 3.1 新增文章分类
 
-配合接口需求，添加非空注释。
+配合接口需求，添加非空注解。
 
 ```java title:'Category.java' hl:18,24
 package com.xq.pojo;
@@ -1321,7 +1321,7 @@ Category findById(Integer id);
 
 ### 3.4.1 功能实现
 
-新增 id 非空注释。
+新增 id 非空注解。
 
 ```java title:'Category.java' hl:4
 /*  
@@ -1545,11 +1545,14 @@ int delete(Integer id, Integer userId);
 
 # 4.文章管理
 
-```text title:'项目目录结构' hl:
+```text title:'项目目录结构' hl:3,7,15,24,28,37
 com.xq
+	anno
+		State.java
 	config
 		WebConfig.java
 	controller
+		ArticleController.java
 		CategoryController.java
 		UserController.java
 	exception
@@ -1557,6 +1560,7 @@ com.xq
 	interceptors
 		LoginInterceptor.java
 	mapper
+		ArticleMapper.java
 		CategoryMapper.java
 		UserMapper.java
 	pojo
@@ -1565,9 +1569,11 @@ com.xq
 		Result.java
 		User.java
 	service
+		ArticleService.java
 		CategoryService.java
 		UserService.java
 		impl
+			ArticleServiceImpl.java
 			CategoryServiceImpl.java
 			UserServiceImpl.java
 	utils
@@ -1575,13 +1581,242 @@ com.xq
 		Md5Util.java
 		ThreadLocalUtil.java
 		UserContextUtil.java
+	validation
+		StateValidation.java
 ```
 
 ## 4.1 新增文章
 
+### 4.1.1 功能实现
 
+实现功能。
+
+```java title:'ArticleController.java'
+package com.xq.controller;  
+  
+import com.xq.pojo.Article;  
+import com.xq.pojo.Result;  
+import com.xq.service.ArticleService;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.validation.annotation.Validated;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RequestBody;  
+import org.springframework.web.bind.annotation.RequestMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+  
+@RestController  
+@RequestMapping("/article")  
+@Validated  
+public class ArticleController {  
+  
+    @Autowired  
+    private ArticleService articleService;  
+  
+    @PostMapping  
+    public Result add(@RequestBody Article article) {  
+        articleService.add(article);  
+        return Result.success();  
+    }  
+}
+```
+
+```java title:'ArticleService.java'
+package com.xq.service;  
+  
+import com.xq.pojo.Article;  
+  
+public interface ArticleService {  
+    // 新增文章  
+    void add(Article article);  
+}
+```
+
+```java title:'ArticleServiceImpl.java'
+package com.xq.service.impl;  
+  
+import com.xq.mapper.ArticleMapper;  
+import com.xq.pojo.Article;  
+import com.xq.service.ArticleService;  
+import com.xq.utils.UserContextUtil;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.stereotype.Service;  
+  
+import java.time.LocalDateTime;  
+  
+@Service  
+public class ArticleServiceImpl implements ArticleService {  
+  
+    @Autowired  
+    private ArticleMapper articleMapper;  
+  
+    @Override  
+    public void add(Article article) {  
+        Integer userId = UserContextUtil.getCurrentUserId();  
+        article.setCreateUser(userId);  
+        article.setCreateTime(LocalDateTime.now());  
+        article.setUpdateTime(LocalDateTime.now());  
+        articleMapper.add(article);  
+    }  
+}
+```
+
+```java title:'ArticleMapper.java'
+package com.xq.mapper;  
+  
+import com.xq.pojo.Article;  
+import org.apache.ibatis.annotations.Insert;  
+import org.apache.ibatis.annotations.Mapper;  
+  
+@Mapper  
+public interface ArticleMapper {  
+    // 新增文章  
+    @Insert("insert into article(title, content, cover_img, state, category_id, create_user, create_time, update_time) " +  
+            "values(#{title}, #{content}, #{coverImg}, #{state}, #{categoryId}, #{createUser}, #{createTime}, #{updateTime})")  
+    void add(Article article);  
+}
+```
+
+运行并测试。
+
+### 4.1.2 自定义参数校验
+
+已有的注解不能满足所有的校验需求，特殊的情况需要自定义校验（自定义校验注解）
+
+1. 自定义注解 State
+2. 自定义校验数据的类 StateValidation，实现ConstraintValidator接口
+3. 在需要校验的地方使用自定义注解
+
+新建 `com/xq/anno/State.java` 文件，参考官方注解实现代码。
+
+```java title:'State.java'
+package com.xq.anno;  
+  
+import com.xq.validation.StateValidation;  
+import jakarta.validation.Constraint;  
+import jakarta.validation.Payload;  
+  
+import java.lang.annotation.*;  
+  
+@Documented // 元注解  
+@Target({ ElementType.FIELD }) // 元注解  
+@Retention(RetentionPolicy.RUNTIME) // 元注解  
+@Constraint(  
+        validatedBy = { StateValidation.class } // 指定提供校验规则的类  
+)  
+public @interface State {  
+    // 提供校验失败后的提示信息  
+    String message() default "state 参数的值只能是已发布或者草稿";  
+    // 制定分组  
+    Class<?>[] groups() default {};  
+    // 负载，获取到 State 注解的附加信息  
+    Class<? extends Payload>[] payload() default {};  
+}
+```
+
+新建 `com/xq/validation/StateValidation.java` 文件。
+
+```java title:'StateValidation.java'
+package com.xq.validation;  
+  
+import com.xq.anno.State;  
+import jakarta.validation.ConstraintValidator;  
+import jakarta.validation.ConstraintValidatorContext;  
+  
+// ConstraintValidator<给哪个注解提供校验规则, 校验的数据类型>  
+public class StateValidation implements ConstraintValidator<State, String> {  
+    /**  
+     *     
+     * @param string 将来要校验的数据  
+     * @param constraintValidatorContext  
+     * @return 如果返回 false，则校验不通过；如果返回 true，则校验通过；  
+     */  
+    @Override  
+    public boolean isValid(String string, ConstraintValidatorContext constraintValidatorContext) {  
+        // 提供校验规则  
+        if (string == null) {  
+            return false;  
+        }  
+        return string.equals("已发布") || string.equals("草稿");  
+    }  
+}
+```
+
+在实体类中添加官方注解和自定义注解。
+
+```java title:'Article.java' hl:23-24,30,36-37,43,49
+package com.xq.pojo;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xq.anno.State;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import lombok.Data;
+import org.hibernate.validator.constraints.URL;
+
+import java.time.LocalDateTime;
+
+@Data
+public class Article {
+    /*
+    * 主键ID
+    * */
+    private Integer id;
+
+    /*
+    * 文章标题
+    * */
+    @NotEmpty
+    @Pattern(regexp = "^\\S{1,10}$")
+    private String title;
+
+    /*
+    * 文章内容
+    * */
+    @NotEmpty
+    private String content;
+
+    /*
+    * 封面图像
+    * */
+    @NotEmpty
+    @URL
+    private String coverImg;
+
+    /*
+    * 发布状态 已发布|草稿
+    * */
+    @State
+    private String state;
+
+    /*
+    * 文章分类id
+    * */
+    @NotNull
+    private Integer categoryId;
+
+    /*
+    * 创建人ID
+    * */
+    private Integer createUser;
+
+    /*
+    * 创建时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
+
+    /*
+    * 更新时间
+    * */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updateTime;
+}
+```
 
 ## 4.2 文章列表（条件分页）
+
+
 
 ## 4.3 获取文章详情
 
