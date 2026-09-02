@@ -2207,11 +2207,154 @@ public class Demo {
 
 ### 5.2.4 程序集成
 
+添加依赖。
 
+```xml title:'pom.xml'
+<!--  阿里云OSS 依赖坐标  -->  
+<dependency>  
+  <groupId>com.aliyun.oss</groupId>  
+  <artifactId>aliyun-sdk-oss</artifactId>  
+  <version>3.18.4</version>  
+</dependency>  
+<dependency>  
+  <groupId>javax.xml.bind</groupId>  
+  <artifactId>jaxb-api</artifactId>  
+  <version>2.3.1</version>  
+</dependency>  
+<dependency>  
+  <groupId>javax.activation</groupId>  
+  <artifactId>activation</artifactId>  
+  <version>1.1.1</version>  
+</dependency>  
+<!-- no more than 2.3.3-->  
+<dependency>  
+  <groupId>org.glassfish.jaxb</groupId>  
+  <artifactId>jaxb-runtime</artifactId>  
+  <version>2.3.3</version>  
+</dependency>
+```
+
+新建工具类文件 `com/xq/utils/AliOssUtil.java`，是 5.2.3 中 `Demo` 文件的抽象工具。
+
+```java title:'AliOssUtil.java'
+package com.xq.utils;  
+  
+import com.aliyun.oss.*;  
+import com.aliyun.oss.common.auth.CredentialsProviderFactory;  
+import com.aliyun.oss.common.auth.EnvironmentVariableCredentialsProvider;  
+import com.aliyun.oss.common.comm.SignVersion;  
+import com.aliyun.oss.model.PutObjectRequest;  
+import com.aliyun.oss.model.PutObjectResult;  
+  
+import java.io.InputStream;  
+  
+public class AliOssUtil {  
+  
+    // Endpoint以华东1（杭州）为例，其它Region请按实际情况填写。  
+    private static final String ENDPOINT = "https://oss-cn-hangzhou.aliyuncs.com";  
+    // 填写Bucket名称，例如examplebucket。  
+    private static final String BUCKET_NAME = "web-hm-event";  
+    // 填写Bucket所在地域。以华东1（杭州）为例，Region填写为cn-hangzhou。  
+    private static final String REGION = "cn-hangzhou";  
+  
+    public static String uploadFile(String objectName, InputStream inputStream) throws Exception {  
+        // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。  
+        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();  
+  
+        // 创建OSSClient实例。  
+        // 当OSSClient实例不再使用时，调用shutdown方法以释放资源。  
+        ClientBuilderConfiguration clientBuilderConfiguration = new ClientBuilderConfiguration();  
+        clientBuilderConfiguration.setSignatureVersion(SignVersion.V4);  
+        OSS ossClient = OSSClientBuilder.create()  
+                .endpoint(ENDPOINT)  
+                .credentialsProvider(credentialsProvider)  
+                .clientConfiguration(clientBuilderConfiguration)  
+                .region(REGION)  
+                .build();  
+  
+        String url = "";  
+  
+        try {  
+            // 填写字符串。  
+            String content = "Hello OSS，你好世界";  
+  
+            // 创建PutObjectRequest对象。  
+            PutObjectRequest putObjectRequest = new PutObjectRequest(BUCKET_NAME, objectName, inputStream);  
+  
+            // 如果需要上传时设置存储类型和访问权限，请参考以下示例代码。  
+            // ObjectMetadata metadata = new ObjectMetadata();  
+            // metadata.setHeader(OSSHeaders.OSS_STORAGE_CLASS, StorageClass.Standard.toString());            // metadata.setObjectAcl(CannedAccessControlList.Private);            // putObjectRequest.setMetadata(metadata);  
+            // 上传字符串。  
+            PutObjectResult result = ossClient.putObject(putObjectRequest);  
+  
+            url = "https://" + BUCKET_NAME + "." + ENDPOINT.substring(ENDPOINT.lastIndexOf("/") + 1) + "/" + objectName;  
+        } catch (OSSException oe) {  
+            System.out.println("Caught an OSSException, which means your request made it to OSS, "  
+                    + "but was rejected with an error response for some reason.");  
+            System.out.println("Error Message:" + oe.getErrorMessage());  
+            System.out.println("Error Code:" + oe.getErrorCode());  
+            System.out.println("Request ID:" + oe.getRequestId());  
+            System.out.println("Host ID:" + oe.getHostId());  
+        } catch (ClientException ce) {  
+            System.out.println("Caught an ClientException, which means the client encountered "  
+                    + "a serious internal problem while trying to communicate with OSS, "  
+                    + "such as not being able to access the network.");  
+            System.out.println("Error Message:" + ce.getMessage());  
+        } finally {  
+            if (ossClient != null) {  
+                ossClient.shutdown();  
+            }  
+        }  
+  
+        return url;  
+    }  
+}
+```
+
+修改文件上传接口。
+
+```java title:'FileUploadController.java' hl:15,20-22
+package com.xq.controller;  
+  
+import com.xq.pojo.Result;  
+import com.xq.utils.AliOssUtil;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.multipart.MultipartFile;  
+  
+import java.util.UUID;  
+  
+@RestController  
+public class FileUploadController {  
+  
+    @PostMapping("/upload")  
+    public Result<String> upload(MultipartFile file) throws Exception {  
+        // 把文件的内容存储到本地磁盘上  
+        String originalFilename = file.getOriginalFilename();  
+        // 保证文件的名字是唯一的，从而防止文件覆盖  
+        String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));  
+        // file.transferTo(new File("E:\\MyProgram\\Files\\" + filename));  
+        String url = AliOssUtil.uploadFile(filename, file.getInputStream());  
+        return Result.success(url);  
+    }  
+}
+```
+
+老师是把 `OSS_ACCESS_KEY_ID` 和 `OSS_ACCESS_KEY_SECRET` 放在工具类中，但上传 github 时会报错，所以此处按照官方文档的要求把其放在环境变量中，具体步骤如下：
+
+![image-HM-大事件（big-event）-SpringBoot项目添加环境变量.png](images/image-HM-大事件（big-event）-SpringBoot项目添加环境变量.png)
+
+```text title:'环境变量格式'
+OSS_ACCESS_KEY_ID=你的AccessKeyId;OSS_ACCESS_KEY_SECRET=你的AccessKeySecret
+```
+
+还有其他添加环境变量的方式，但此处不做详细介绍。
 
 # 6.登录优化-redis
 
 ## 6.1 SpringBoot 继承 redis
+
+
 
 ## 6.2 令牌主动失效
 
