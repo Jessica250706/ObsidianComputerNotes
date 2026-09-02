@@ -1919,17 +1919,167 @@ P.s. 该映射配置文件需要与接口处在同一目录下，且文件名必
 
 ## 4.3 获取文章详情
 
+实现功能。
 
+```java title:'ArticleController.java'
+@GetMapping("/detail")  
+public Result<Article> detail(@RequestParam Integer id) {  
+    Article article = articleService.findById(id);  
+    return Result.success(article);  
+}
+```
+
+```java title:'ArticleService.java'
+// 根据 id 查询文章信息  
+Article findById(Integer id);
+```
+
+```java title:'ArticleServiceImpl.java'
+@Override  
+public Article findById(Integer id) {  
+    Integer userId = UserContextUtil.getCurrentUserId();  
+    Article article = articleMapper.findById(id, userId);  
+    if (article == null) {  
+        throw new RuntimeException("文章不存在或无权查看");  
+    }  
+    return article;  
+}
+```
+
+```java title:'ArticleMapper.java'
+// 根据 id 查询文章信息  
+@Select("select * from article where id = #{id} and create_user = #{userId};")  
+Article findById(Integer id, Integer userId);
+```
+
+运行并测试。
 
 ## 4.4 更新文章
 
+实现功能。
 
+```java title:'ArticleController.java'
+@PutMapping  
+public Result update(@RequestBody @Validated Article article) {  
+    articleService.update(article);  
+    return Result.success();  
+}
+```
 
-## 4.5 删除文字
+```java title:'ArticleService.java'
+// 更新文章  
+void update(Article article);
+```
 
+```java title:'ArticleServiceImpl.java'
+@Override  
+public void update(Article article) {  
+    Integer userId = UserContextUtil.getCurrentUserId();  
+    article.setCreateUser(userId);  
+    article.setUpdateTime(LocalDateTime.now());  
+    int rows = articleMapper.update(article);  
+    if (rows == 0) {  
+        throw new RuntimeException("文章不存在或无权修改");  
+    }  
+}
+```
 
+```java title:'ArticleMapper.java'
+// 更新文章  
+@Update("update article set title = #{title}, content = #{content}, cover_img = #{coverImg}, state = #{state}, " +  
+        "category_id = #{categoryId}, update_time = #{updateTime} where id = #{id} and create_user = #{createUser}")  
+int update(Article article);
+```
+
+运行并测试。
+
+## 4.5 删除文章
+
+实现功能。
+
+```java title:'ArticleController.java'
+@DeleteMapping  
+public Result delete(@RequestParam Integer id) {  
+    articleService.delete(id);  
+    return Result.success();  
+}
+```
+
+```java title:'ArticleService.java'
+// 删除文章  
+void delete(Integer id);
+```
+
+```java title:'ArticleServiceImpl.java'
+@Override  
+public void delete(Integer id) {  
+    Integer userId = UserContextUtil.getCurrentUserId();  
+    int rows = articleMapper.delete(id, userId);  
+    if (rows == 0) {  
+        throw new RuntimeException("文章不存在或无权删除");  
+    }  
+}
+```
+
+```java title:'ArticleMapper.java'
+// 删除文章  
+@Delete("delete from article where id = #{id} and create_user = #{userId}")  
+int delete(Integer id, Integer userId);
+```
+
+运行并测试。
 
 # 5.文件上传
+
+```text title:'项目目录结构' hl:
+java
+	com.xq
+		anno
+			State.java
+		config
+			WebConfig.java
+		controller
+			ArticleController.java
+			CategoryController.java
+			UserController.java
+		exception
+			GlobalExceptionHandler.java
+		interceptors
+			LoginInterceptor.java
+		mapper
+			ArticleMapper.java
+			CategoryMapper.java
+			UserMapper.java
+		pojo
+			Artivle.java
+			Category.java
+			PageBean.java
+			Result.java
+			User.java
+		service
+			ArticleService.java
+			CategoryService.java
+			UserService.java
+			impl
+				ArticleServiceImpl.java
+				CategoryServiceImpl.java
+				UserServiceImpl.java
+		utils
+			JwtUtil.java
+			Md5Util.java
+			ThreadLocalUtil.java
+			UserContextUtil.java
+		validation
+			StateValidation.java
+resource
+	com.xq
+		mapper
+			ArticleMapper.xml
+```
+
+## 5.1 
+
+
 
 # 6.登录优化-redis
 
