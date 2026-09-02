@@ -1689,7 +1689,7 @@ public interface ArticleMapper {
 已有的注解不能满足所有的校验需求，特殊的情况需要自定义校验（自定义校验注解）
 
 1. 自定义注解 State
-2. 自定义校验数据的类 StateValidation，实现ConstraintValidator接口
+2. 自定义校验数据的类 StateValidation，实现 ConstraintValidator 接口
 3. 在需要校验的地方使用自定义注解
 
 新建 `com/xq/anno/State.java` 文件，参考官方注解实现代码。
@@ -2031,7 +2031,7 @@ int delete(Integer id, Integer userId);
 
 # 5.文件上传
 
-```text title:'项目目录结构' hl:
+```text title:'项目目录结构' hl:10
 java
 	com.xq
 		anno
@@ -2041,6 +2041,7 @@ java
 		controller
 			ArticleController.java
 			CategoryController.java
+			FileUploadController.java
 			UserController.java
 		exception
 			GlobalExceptionHandler.java
@@ -2077,8 +2078,62 @@ resource
 			ArticleMapper.xml
 ```
 
-## 5.1 
+## 5.1 本地存储
 
+新建文件 `com/xq/controller/FileUploadController.java`，并实现本地文件存储的逻辑。
+
+```java title:'FileUploadController.java'
+package com.xq.controller;  
+  
+import com.xq.pojo.Result;  
+import org.springframework.web.bind.annotation.PostMapping;  
+import org.springframework.web.bind.annotation.RestController;  
+import org.springframework.web.multipart.MultipartFile;  
+  
+import java.io.File;  
+import java.io.IOException;  
+import java.util.UUID;  
+  
+@RestController  
+public class FileUploadController {  
+  
+    @PostMapping("/upload")  
+    public Result<String> upload(MultipartFile file) throws IOException {  
+        // 把文件的内容存储到本地磁盘上  
+        String originalFilename = file.getOriginalFilename();  
+        // 保证文件的名字是唯一的，从而防止文件覆盖  
+        String filename = UUID.randomUUID().toString() + originalFilename.substring(originalFilename.lastIndexOf("."));  
+        file.transferTo(new File("E:\\MyProgram\\Files\\" + filename));  
+        return Result.success("url 访问地址...");  
+    }  
+}
+```
+
+## 5.2 阿里云 OSS
+
+阿里云对象存储 OSS（Object Storage Service），是一款海量、安全、低成本、高可靠的云存储服务。使用 OSS，您可以通过网络随时存储和调用包括文本、图片、音频和视频等在内的各种文件。
+
+### 5.2.1 第三方服务-通用思路
+
+1. 准备工作
+2. 参照官方 SDK 编写入门程序
+3. 集成使用
+
+### 5.2.2 阿里云 OSS-使用步骤
+
+1. 注册登录（实名认证）
+2. 充值
+3. 开通对象存储服务（OSS）
+4. 创建 bucket
+5. 获取 AccessKey（秘钥）
+6. 参考官方 SDK 编写入门程序
+7. 案例继承 OSS
+
+> Bucket：存储空间是用户用于存储对象（Object，就是文件）的容器，所有的对象都必须隶属于某个存储空间。
+> 
+> SDK：Software Development Kit 的缩写，软件开发工具包，包括辅助软件开发的依赖（jar 包）、代码示例等，都可以叫做 SDK。
+
+### 5.2.3 
 
 
 # 6.登录优化-redis
