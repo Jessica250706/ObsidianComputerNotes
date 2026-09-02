@@ -1514,24 +1514,42 @@ public class UserContextUtil {
 实现功能，同时添加 SQL 语句中对当前用户的验证，确保操作分类是属于当前用户，否则无法进行操作。
 
 ```java title:'CategoryController.java'
-
+@DeleteMapping  
+public Result delete(Integer id) {  
+    categoryService.delete(id);  
+    return Result.success();  
+}
 ```
 
 ```java title:'CategoryService.java'
-
+// 删除分类  
+void delete(Integer id);
 ```
 
 ```java title:'CategoryServiceImpl.java'
-
+@Override  
+public void delete(Integer id) {  
+    Integer userId = UserContextUtil.getCurrentUserId();  
+    int rows = categoryMapper.delete(id, userId);  
+    if (rows == 0) {  
+        throw new RuntimeException("分类不存在或无权删除");  
+    }  
+}
 ```
 
 ```java title:'CategoryMapper.java'
-
+// 删除分类  
+@Delete("delete from category where id = #{id} and create_user = #{userId}")  
+int delete(Integer id, Integer userId);
 ```
 
 # 4.文章管理
 
+
+
 ## 4.1 新增文章
+
+
 
 ## 4.2 文章列表（条件分页）
 
