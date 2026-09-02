@@ -1816,7 +1816,13 @@ public class Article {
 
 ## 4.2 文章列表（条件分页）
 
+新建 mapper 的配置文件。
 
+P.s. 该映射配置文件需要与接口处在同一目录下，且文件名必须相同。
+
+![image-HM-大事件（big-event）-新建mapper配置文件路径.png](images/image-HM-大事件（big-event）-新建mapper配置文件路径.png)
+
+复制 `ArticleMapper.xml` 文件到该目录下，并实现 SQL 逻辑。
 
 ## 4.3 获取文章详情
 
