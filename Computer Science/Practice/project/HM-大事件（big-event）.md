@@ -1545,44 +1545,50 @@ int delete(Integer id, Integer userId);
 
 # 4.文章管理
 
-```text title:'项目目录结构' hl:3,7,15,24,28,37
-com.xq
-	anno
-		State.java
-	config
-		WebConfig.java
-	controller
-		ArticleController.java
-		CategoryController.java
-		UserController.java
-	exception
-		GlobalExceptionHandler.java
-	interceptors
-		LoginInterceptor.java
-	mapper
-		ArticleMapper.java
-		CategoryMapper.java
-		UserMapper.java
-	pojo
-		Artivle.java
-		Category.java
-		Result.java
-		User.java
-	service
-		ArticleService.java
-		CategoryService.java
-		UserService.java
-		impl
-			ArticleServiceImpl.java
-			CategoryServiceImpl.java
-			UserServiceImpl.java
-	utils
-		JwtUtil.java
-		Md5Util.java
-		ThreadLocalUtil.java
-		UserContextUtil.java
-	validation
-		StateValidation.java
+```text title:'项目目录结构' hl:4,8,16,22,26,30,39,43
+java
+	com.xq
+		anno
+			State.java
+		config
+			WebConfig.java
+		controller
+			ArticleController.java
+			CategoryController.java
+			UserController.java
+		exception
+			GlobalExceptionHandler.java
+		interceptors
+			LoginInterceptor.java
+		mapper
+			ArticleMapper.java
+			CategoryMapper.java
+			UserMapper.java
+		pojo
+			Artivle.java
+			Category.java
+			PageBean.java
+			Result.java
+			User.java
+		service
+			ArticleService.java
+			CategoryService.java
+			UserService.java
+			impl
+				ArticleServiceImpl.java
+				CategoryServiceImpl.java
+				UserServiceImpl.java
+		utils
+			JwtUtil.java
+			Md5Util.java
+			ThreadLocalUtil.java
+			UserContextUtil.java
+		validation
+			StateValidation.java
+resource
+	com.xq
+		mapper
+			ArticleMapper.xml
 ```
 
 ## 4.1 新增文章
@@ -1816,6 +1822,67 @@ public class Article {
 
 ## 4.2 文章列表（条件分页）
 
+引入 pageHelper 的坐标。
+
+```xml title:'pom.xml'
+<!--  pageHelper 的坐标  -->  
+<dependency>  
+  <groupId>com.github.pagehelper</groupId>  
+  <artifactId>pagehelper-spring-boot-starter</artifactId>  
+  <version>1.4.6</version>  
+</dependency>
+```
+
+实现功能。
+
+```java title:'ArticleController.java' hl:5-6
+@GetMapping
+public Result<PageBean<Article>> list(
+	Integer pageNum,
+    Integer pageSize,
+	@RequestParam(required = false) Integer categoryId,
+	@RequestParam(required = false) String state
+) {
+    PageBean<Article> pb = articleService.list(pageNum, pageSize, categoryId, state);
+    return Result.success(pb);
+}
+```
+
+```java title:'ArticleService.java'
+// 条件分页列表查询  
+PageBean<Article> list(Integer pageNum, Integer pageSize, Integer categoryId, String state);
+```
+
+注意 List 的引入包是正确的。（有多个）
+
+```java title:'ArticleServiceImpl.java'
+@Override  
+public PageBean<Article> list(Integer pageNum, Integer pageSize, Integer categoryId, String state) {  
+    // 1.创建 PageBean 对象  
+    PageBean<Article> pageBean = new PageBean<>();  
+  
+    // 2.开启分页查询  
+    PageHelper.startPage(pageNum, pageSize);  
+  
+    // 3.调用 mapper 完成查询  
+    Integer userId = UserContextUtil.getCurrentUserId();  
+    List<Article> as = articleMapper.list(userId, categoryId, state);  
+    // Page 中提供了方法，可以获取 PageHelper 分页查询后，得到的总记录条数和当前页数据  
+    Page<Article> p = (Page<Article>) as;  
+  
+    // 4.把数据填充到 PageBean 对象中  
+    pageBean.setTotal(p.getTotal());  
+    pageBean.setItems(p.getResult());  
+  
+    return pageBean;  
+}
+```
+
+```java title:'ArticleMapper.java'
+// 条件分页列表查询  
+List<Article> list(Integer userId, Integer categoryId, String state);
+```
+
 新建 mapper 的配置文件。
 
 P.s. 该映射配置文件需要与接口处在同一目录下，且文件名必须相同。
@@ -1824,11 +1891,43 @@ P.s. 该映射配置文件需要与接口处在同一目录下，且文件名必
 
 复制 `ArticleMapper.xml` 文件到该目录下，并实现 SQL 逻辑。
 
+```xml title:'ArticleMapper.xml' hl:5,7
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xq.mapper.ArticleMapper">
+  <!-- 动态 SQL -->
+  <select id="list" resultType="com.xq.pojo.Article">
+    select * from article
+    <where>
+      <if test="categoryId != null">
+        category_id = #{categoryId}
+      </if>
+
+      <if test="state != null">
+        and state = #{state}
+      </if>
+
+      and create_user = #{userId}
+    </where>
+  </select>
+</mapper>
+```
+
+运行并测试。
+
 ## 4.3 获取文章详情
+
+
 
 ## 4.4 更新文章
 
+
+
 ## 4.5 删除文字
+
+
 
 # 5.文件上传
 
