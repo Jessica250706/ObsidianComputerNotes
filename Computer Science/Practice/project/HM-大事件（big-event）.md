@@ -1545,7 +1545,37 @@ int delete(Integer id, Integer userId);
 
 # 4.文章管理
 
-
+```text title:'项目目录结构' hl:
+com.xq
+	config
+		WebConfig.java
+	controller
+		CategoryController.java
+		UserController.java
+	exception
+		GlobalExceptionHandler.java
+	interceptors
+		LoginInterceptor.java
+	mapper
+		CategoryMapper.java
+		UserMapper.java
+	pojo
+		Artivle.java
+		Category.java
+		Result.java
+		User.java
+	service
+		CategoryService.java
+		UserService.java
+		impl
+			CategoryServiceImpl.java
+			UserServiceImpl.java
+	utils
+		JwtUtil.java
+		Md5Util.java
+		ThreadLocalUtil.java
+		UserContextUtil.java
+```
 
 ## 4.1 新增文章
 
