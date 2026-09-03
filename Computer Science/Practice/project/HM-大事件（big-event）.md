@@ -2031,7 +2031,7 @@ int delete(Integer id, Integer userId);
 
 # 5.文件上传
 
-```text title:'项目目录结构' hl:10
+```text title:'项目目录结构' hl:10,35
 java
 	com.xq
 		anno
@@ -2066,6 +2066,7 @@ java
 				CategoryServiceImpl.java
 				UserServiceImpl.java
 		utils
+			AliOssUtil.java
 			JwtUtil.java
 			Md5Util.java
 			ThreadLocalUtil.java
@@ -2133,7 +2134,7 @@ public class FileUploadController {
 > 
 > SDK：Software Development Kit 的缩写，软件开发工具包，包括辅助软件开发的依赖（jar 包）、代码示例等，都可以叫做 SDK。
 
-### 5.2.3 引入阿里云 OSS
+### 5.2.3 引入阿里云 OSS（入门程序）
 
 前置操作见资料文档，在配置环境变量后，以下是测试代码。
 
@@ -2351,6 +2352,54 @@ OSS_ACCESS_KEY_ID=你的AccessKeyId;OSS_ACCESS_KEY_SECRET=你的AccessKeySecret
 还有其他添加环境变量的方式，但此处不做详细介绍。
 
 # 6.登录优化-redis
+
+```text title:'项目目录结构' hl:
+java
+	com.xq
+		anno
+			State.java
+		config
+			WebConfig.java
+		controller
+			ArticleController.java
+			CategoryController.java
+			FileUploadController.java
+			UserController.java
+		exception
+			GlobalExceptionHandler.java
+		interceptors
+			LoginInterceptor.java
+		mapper
+			ArticleMapper.java
+			CategoryMapper.java
+			UserMapper.java
+		pojo
+			Artivle.java
+			Category.java
+			PageBean.java
+			Result.java
+			User.java
+		service
+			ArticleService.java
+			CategoryService.java
+			UserService.java
+			impl
+				ArticleServiceImpl.java
+				CategoryServiceImpl.java
+				UserServiceImpl.java
+		utils
+			AliOssUtil.java
+			JwtUtil.java
+			Md5Util.java
+			ThreadLocalUtil.java
+			UserContextUtil.java
+		validation
+			StateValidation.java
+resource
+	com.xq
+		mapper
+			ArticleMapper.xml
+```
 
 ## 6.1 SpringBoot 继承 redis
 
