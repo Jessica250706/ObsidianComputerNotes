@@ -2794,5 +2794,100 @@ Step 3）调整目录
 - 将资料中的静态资源拷贝到assets目录下
 - 删除App.uve中自动生成的内容
 
+除了老师下载的依赖，博主还注册所有图标，命令：
 
+```shell
+npm install @element-plus/icons-vue
+```
+
+以及为了学习，博主使用的是 `ts` 语言，而非 `js`。
+
+以下是需要写入的代码。
+
+```ts title:'src\main.ts'
+import './assets/main.scss'
+
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+const app = createApp(App)
+app.use(ElementPlus)
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+```ts title:'src\utils\request.ts'
+// 定制请求的实例
+
+// 导入axios  npm install axios
+import axios from 'axios'
+// 定义一个变量，记录公共的前缀，baseURL
+const baseURL = 'http://localhost:8080'
+const instance = axios.create({ baseURL })
+
+// 添加响应拦截器
+instance.interceptors.response.use(
+  (result) => {
+    return result.data
+  },
+  (err) => {
+    alert('服务异常')
+    return Promise.reject(err) // 异步的状态转化成失败的状态
+  },
+)
+
+export default instance
+```
+
+```vue title:'src\App.vue'
+<template>
+  <div>Hello World!</div>
+</template>
+
+<script setup></script>
+
+<style>
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+</style>
+```
+
+在终端输入 `npm run dev` 后，打开前端界面，看到出现 `Hello World!` 后，即为成功。
+
+另外，博主为了写代码方便，使用了 Prettier 插件对代码进行格式化，以下是配置文件。
+
+```json title:'.prettierrc.json'
+
+{
+  "printWidth": 100,
+  "bracketSameLine": false,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "vueIndentScriptAndStyle": false,
+  "htmlWhitespaceSensitivity": "ignore"
+}
+```
+
+# 13.登录与注册
+
+## 13.1 注册
+
+### 13.1.1 页面搭建
+
+
+
+### 13.1.2 接口调用
+
+### 13.1.3 跨域解决
 
