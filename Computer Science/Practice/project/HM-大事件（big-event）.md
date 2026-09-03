@@ -2455,7 +2455,60 @@ public class RedisTest {
 }
 ```
 
-找到资料中的 redis 文件夹，点击 `redis-server.exe` 运行 redis。接着运行测试用例，若出现绿钩，则证明测试成功。最后点击 `redis-cli.exe`，在程序运行框中输入 `get username`，若得到 `z`
+找到资料中的 redis 文件夹，点击 `redis-server.exe` 运行 redis。接着运行测试用例，若出现绿钩，则证明测试成功。最后点击 `redis-cli.exe`，在程序运行框中输入 `get username`，若得到 `zhangsan`，则证明功能实现。
+
+![image-HM-大事件（big-event）-redis运行.png](images/image-HM-大事件（big-event）-redis运行.png)
+
+![image-HM-大事件（big-event）-redis运行的测试结果.png](images/image-HM-大事件（big-event）-redis运行的测试结果.png)
+
+测试获取。
+
+```java title:'RedisTest.java'
+@Test  
+public void testGet() {  
+    // 从 redis 中获取一个键值对  
+    ValueOperations<String, String> operations = template.opsForValue();  
+    System.out.println(operations.get("username"));  
+}
+```
+
+运行，得到输出结果如图所示，即为成功。
+
+![image-HM-大事件（big-event）-RedisTestGet成功结果.png](images/image-HM-大事件（big-event）-RedisTestGet成功结果.png)
+
+在 redis 中，存储键值对时可以给它一个过期时间，等时间一到，redis 会自动删除该键值对。
+
+添加测试代码。
+
+```java title:'RedisTest.java' hl:21
+package com.xq;  
+  
+import org.junit.jupiter.api.Test;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.boot.test.context.SpringBootTest;  
+import org.springframework.data.redis.core.StringRedisTemplate;  
+import org.springframework.data.redis.core.ValueOperations;  
+  
+@SpringBootTest // 如果在测试类上添加了这个注解，那么将来在单元测试方式执行之前，会先初始化 Spring 容器  
+public class RedisTest {  
+  
+    @Autowired  
+    private StringRedisTemplate template;  
+  
+    @Test  
+    public void testSet() {  
+        // 往 redis 中存储一个键值对 SpringRedisTemplate
+        ValueOperations<String, String> operations = template.opsForValue();  
+  
+        operations.set("username", "zhangsan"); 
+        operations.set("id", "001", 15, TimeUnit.SECONDS); 
+    }  
+}
+```
+
+立即在输入框中输入 `get id`，并在 15 s 之后再次输入，可以发现，第一次能获取到 id 的结果，第二次不行。
+
+![image-HM-大事件（big-event）-redis测试set过期时间结果.png](images/image-HM-大事件（big-event）-redis测试set过期时间结果.png)
 
 ## 6.2 令牌主动失效
 
@@ -2464,6 +2517,8 @@ public class RedisTest {
 - 登录成功后，给浏览器响应令牌的同时，把该令牌存储到 redis 中
 - `LoginInterceptor` 拦截器中，需要验证浏览器携带的令牌，并同时需要获取到 redis 中存储的与之相同的令牌
 - 当用户修改密码成功后，删除 redis 中存储的旧令牌
+
+
 
 # 7.SpringBoot 项目部署
 
