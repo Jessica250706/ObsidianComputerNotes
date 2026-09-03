@@ -2668,7 +2668,7 @@ P.s. jar 包部署，要求服务器必须有 jre 环境
 
 具体如下：
 
-- 项目配置文件方式：`application.yml` 和`application.yml`
+- 项目配置文件方式：`application.yml` 和 `application.yml`
 
 ![image-HM-大事件（big-event）-属性配置方式：项目配置文件方式.png](images/image-HM-大事件（big-event）-属性配置方式：项目配置文件方式.png)
 
@@ -2692,7 +2692,11 @@ P.s. jar 包部署，要求服务器必须有 jre 环境
 
 ## 9.2 Profiles
 
-### 9.2.1 单文件
+### 9.2.1 单文件配置
+
+- ---  分隔不同环境的配置
+- spring.config.activate.on-profile 配置所属的环境
+- spring.profiles.active 激活环境
 
 ![image-HM-大事件（big-event）-多环境开发：Profiles.png](images/image-HM-大事件（big-event）-多环境开发：Profiles.png)
 
@@ -2740,9 +2744,27 @@ server:
   port: 8083
 ```
 
-### 9.2.2 多文件
+### 9.2.2 多文件配置
+
+- 通过多个文件分别配置不同环境的属性
+- 文件的名字为 application-环境名称.yml
+- 在 application.yml 中激活环境
 
 ![image-HM-大事件（big-event）-多环境开发：Profiles2.png](images/image-HM-大事件（big-event）-多环境开发：Profiles2.png)
 
+### 9.2.3 分组
+
+- 按照配置的类别，把配置信息配置到不同的配置文件中 `application-分类名.yml`
+- 在 `application.yml` 中定义分组 `spring.profiles.group`
+- 在 application.yml 中激活分组 `spring.profiles.active`
+
+![image-HM-大事件（big-event）-多环境开发-Profiles-分组.png](images/image-HM-大事件（big-event）-多环境开发-Profiles-分组.png)
+
 # 10.新特性-原生镜像
+
+# 11.局部使用 Vue
+
+（博主已学习过 Vue 相关知识，直接跳过。有需要看老师提供的 PPT 和视频即可。）
+
+# 12.
 

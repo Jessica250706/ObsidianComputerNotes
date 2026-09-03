@@ -1,6 +1,9 @@
 ---
 tags:
   - 前端
+  - VUE3
+beginDate: 2026-08-22
+endDate:
 ---
 p.s.本笔记主要摘录自尚硅谷，部分为 AI 或本人补充
 
@@ -135,6 +138,10 @@ npm create vue@latest
 ## 是否添加Prettiert代码格式化
 √ Add Prettier for code formatting?  No
 ```
+
+目录结构。
+
+![image-VUE3-Vue目录结构.png](images/image-VUE3-Vue目录结构.png)
 
 自己动手编写一个 App 组件
 
@@ -1189,6 +1196,8 @@ console.log(props)
 * 规律：
 
   > 生命周期整体分为四个阶段，分别是：**创建、挂载、更新、销毁**，每个阶段都有两个钩子，一前一后。
+  
+![image-VUE3-Vue生命周期.png|675](images/image-VUE3-Vue生命周期.png)
 
 * `Vue 2` 的生命周期
 
