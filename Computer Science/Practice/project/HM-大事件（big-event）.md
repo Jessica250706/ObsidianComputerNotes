@@ -2624,8 +2624,6 @@ public Result updatePwd(
 
 # 7.SpringBoot 项目部署
 
-## 7.1 SpringBoot 项目部署
-
 引入打包插件，注意，版本号需要与 SpringBoot 版本一致。
 
 ```xml title:'pom.xml'
@@ -2655,13 +2653,96 @@ public Result updatePwd(
 java -jar big-event-back-end-1.0-SNAPSHOT.jar
 ```
 
-P.s. jar 包部署，要求服务器必须有 jre 环境
+运行成功后，测试登录接口，若成功，则部署成功。
 
-## 7.2 SpringBoot 属性配置
+P.s. jar 包部署，要求服务器必须有 jre 环境
 
 # 8.属性配置方式
 
+配置优先级（从低到高）：
+
+1. 项目中 resources 目录下的 `application.yml`
+2. Jar 包所在目录下的 `application.yml`
+3. 操作系统环境变量
+4. 命令行参数
+
+具体如下：
+
+- 项目配置文件方式：`application.yml` 和`application.yml`
+
+![image-HM-大事件（big-event）-属性配置方式：项目配置文件方式.png](images/image-HM-大事件（big-event）-属性配置方式：项目配置文件方式.png)
+
+- 命令行参数方式
+
+![image-HM-大事件（big-event）-属性配置方式：命令行参数方式.png](images/image-HM-大事件（big-event）-属性配置方式：命令行参数方式.png)
+
+- 环境变量方式
+
+![image-HM-大事件（big-event）-属性配置方式：环境变量方式.png](images/image-HM-大事件（big-event）-属性配置方式：环境变量方式.png)
+
+- 外部配置文件方式
+
+![image-HM-大事件（big-event）-属性配置方式：外部配置文件方式.png](images/image-HM-大事件（big-event）-属性配置方式：外部配置文件方式.png)
+
 # 9.多环境开发-Profiles
+
+## 9.1 介绍
+
+![image-HM-大事件（big-event）-多环境开发：介绍.png](images/image-HM-大事件（big-event）-多环境开发：介绍.png)
+
+## 9.2 Profiles
+
+### 9.2.1 单文件
+
+![image-HM-大事件（big-event）-多环境开发：Profiles.png](images/image-HM-大事件（big-event）-多环境开发：Profiles.png)
+
+```yml title:'application.yml'
+# 通用信息，指定生效的环境  
+# 多环境下共性的属性  
+# 如果特定环境中的配置和通用信息冲突了，特定环境中的配置生效  
+spring:  
+  profiles:  
+    active: dev  
+server:  
+  servlet:  
+    context-path: /aaa  
+  
+---  
+  
+# 开发环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: dev  
+server:  
+  port: 8081  
+  servlet:  
+    context-path: /bbb  
+  
+---  
+  
+# 测试环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: test  
+server:  
+  port: 8082  
+  
+---  
+  
+# 生产环境  
+spring:  
+  config:  
+    activate:  
+      on-profile: pro  
+server:  
+  port: 8083
+```
+
+### 9.2.2 多文件
+
+![image-HM-大事件（big-event）-多环境开发：Profiles2.png](images/image-HM-大事件（big-event）-多环境开发：Profiles2.png)
 
 # 10.新特性-原生镜像
 
