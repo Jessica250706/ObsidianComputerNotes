@@ -2518,9 +2518,113 @@ public class RedisTest {
 - `LoginInterceptor` 拦截器中，需要验证浏览器携带的令牌，并同时需要获取到 redis 中存储的与之相同的令牌
 - 当用户修改密码成功后，删除 redis 中存储的旧令牌
 
+Step 1）在登录接口添加 redis 的 token 存储，并且注意，过期时间应与 token 过期时间一致。老师上课是 1 h，此处是 7 天。
 
+```java title:'UserController.java' hl:1-2,19-20
+@Autowired  
+private StringRedisTemplate stringRedisTemplate;
+
+@PostMapping("/login")  
+public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {  
+    // 根据用户名查询用户  
+    User loginUser = userService.findByUserName(username);  
+    // 判断该用户是否存在  
+    if (loginUser == null) {  
+        return Result.error("用户名错误！");  
+    }  
+    // 判断密码是否正确（loginUser对象中的password是密文）  
+    if (Md5Util.getMD5String(password).equals(loginUser.getPassword())) {  
+        // 登陆成功  
+        Map<String, Object> claims = new HashMap<>();  
+        claims.put("id", loginUser.getId());  
+        claims.put("username", loginUser.getUsername());  
+        String token = JwtUtil.genToken(claims);  
+        // 把 token 存储到 redis 中  
+        stringRedisTemplate.opsForValue().set(token, token, 7, TimeUnit.DAYS); // 过期时间：7 天  
+        return Result.success(token);  
+    }  
+    return Result.error("密码错误！");  
+}
+```
+
+Step 2）修改拦截器。
+
+```java title:'LoginInterceptor.java' hl:1-2,8-14
+@Autowired  
+private StringRedisTemplate stringRedisTemplate;  
+  
+public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {  
+    // 令牌验证  
+    String token = request.getHeader("Authorization");  
+    try {  
+        // 从 redies 中获取相同的token  
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();  
+        String redisToken = operations.get(token);  
+        if (redisToken == null) {  
+            // 证明 token 已经失效  
+            throw new RuntimeException();  
+        }  
+  
+        Map<String, Object> claims = JwtUtil.parseToken(token);  
+        // 把业务数据存储到 ThreadLocal 中  
+        ThreadLocalUtil.set(claims);  
+        return true; // 放行  
+    } catch (Exception e) {  
+        // http 响应状态码为401  
+        response.setStatus(401);  
+        return false; // 拦截  
+    }  
+}
+```
+
+Step 3）修改“修改密码接口”
+
+```java title:'UserController.java' hl:4,33-35
+@PatchMapping("/updatePwd")  
+public Result updatePwd(
+	@RequestBody Map<String, String> params,
+	@RequestHeader("Authorization") String token
+) {  
+    // 1.校验参数  
+    String oldPwd = params.get("old_pwd");  
+    String newPwd = params.get("new_pwd");  
+    String rePwd = params.get("re_pwd");  
+  
+    // 1.1 检验是否为空  
+    if (!StringUtils.hasLength(oldPwd) || !StringUtils.hasLength(newPwd) || !StringUtils.hasLength(rePwd)) {  
+        return Result.error("缺少必要的参数！");  
+    }  
+  
+    // 1.2 原密码是否正确  
+    // 调用 userService 根据用户名拿到原密码，再和 oldPwd 比对  
+    Map<String, Object> map = ThreadLocalUtil.get();  
+    String username = (String) map.get("username");  
+    User loginUser = userService.findByUserName(username);  
+    if (!loginUser.getPassword().equals(Md5Util.getMD5String(oldPwd))) {  
+        return Result.error("原密码填写不正确！");  
+    }  
+  
+    // 1.3 newPwd 与 rePwd 是否一致  
+    if (!rePwd.equals(newPwd)) {  
+        return Result.error("两次填写的新密码不一样！");  
+    }  
+  
+    // 2.调用 service 完成密码更新  
+    userService.updatePwd(newPwd);  
+  
+    // 3.删除 redis 中对应的 token    
+    ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();  
+    operations.getOperations().delete(token);  
+  
+    return Result.success();  
+}
+```
+
+运行并测试。
 
 # 7.SpringBoot 项目部署
+
+
 
 # 8.属性配置方式
 
