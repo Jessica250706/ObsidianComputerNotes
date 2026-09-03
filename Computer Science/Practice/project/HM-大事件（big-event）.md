@@ -2762,9 +2762,37 @@ server:
 
 # 10.新特性-原生镜像
 
-# 11.局部使用 Vue
+# 11.Vue 相关的基础知识
+
+跳过实战篇 34~56。
 
 （博主已学习过 Vue 相关知识，直接跳过。有需要看老师提供的 PPT 和视频即可。）
 
-# 12.
+# 12.环境准备
+
+Step 1）创建Vue工程
+
+```shell
+npm init vue@latest
+```
+
+Step 2）安装依赖
+
+```shell
+# Element-Plus
+npm install element-plus --save
+# Axios
+npm install axios
+# Sass
+npm install sass -D
+```
+
+Step 3）调整目录
+
+- 删除components下面自动生成的内容
+- 新建目录api、utils、views
+- 将资料中的静态资源拷贝到assets目录下
+- 删除App.uve中自动生成的内容
+
+
 

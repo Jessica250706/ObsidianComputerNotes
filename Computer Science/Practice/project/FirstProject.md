@@ -402,9 +402,7 @@ npm install @element-plus/icons-vue
 
 从 `@element-plus/icons-vue` 中导入所有图标并进行全局注册。
 
-```ts
-// main.ts
-
+```ts title:'main.ts'
 // 如果您正在使用CDN引入，请删除下面一行。
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 
@@ -416,9 +414,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 所得 `main.js` 如下。
 
-```js
-// src\main.js
-
+```js title:'src\main.js'
 import { createApp } from 'vue'
 import App from './App.vue'
 import "@/assets/less/index.less"; // 引入less中的index.less
