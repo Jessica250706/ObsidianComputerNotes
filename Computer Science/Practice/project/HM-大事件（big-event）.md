@@ -2403,9 +2403,67 @@ resource
 
 ## 6.1 SpringBoot 继承 redis
 
+导入依赖。
 
+```xml title:'pom.xml'
+<!-- redis 坐标 -->  
+<dependency>  
+  <groupId>org.springframework.boot</groupId>  
+  <artifactId>spring-boot-starter-data-redis</artifactId>  
+</dependency>
+```
+
+修改配置。
+
+```yml title:'application.yml' hl:7-10
+spring:  
+  datasource:  
+    driver-class-name: com.mysql.cj.jdbc.Driver  
+    url: jdbc:mysql://localhost:3306/big_event  
+    username: root  
+    password: 123456  
+  data:  
+    redis:  
+      host: localhost  
+      port: 6379
+```
+
+新增测试。
+
+```java title:'RedisTest.java'
+package com.xq;  
+  
+import org.junit.jupiter.api.Test;  
+import org.springframework.beans.factory.annotation.Autowired;  
+import org.springframework.boot.test.context.SpringBootTest;  
+import org.springframework.data.redis.core.StringRedisTemplate;  
+import org.springframework.data.redis.core.ValueOperations;  
+  
+@SpringBootTest // 如果在测试类上添加了这个注解，那么将来在单元测试方式执行之前，会先初始化 Spring 容器  
+public class RedisTest {  
+  
+    @Autowired  
+    private StringRedisTemplate template;  
+  
+    @Test  
+    public void testSet() {  
+        // 往 redis 中存储一个键值对 SpringRedisTemplate
+        ValueOperations<String, String> operations = template.opsForValue();  
+  
+        operations.set("username", "zhangsan");  
+    }  
+}
+```
+
+找到资料中的 redis 文件夹，点击 `redis-server.exe` 运行 redis。接着运行测试用例，若出现绿钩，则证明测试成功。最后点击 `redis-cli.exe`，在程序运行框中输入 `get username`，若得到 `z`
 
 ## 6.2 令牌主动失效
+
+令牌主动失效机制：
+
+- 登录成功后，给浏览器响应令牌的同时，把该令牌存储到 redis 中
+- `LoginInterceptor` 拦截器中，需要验证浏览器携带的令牌，并同时需要获取到 redis 中存储的与之相同的令牌
+- 当用户修改密码成功后，删除 redis 中存储的旧令牌
 
 # 7.SpringBoot 项目部署
 
