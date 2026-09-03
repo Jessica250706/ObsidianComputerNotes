@@ -2624,7 +2624,40 @@ public Result updatePwd(
 
 # 7.SpringBoot 项目部署
 
+## 7.1 SpringBoot 项目部署
 
+引入打包插件，注意，版本号需要与 SpringBoot 版本一致。
+
+```xml title:'pom.xml'
+<build>
+  <plugins>
+    <!-- 打包插件 -->
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <version>3.1.3</version>
+    </plugin>
+  </plugins>
+</build>
+```
+
+进行打包。注意，需要先注释掉 JwtTest 文件中的 testParse 方法，因为其中使用的 token 已经过期，不注释会报错。
+
+![image-HM-大事件（big-event）-打包过程.png](images/image-HM-大事件（big-event）-打包过程.png)
+
+在资源管理器中打开 jar 包文件夹。
+
+![image-HM-大事件（big-event）-打开jar包的文件夹.png](images/image-HM-大事件（big-event）-打开jar包的文件夹.png)
+
+如果 ideal 中，程序正在运行，先关闭程序。再运行 jar 包。
+
+```shell title:'jar包的运行命令'
+java -jar big-event-back-end-1.0-SNAPSHOT.jar
+```
+
+P.s. jar 包部署，要求服务器必须有 jre 环境
+
+## 7.2 SpringBoot 属性配置
 
 # 8.属性配置方式
 
