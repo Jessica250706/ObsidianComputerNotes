@@ -2800,7 +2800,7 @@ Step 3）调整目录
 npm install @element-plus/icons-vue
 ```
 
-以及为了学习，博主使用的是 `ts` 语言，而非 `js`。
+以及为了学习，博主使用的是 `ts` 语言，而非 `js`。（在创建项目时也是选择的 `TypeScript`）
 
 以下是需要写入的代码。
 
@@ -2880,6 +2880,18 @@ export default instance
 ```
 
 # 13.登录与注册
+
+```text title:'项目结构'
+src
+	api
+	assets
+	utils
+		request.ts
+	views
+		Login.vue
+	App.vue
+	main.ts
+```
 
 ## 13.1 注册
 
