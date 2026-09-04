@@ -2884,6 +2884,7 @@ export default instance
 ```text title:'项目结构'
 src
 	api
+		user.ts
 	assets
 	utils
 		request.ts
