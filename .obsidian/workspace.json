@@ -129,8 +129,7 @@
               "title": "FirstProject"
             }
           }
-        ],
-        "currentTab": 4
+        ]
       }
     ],
     "direction": "vertical"
@@ -270,7 +269,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -310,10 +309,10 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "6f36307a2f265ba5",
+  "active": "fc04cb2233078510",
   "lastOpenFiles": [
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/project/FirstProject.md",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/统计代码行数-工具汇总.md",
     "Computer Science/Practice/Docker.md",
     "Computer Science/Practice/project/tips/如何使用 Vite 创建一个 Vue 项目.md",
