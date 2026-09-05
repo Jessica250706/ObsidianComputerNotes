@@ -3546,6 +3546,13 @@ src
 	utils
 		request.ts
 	views
+		article
+			ArticleCategory.vue
+			ArticleManage.vue
+		user
+			UserAvatar.vue
+			UserInfo.vue
+			UserInfo.vue
 		Login.vue
 	App.vue
 	main.ts
@@ -3708,6 +3715,134 @@ import avatar from '@/assets/default.png'
 - 在 vue 应用实例中使用 vue-router
 - 声明 router-view 标签，展示组件内容
 
+```ts title:'src\utils'
+import { createRouter, createWebHistory } from 'vue-router'
+import Login from '@/views/Login.vue'
+import Layout from '@/layout/index.vue'
 
+// 定义路由关系
+const routes = [
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/',
+    component: Layout,
+  },
+]
+
+// 创建路由器
+const router = createRouter({
+  history: createWebHistory(),
+  routes: routes,
+})
+
+// 导出路由
+export default router
+```
+
+修改 `src\main.ts` 文件，添加路由相关配置。
+
+```ts title:'src\main.ts'
+import './assets/main.scss'
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from '@/router'
+
+const app = createApp(App)
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+修改 `src\App.vue` 文件。
+
+```vue title:'src\App.vue'
+<template>
+  <router-view />
+</template>
+
+<script setup></script>
+
+<style>
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+</style>
+```
 
 ### 14.2.2 子路由
+
+- 复制资料中提供好的五个组件
+- 配置子路由
+- 声明 router-view 标签
+- 为菜单项 el-menu-item 设置 index 属性，设置点击后的路由路径
+
+修改 `src\router\index.ts` 文件，添加子路由。
+
+```ts title:'src\router\index.ts'
+import { createRouter, createWebHistory } from 'vue-router'
+import Login from '@/views/Login.vue'
+import Layout from '@/layout/index.vue'
+import ArticleCategory from '@/views/article/ArticleCategory.vue'
+import ArticleManage from '@/views/article/ArticleManage.vue'
+import UserAvatar from '@/views/user/UserAvatar.vue'
+import UserInfo from '@/views/user/UserInfo.vue'
+import UserResetPassword from '@/views/user/UserResetPassword.vue'
+
+// 定义路由关系
+const routes = [
+  {
+    path: '/login',
+    component: Login,
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/article/manage',
+    children: [
+      {
+        path: '/article/category',
+        component: ArticleCategory,
+      },
+      {
+        path: '/article/manage',
+        component: ArticleManage,
+      },
+      {
+        path: '/user/avatar',
+        component: UserAvatar,
+      },
+      {
+        path: '/user/info',
+        component: UserInfo,
+      },
+      {
+        path: '/user/resetPassword',
+        component: UserResetPassword,
+      },
+    ],
+  },
+]
+
+// 创建路由器
+const router = createRouter({
+  history: createWebHistory(),
+  routes: routes,
+})
+
+// 导出路由
+export default router
+```
+
+## 14.3 
+
