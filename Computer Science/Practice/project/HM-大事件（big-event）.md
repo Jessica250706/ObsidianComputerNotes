@@ -2894,6 +2894,8 @@ src
 	main.ts
 ```
 
+笔记中只有重要代码，部分修改小的地方做不粘贴，具体详见 Github 中的仓库代码。
+
 ## 13.1 注册
 
 ### 13.1.1 页面搭建
@@ -3710,7 +3712,7 @@ import avatar from '@/assets/default.png'
 
 ### 14.2.1 基本使用
 
-- 安装 vue-router    `npm install vue-router@4`
+- 安装 vue-router    `npm install vue-router@4 `
 - 在 `src/router/index.js` 中创建路由器，并导出
 - 在 vue 应用实例中使用 vue-router
 - 声明 router-view 标签，展示组件内容
@@ -3927,12 +3929,12 @@ export const articleCategoryListService = (): Promise<ApiResponse<articleDTO[]>>
 
 ### 14.3.2 Pinia 状态管理库
 
-Pinia是Vue的专属状态管理库，它允许你跨组件或页面共享状态。
+Pinia 是 Vue 的专属状态管理库，它允许你跨组件或页面共享状态。
 
-- 安装pinia    `npm install pinia`
-- 在vue应用实例中使用pinia
-- 在src/stores/token.js中定义store
-- 在组件中使用store
+- 安装 pinia    `npm install pinia`
+- 在 vue 应用实例中使用 pinia
+- 在 src/stores/token.js 中定义 store
+- 在组件中使用 store
 
 ```ts title:'src\main.ts' hl:8,11-12
 import './assets/main.scss'
@@ -4020,7 +4022,125 @@ async function login() {
 }
 ```
 
-### 14.3.3 
+### 14.3.3 添加请求拦截器
 
+添加请求拦截器。
 
+```ts title:'src\utils\request.ts'
+import { useTokenStore } from '@/stores/token'
+
+// 添加请求拦截器
+instance.interceptors.request.use(
+  (config) => {
+    // 请求前的回调，添加 token
+    const tokenStore = useTokenStore()
+    // 判断有没有 token
+    if (tokenStore.token) {
+      config.headers.Authorization = tokenStore.token
+    }
+    return config
+  },
+  (err) => {
+    // 请求错误的回调
+    Promise.reject(err)
+  },
+)
+```
+
+### 14.3.4 Pinia 持久化插件——persist
+
+Pinia 默认是内存存储，当刷新浏览器的时候会丢失数据。Persist 插件可以将 pinia 中的数据持久化的存储。
+
+- 安装 persist    `npm install pinia-persistedstate-plugin`（已废弃） `npm install pinia-plugin-persistedstate`（推荐使用）
+- 在 pinia 中使用 persist
+- 定义状态 Store 时指定持久化配置参数
+
+```ts title:'src\main.ts' hl:9,13-14
+import './assets/main.scss'
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from '@/router'
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
+const app = createApp(App)
+const pinia = createPinia()
+const persist = createPersistedState()
+pinia.use(persist)
+app.use(pinia)
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+```ts title:'src\stores\token.ts'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+export const useTokenStore = defineStore(
+  'token',
+  () => {
+    // 1.响应式变量
+    const token = ref<string>('')
+
+    // 2.定义一个函数，修改 token 的值
+    const setToken = (newToken: string) => {
+      token.value = newToken
+    }
+
+    // 3.定义一个函数，移除 token 的值
+    const removeToken = () => {
+      token.value = ''
+    }
+
+    return {
+      token,
+      setToken,
+      removeToken,
+    }
+  },
+  {
+    persist: true, // 持久化存储
+  },
+)
+```
+
+### 14.3.5 未登录统一处理
+
+若用户尚未登录，则统一跳转到登录页。
+
+```ts title:'src\utils\request.ts'
+import router from '@/router'
+
+// 添加响应拦截器
+instance.interceptors.response.use(
+  (result: AxiosResponse) => {
+    const { data } = result
+    if (data.code === 0) {
+      return data
+    }
+    // 操作失败
+    ElMessage.error(data.message ? data.message : '服务异常')
+    // 异步操作的状态转换为失败
+    return Promise.reject(data)
+  },
+  (err) => {
+    if (err.response.status === 401) {
+      ElMessage.error('请先登录')
+      router.push('/login')
+    } else {
+      ElMessage.error('服务异常')
+    }
+    return Promise.reject(err) // 异步的状态转化成失败的状态
+  },
+)
+
+export default instance
+```
 
