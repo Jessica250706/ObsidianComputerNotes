@@ -3934,5 +3934,93 @@ Pinia是Vue的专属状态管理库，它允许你跨组件或页面共享状态
 - 在src/stores/token.js中定义store
 - 在组件中使用store
 
+```ts title:'src\main.ts' hl:8,11-12
+import './assets/main.scss'
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from '@/router'
+import { createPinia } from 'pinia'
+
+const app = createApp(App)
+const pinia = createPinia()
+app.use(pinia)
+app.use(router)
+app.use(ElementPlus)
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+```ts title:'src\stores\token.ts'
+// 定义 store
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+
+export const useTokenStore = defineStore('token', () => {
+  // 1.响应式变量
+  const token = ref<string>('')
+
+  // 2.定义一个函数，修改 token 的值
+  const setToken = (newToken: string) => {
+    token.value = newToken
+  }
+
+  // 3.定义一个函数，移除 token 的值
+  const removeToken = () => {
+    token.value = ''
+  }
+
+  return {
+    token,
+    setToken,
+    removeToken,
+  }
+})
+```
+
+```ts title:'src\api\article.ts'
+import request from '@/utils/request'
+import type { ApiResponse } from '@/utils/request'
+import { useTokenStore } from '@/stores/token'
+
+export interface articleDTO {
+  id: number
+  categoryName: string
+  categoryAlias: string
+  createTime: string
+  updateTime: string
+}
+
+// 文章分类列表查询
+export const articleCategoryListService = (): Promise<ApiResponse<articleDTO[]>> => {
+  const tokenStore = useTokenStore()
+  return request.get('/category', {
+    headers: {
+      Authorization: tokenStore.token,
+    },
+  })
+}
+```
+
+```ts title:'src\views\Login.vue'
+import { useTokenStore } from '@/stores/token'
+
+const tokenStore = useTokenStore()
+// 调用后台接口，完成登录
+async function login() {
+  const result = await userLoginService(loginData)
+  tokenStore.setToken(result.data)
+  ElMessage.success(result.message ? result.message : '登录成功')
+  // 借助路由跳转到首页
+  router.push('/')
+}
+```
+
+### 14.3.3 
+
 
 
