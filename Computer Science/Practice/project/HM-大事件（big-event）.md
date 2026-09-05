@@ -3273,3 +3273,10 @@ export default defineConfig({
 
 ## 13.2 登录
 
+### 13.2.1 功能实现
+
+老师此处复用了登录
+
+```vue title:'src\views\Login.vue'
+
+```
