@@ -3846,9 +3846,9 @@ const router = createRouter({
 export default router
 ```
 
-## 14.3 文章分类列表查询
+## 14.3 文章分类
 
-### 14.3.1 功能实现
+### 14.3.1 列表查询
 
 ```vue title:'src\views\article\ArticleCategory.vue'
 <template>
@@ -4144,7 +4144,61 @@ instance.interceptors.response.use(
 export default instance
 ```
 
-## 14.4 添加文章分类
+### 14.3.6 添加文章分类
+
+最终代码见 14.3.7。
+
+### 14.3.7 删除文章分类
+
+添加接口。
+
+```ts title:'src\api\article.ts'
+import request from '@/utils/request'
+import type { ApiResponse } from '@/utils/request'
+
+export interface articleCategoryDTO {
+  id: number
+  categoryName: string
+  categoryAlias: string
+  createTime?: string
+  updateTime?: string
+}
+
+export interface addArticleCategoryDTO {
+  id?: number
+  categoryName: string
+  categoryAlias: string
+}
+
+// 文章分类列表查询
+export const articleCategoryListService = (): Promise<ApiResponse<articleCategoryDTO[]>> => {
+  return request.get('/category')
+}
+
+// 添加文章分类
+export const addArticleCategoryService = (
+  categoryData: addArticleCategoryDTO,
+): Promise<ApiResponse> => {
+  return request.post('/category', categoryData)
+}
+
+// 修改文章分类
+export const editArticleCategoryService = (
+  categoryData: addArticleCategoryDTO,
+): Promise<ApiResponse> => {
+  return request.put('/category', categoryData)
+}
+
+// 删除文章分类
+export const deleteArticleCategoryService = (id: number): Promise<ApiResponse> => {
+  return request.delete('/category?id=' + id)
+}
+```
+
+修改页面逻辑。
+
+```vue ti
+```
 
 
 
