@@ -3844,5 +3844,95 @@ const router = createRouter({
 export default router
 ```
 
-## 14.3 
+## 14.3 文章分类列表查询
+
+### 14.3.1 功能实现
+
+```vue title:'src\views\article\ArticleCategory.vue'
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>文章分类</span>
+        <div class="extra">
+          <el-button type="primary">添加分类</el-button>
+        </div>
+      </div>
+    </template>
+    <el-table :data="categories" style="width: 100%">
+      <el-table-column label="序号" width="100" type="index" />
+      <el-table-column label="分类名称" prop="categoryName" />
+      <el-table-column label="分类别名" prop="categoryAlias" />
+      <el-table-column label="操作" width="100">
+        <template #default="{ row }">
+          <el-button :icon="Edit" circle plain type="primary" />
+          <el-button :icon="Delete" circle plain type="danger" />
+        </template>
+      </el-table-column>
+      <template #empty>
+        <el-empty description="暂无数据" />
+      </template>
+    </el-table>
+  </el-card>
+</template>
+
+<script lang="ts" setup>
+import { Edit, Delete } from '@element-plus/icons-vue'
+import { onMounted, ref } from 'vue'
+import { articleCategoryListService, type articleDTO } from '@/api/article'
+
+const categories = ref<articleDTO[]>([])
+
+const getArticleCategoryList = async () => {
+  const result = await articleCategoryListService()
+  categories.value = result.data
+}
+
+onMounted(() => {
+  getArticleCategoryList()
+})
+</script>
+
+<style lang="scss" scoped>
+.page-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+</style>
+```
+
+```ts title:'src\api\article.ts'
+import request from '@/utils/request'
+import type { ApiResponse } from '@/utils/request'
+
+export interface articleDTO {
+  id: number
+  categoryName: string
+  categoryAlias: string
+  createTime: string
+  updateTime: string
+}
+
+// 文章分类列表查询
+export const articleCategoryListService = (): Promise<ApiResponse<articleDTO[]>> => {
+  return request.get('/category')
+}
+```
+
+### 14.3.2 Pinia 状态管理库
+
+Pinia是Vue的专属状态管理库，它允许你跨组件或页面共享状态。
+
+- 安装pinia    `npm install pinia`
+- 在vue应用实例中使用pinia
+- 在src/stores/token.js中定义store
+- 在组件中使用store
+
+
 
