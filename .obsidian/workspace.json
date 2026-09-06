@@ -87,7 +87,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/TypeScript.md",
+                "file": "Computer Science/Front End/VUE3.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -102,7 +102,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "TypeScript"
+              "title": "VUE3"
             }
           },
           {
@@ -270,7 +270,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/TypeScript.md",
+                "file": "Computer Science/Front End/VUE3.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -312,6 +312,7 @@
   },
   "active": "93c0c35707cedb3d",
   "lastOpenFiles": [
+    "Computer Science/Front End/TypeScript.md",
     "Computer Science/Front End/VUE3.md",
     "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
