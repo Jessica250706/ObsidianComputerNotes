@@ -4369,7 +4369,490 @@ onMounted(() => {
 
 补全了老师没有教学的两个接口：修改文章和删除文章，并新增表单验证。
 
-因语言是
+因语言是 ts，且博主改了一些地方，所以和老师的代码有一定差距，但功能上一致。
+
+```vue title:'src\views\article\ArticleManage.vue'
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>文章管理</span>
+        <div class="extra">
+          <el-button type="primary" @click="openAddDrawer">添加文章</el-button>
+        </div>
+      </div>
+    </template>
+    <!-- 搜索表单 -->
+    <el-form inline>
+      <el-form-item label="文章分类：">
+        <el-select placeholder="请选择" v-model="searchParam.categoryId">
+          <el-option
+            v-for="c in categories"
+            :key="c.id"
+            :label="c.categoryName"
+            :value="c.id"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="发布状态：">
+        <el-select placeholder="请选择" v-model="searchParam.state">
+          <el-option label="已发布" value="已发布"></el-option>
+          <el-option label="草稿" value="草稿"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="getArticleList">搜索</el-button>
+        <el-button @click="resetSearchItems">重置</el-button>
+      </el-form-item>
+    </el-form>
+    <!-- 文章列表 -->
+    <el-table :data="articles" style="width: 100%">
+      <el-table-column label="文章标题" width="400" prop="title"></el-table-column>
+      <el-table-column label="分类" prop="categoryName"></el-table-column>
+      <el-table-column label="发表时间" prop="createTime"></el-table-column>
+      <el-table-column label="状态" prop="state"></el-table-column>
+      <el-table-column label="操作" width="100">
+        <template #default="{ row }">
+          <el-button :icon="Edit" circle plain type="primary" @click="openEditDrawer(row.id)" />
+          <el-button :icon="Delete" circle plain type="danger" @click="deleteArticle(row.id)" />
+        </template>
+      </el-table-column>
+      <template #empty>
+        <el-empty description="没有数据" />
+      </template>
+    </el-table>
+    <!-- 分页条 -->
+    <el-pagination
+      v-model:current-page="pageHelper.pageNum"
+      v-model:page-size="pageHelper.pageSize"
+      :page-sizes="[3, 5, 10, 15]"
+      layout="jumper, total, sizes, prev, pager, next"
+      background
+      :total="pageHelper.total"
+      @size-change="onSizeChange"
+      @current-change="onCurrentChange"
+      style="margin-top: 20px; justify-content: flex-end"
+    />
+    <!-- 抽屉 -->
+    <AddArticleDrawer
+      ref="articleDrawer"
+      :categories="categories"
+      :getArticleList="getArticleList"
+    />
+  </el-card>
+</template>
+
+<script lang="ts" setup>
+import { Edit, Delete } from '@element-plus/icons-vue'
+import { onMounted, ref } from 'vue'
+import AddArticleDrawer from './components/AddArticleDrawer.vue'
+import { articleCategoryListService, articleListService, deleteArticleService } from '@/api/article'
+import type { articleCategoryDTO, articleDTO } from '@/api/article'
+import { ElMessage, ElMessageBox } from 'element-plus'
+
+type AddArticleDrawerInstance = InstanceType<typeof AddArticleDrawer>
+
+// 文章分类数据模型
+const categories = ref<articleCategoryDTO[]>([])
+// 文章列表数据模型
+const articles = ref<articleDTO[]>([])
+// 搜索框数据
+const searchParam = ref({
+  categoryId: undefined, // 用户搜索时选中的分类id
+  state: '', // 用户搜索时选中的发布状态
+})
+// 分页条数据模型
+const pageHelper = ref({
+  pageNum: 1, // 当前页
+  total: 20, // 总条数
+  pageSize: 3, // 每页条数
+})
+// 抽屉子组件
+const articleDrawer = ref<AddArticleDrawerInstance | null>(null)
+
+// 当每页条数发生变化
+const onSizeChange = (size: number) => {
+  pageHelper.value.pageSize = size
+  getArticleList()
+}
+// 当前页码发生变化，调用此函数
+const onCurrentChange = (num: number) => {
+  pageHelper.value.pageNum = num
+  getArticleList()
+}
+
+const openAddDrawer = () => {
+  articleDrawer.value?.resetArticle()
+  articleDrawer.value?.openDrawer('添加文章')
+}
+
+const openEditDrawer = (id: number) => {
+  articleDrawer.value?.resetArticle()
+  articleDrawer.value?.openDrawer('修改文章', id)
+}
+
+const deleteArticle = (id: number) => {
+  ElMessageBox.confirm('确认要删除该文章吗？', '温馨提示', {
+    confirmButtonText: '确认',
+    cancelButtonText: '取消',
+    type: 'warning',
+  })
+    .then(async () => {
+      await deleteArticleService(id)
+      ElMessage.success('删除成功')
+      // 刷新
+      getArticleList()
+    })
+    .catch(() => {
+      ElMessage.info('取消删除')
+    })
+}
+
+const getArticleCategoryList = async () => {
+  const result = await articleCategoryListService()
+  categories.value = result.data
+}
+
+const resetSearchItems = () => {
+  // 清空
+  searchParam.value.categoryId = undefined
+  searchParam.value.state = ''
+  // 刷新
+  getArticleList()
+}
+
+const getArticleList = async () => {
+  const params = {
+    pageNum: pageHelper.value.pageNum,
+    pageSize: pageHelper.value.pageSize,
+    categoryId: searchParam.value.categoryId,
+    state: searchParam.value.state.length !== 0 ? searchParam.value.state : undefined,
+  }
+  const { data } = await articleListService(params)
+  pageHelper.value.total = data.total
+  articles.value = data.items
+}
+
+onMounted(() => {
+  getArticleCategoryList()
+  getArticleList()
+})
+</script>
+
+<style lang="scss" scoped>
+.page-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .el-select {
+    --el-select-width: 220px;
+  }
+}
+</style>
+```
+
+```vue title:'src\views\article\components\AddArticleDrawer.vue'
+<template>
+  <!-- 抽屉 -->
+  <el-drawer v-model="visibleDrawer" :title="drawerTitle" direction="rtl" size="50%">
+    <!-- 添加/修改文章表单 -->
+    <el-form :model="articleModel" label-width="100px" :rules="rules">
+      <el-form-item label="文章标题" prop="title">
+        <el-input v-model="articleModel.title" placeholder="请输入标题" />
+      </el-form-item>
+      <el-form-item label="文章分类" prop="categoryId">
+        <el-select placeholder="请选择" v-model="articleModel.categoryId">
+          <el-option v-for="c in categories" :key="c.id" :label="c.categoryName" :value="c.id" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="文章封面" prop="coverImg">
+        <el-upload
+          class="avatar-uploader"
+          :auto-upload="true"
+          :show-file-list="false"
+          action="/api/upload"
+          name="file"
+          :headers="{ Authorization: tokenStore.token }"
+          :on-success="uploadSuccess"
+        >
+          <img v-if="articleModel.coverImg" :src="articleModel.coverImg" class="avatar" />
+          <el-icon v-else class="avatar-uploader-icon">
+            <Plus />
+          </el-icon>
+        </el-upload>
+      </el-form-item>
+      <el-form-item label="文章内容" prop="content">
+        <div class="editor">
+          <quill-editor theme="snow" v-model:content="articleModel.content" contentType="html" />
+        </div>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="addArticle('已发布')">发布</el-button>
+        <el-button type="info" @click="addArticle('草稿')">草稿</el-button>
+      </el-form-item>
+    </el-form>
+  </el-drawer>
+</template>
+
+<script lang="ts" setup>
+import { Plus } from '@element-plus/icons-vue'
+import { reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormRules } from 'element-plus'
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import { useTokenStore } from '@/stores/token'
+import type { ApiResponse } from '@/utils/request'
+import { addArticleService, articleDetailService, editArticleService } from '@/api/article'
+import type { articleCategoryDTO, articleDTO } from '@/api/article'
+
+type DrawerMode = '添加文章' | '修改文章'
+
+const props = defineProps<{
+  categories: articleCategoryDTO[]
+  getArticleList: Function
+}>()
+
+const tokenStore = useTokenStore()
+// 抽屉是否显示
+const visibleDrawer = ref(false)
+const drawerTitle = ref<DrawerMode>('添加文章')
+
+const initialArticle = {
+  title: '',
+  categoryId: undefined as number | undefined,
+  coverImg: '',
+  content: '',
+  state: '',
+}
+const articleModel = ref<articleDTO>({ ...initialArticle })
+
+const rules = reactive<FormRules>({
+  title: [
+    { required: true, message: '请输入文章标题', trigger: 'blur' },
+    { pattern: /^\S{1,10}$/, message: '标题长度为1~10位非空字符', trigger: 'blur' },
+  ],
+  content: [{ required: true, message: '请输入文章正文', trigger: 'blur' }],
+  coverImg: [{ required: true, message: '请输入文章封面图像地址', trigger: 'blur' }],
+  categoryId: [{ required: true, message: '请输入文章分类ID', trigger: 'blur' }],
+})
+
+const resetArticle = () => {
+  articleModel.value = { ...initialArticle }
+}
+
+const uploadSuccess = (result: ApiResponse) => {
+  articleModel.value.coverImg = result.data
+}
+
+const addArticle = async (clickState: string) => {
+  articleModel.value.state = clickState
+  if (!articleModel.value.categoryId) {
+    ElMessage.warning('请选择文章分类')
+    return
+  }
+  if (drawerTitle.value === '添加文章') {
+    const { message } = await addArticleService(articleModel.value)
+    ElMessage.success(message ?? '添加成功')
+  } else if (drawerTitle.value === '修改文章' && articleModel.value.id) {
+    const { message } = await editArticleService(articleModel.value)
+    ElMessage.success(message ?? '修改成功')
+  } else {
+    ElMessage.warning('添加或修改文章失败')
+    return
+  }
+  visibleDrawer.value = false
+  props.getArticleList()
+  resetArticle()
+}
+
+const getArticleDetail = async (id: number) => {
+  const { data } = await articleDetailService(id)
+  articleModel.value = data
+}
+
+const openDrawer = (title: DrawerMode, id?: number) => {
+  visibleDrawer.value = true
+  drawerTitle.value = title
+  if (id) {
+    getArticleDetail(id)
+  }
+}
+
+defineExpose({
+  openDrawer,
+  resetArticle,
+})
+</script>
+
+<style lang="scss" scoped>
+.avatar-uploader {
+  :deep() {
+    .avatar {
+      width: 178px;
+      height: 178px;
+      display: block;
+    }
+
+    .el-upload {
+      border: 1px dashed var(--el-border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--el-transition-duration-fast);
+    }
+
+    .el-upload:hover {
+      border-color: var(--el-color-primary);
+    }
+
+    .el-icon.avatar-uploader-icon {
+      font-size: 28px;
+      color: #8c939d;
+      width: 178px;
+      height: 178px;
+      text-align: center;
+    }
+  }
+}
+.editor {
+  width: 100%;
+  :deep(.ql-editor) {
+    min-height: 200px;
+  }
+}
+</style>
+```
+
+```ts title:'src\api\article.ts'
+import request from '@/utils/request'
+import type { ApiResponse } from '@/utils/request'
+
+export interface articleCategoryDTO {
+  id: number
+  categoryName: string
+  categoryAlias: string
+  createTime?: string
+  updateTime?: string
+}
+
+export interface addArticleCategoryDTO {
+  id?: number
+  categoryName: string
+  categoryAlias: string
+}
+
+export interface articleSearchItem {
+  pageNum: number
+  pageSize: number
+  categoryId?: number
+  state?: string
+}
+
+export interface articleListDTO {
+  total: number
+  items: articleDTO[]
+}
+
+export interface articleDTO {
+  id?: number
+  title: string
+  content: string
+  coverImg: string
+  state: string
+  categoryId?: number
+  categoryName?: string
+  createTime?: string
+  updateTime?: string
+}
+
+// 文章分类列表查询
+export const articleCategoryListService = (): Promise<ApiResponse<articleCategoryDTO[]>> => {
+  return request.get('/category')
+}
+
+// 添加文章分类
+export const addArticleCategoryService = (
+  categoryData: addArticleCategoryDTO,
+): Promise<ApiResponse> => {
+  return request.post('/category', categoryData)
+}
+
+// 修改文章分类
+export const editArticleCategoryService = (
+  categoryData: addArticleCategoryDTO,
+): Promise<ApiResponse> => {
+  return request.put('/category', categoryData)
+}
+
+// 删除文章分类
+export const deleteArticleCategoryService = (id: number): Promise<ApiResponse> => {
+  return request.delete('/category?id=' + id)
+}
+
+// 文章列表查询
+export const articleListService = (
+  params: articleSearchItem,
+): Promise<ApiResponse<articleListDTO>> => {
+  return request.get('/article', { params: params })
+}
+
+// 添加文章
+export const addArticleService = (articleData: articleDTO): Promise<ApiResponse> => {
+  return request.post('/article', articleData)
+}
+
+// 获取文章详情
+export const articleDetailService = (id: number): Promise<ApiResponse<articleDTO>> => {
+  return request.get('/article/detail?id=' + id)
+}
+
+// 修改文章
+export const editArticleService = (articleData: articleDTO): Promise<ApiResponse> => {
+  return request.put('/article', articleData)
+}
+
+// 删除文章
+export const deleteArticleService = (id: number): Promise<ApiResponse> => {
+  return request.delete('/article?id=' + id)
+}
+```
+
+```ts title:'src\main.ts'
+import './assets/main.scss'
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from '@/router'
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { zhCn } from 'element-plus/es/locales.mjs'
+
+const app = createApp(App)
+const pinia = createPinia()
+const persist = createPersistedState()
+pinia.use(persist)
+app.use(pinia)
+app.use(router)
+app.use(ElementPlus, {
+  locale: zhCn,
+})
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+## 14.5 
 
 
 
