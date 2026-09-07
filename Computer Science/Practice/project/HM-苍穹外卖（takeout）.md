@@ -43,3 +43,33 @@ sky-server 子模块中存放的是 配置文件、配置类、拦截器、contr
 
 先确保 `application-dev.yml` 中的数据库的用户名和密码与本地数据库一致。随后启动程序，测试登录功能是否正常。
 
+#### 1.2.3.1 Nginx 反向代理
+
+nginx 反向代理，就是将前端发送的动态请求由 nginx 转发到后端服务器
+
+![image-HM-苍穹外卖（takeout）-nigix反向代理.png](images/image-HM-苍穹外卖（takeout）-nigix反向代理.png)
+
+好处：
+
+- 提高访问速度
+- 进行负载均衡
+- 保证后端服务安全
+
+P.s. 所谓负载均衡,就是把大量的请求按照我们指定的方式均衡的分配给集群中的每台服务器
+
+### 1.2.4 完善登录功能
+
+1. 修改数据库中的密码。
+
+```text title:'123456的MD5加密后的密文'
+e10adc3949ba59abbe56e057f20f883e
+```
+
+2. 添加后端中加密密码的逻辑。
+
+```java title:'EmployeeServiceImpl.java'
+password = DigestUtils.md5DigestAsHex(password.getBytes());
+```
+
+## 1.3 接口文档
+
