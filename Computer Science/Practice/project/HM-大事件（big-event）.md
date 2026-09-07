@@ -3539,16 +3539,22 @@ export default instance
 ```text title:'项目结构'
 src
 	api
+		article.ts
 		user.ts
 	assets
 	layout
 		Index.vue
 	route
 		index.ts
+	store
+		token.ts
+		userInfo.ts
 	utils
 		request.ts
 	views
 		article
+			components
+				AddArticleDrawer.vue
 			ArticleCategory.vue
 			ArticleManage.vue
 		user
@@ -4854,7 +4860,593 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 ## 14.5 用户
 
+补全了更新用户密码功能实现。
 
+```ts title:'src\api\user.ts'
+import request from '@/utils/request'
+import type { ApiResponse } from '@/utils/request'
 
+export interface userInfoDTO {
+  id?: number
+  username: string
+  password: string
+  nickname: string
+  email: string
+  userPic: string
+  createTime?: string
+  updateTime?: string
+}
 
+export interface pwdDataDTO {
+  oldPwd: string
+  newPwd: string
+  rePwd: string
+}
 
+// 用户注册
+export const userRegisterService = (registerData: any): Promise<ApiResponse> => {
+  const params = new URLSearchParams()
+  for (let key in registerData) {
+    params.append(key, registerData[key])
+  }
+  return request.post('/user/register', params)
+}
+
+// 用户登录
+export const userLoginService = (registerData: any): Promise<ApiResponse> => {
+  const params = new URLSearchParams()
+  for (let key in registerData) {
+    params.append(key, registerData[key])
+  }
+  return request.post('/user/login', params)
+}
+
+// 获取用户详细信息
+export const userInfoService = (): Promise<ApiResponse<userInfoDTO>> => {
+  return request.get('/user/userInfo')
+}
+
+// 修改个人信息
+export const updateUserInfoService = (userInfoData: userInfoDTO): Promise<ApiResponse> => {
+  return request.put('/user/update', userInfoData)
+}
+
+// 修改头像
+export const updateUserAvatarService = (avatarUrl: string): Promise<ApiResponse> => {
+  const params = new URLSearchParams()
+  params.append('avatarUrl', avatarUrl)
+  return request.patch('/user/updateAvatar', params)
+}
+
+// 修改密码
+export const updateUserPasswordService = (pwdData: pwdDataDTO): Promise<ApiResponse> => {
+  const params = {
+    old_pwd: pwdData.oldPwd,
+    new_pwd: pwdData.newPwd,
+    re_pwd: pwdData.rePwd,
+  }
+  return request.patch('/user/updatePwd', params)
+}
+```
+
+```vue title:'src\views\user\UserAvatar.vue'
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>更换头像</span>
+      </div>
+    </template>
+    <el-row>
+      <el-col :span="12">
+        <el-upload
+          ref="uploadRef"
+          class="avatar-uploader"
+          :show-file-list="false"
+          :auto-upload="true"
+          action="/api/upload"
+          name="file"
+          :headers="{ Authorization: tokenStore.token }"
+          :on-success="uploadSuccess"
+        >
+          <img v-if="imgUrl" :src="imgUrl" class="avatar" />
+          <img v-else :src="avatar" width="278" />
+        </el-upload>
+        <br />
+        <el-button
+          type="primary"
+          :icon="Plus"
+          size="large"
+          @click="uploadRef.$el.querySelector('input').click()"
+        >
+          选择图片
+        </el-button>
+        <el-button type="success" :icon="Upload" size="large" @click="updateAvatar">
+          上传头像
+        </el-button>
+      </el-col>
+    </el-row>
+  </el-card>
+</template>
+
+<script lang="ts" setup>
+import { Plus, Upload } from '@element-plus/icons-vue'
+import { ref } from 'vue'
+import avatar from '@/assets/default.png'
+import { useTokenStore } from '@/stores/token'
+import useUserInfoStore from '@/stores/userInfo'
+import type { ApiResponse } from '@/utils/request'
+import { updateUserAvatarService } from '@/api/user'
+import { ElMessage } from 'element-plus'
+
+const uploadRef = ref()
+const tokenStore = useTokenStore()
+const userInfoStore = useUserInfoStore()
+
+// 用户头像地址
+const imgUrl = ref(userInfoStore.info.userPic ?? avatar)
+
+const uploadSuccess = (result: ApiResponse) => {
+  imgUrl.value = result.data
+}
+
+const updateAvatar = async () => {
+  await updateUserAvatarService(imgUrl.value)
+  ElMessage.success('修改成功')
+  // 修改 pinia 中的数据
+  userInfoStore.setInfo({ ...userInfoStore.info, userPic: imgUrl.value })
+}
+</script>
+
+<style lang="scss" scoped>
+.avatar-uploader {
+  :deep() {
+    .avatar {
+      width: 278px;
+      height: 278px;
+      display: block;
+    }
+
+    .el-upload {
+      border: 1px dashed var(--el-border-color);
+      border-radius: 6px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: var(--el-transition-duration-fast);
+    }
+
+    .el-upload:hover {
+      border-color: var(--el-color-primary);
+    }
+
+    .el-icon.avatar-uploader-icon {
+      font-size: 28px;
+      color: #8c939d;
+      width: 278px;
+      height: 278px;
+      text-align: center;
+    }
+  }
+}
+</style>
+```
+
+```vue title:'src\views\user\UserInfo.vue'
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>基本资料</span>
+      </div>
+    </template>
+    <el-row>
+      <el-col :span="12">
+        <el-form :model="userInfo" :rules="rules" label-width="100px" size="large">
+          <el-form-item label="登录名称">
+            <el-input v-model="userInfo.username" disabled></el-input>
+          </el-form-item>
+          <el-form-item label="用户昵称" prop="nickname">
+            <el-input v-model="userInfo.nickname"></el-input>
+          </el-form-item>
+          <el-form-item label="用户邮箱" prop="email">
+            <el-input v-model="userInfo.email"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="updateUserInfo">提交修改</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+  </el-card>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import useUserInfoStore from '@/stores/userInfo'
+import { updateUserInfoService } from '@/api/user'
+import type { userInfoDTO } from '@/api/user'
+import { ElMessage } from 'element-plus'
+
+const userInfoStore = useUserInfoStore()
+
+const userInfo = ref<userInfoDTO>({ ...userInfoStore.info })
+
+const rules = {
+  nickname: [
+    { required: true, message: '请输入用户昵称', trigger: 'blur' },
+    {
+      pattern: /^\S{2,10}$/,
+      message: '昵称必须是2-10位的非空字符串',
+      trigger: 'blur',
+    },
+  ],
+  email: [
+    { required: true, message: '请输入用户邮箱', trigger: 'blur' },
+    { type: 'email', message: '邮箱格式不正确', trigger: 'blur' },
+  ],
+}
+
+const updateUserInfo = async () => {
+  // 调用接口
+  await updateUserInfoService(userInfo.value)
+  ElMessage.success('修改成功')
+  // 修改 pinia 中的个人信息
+  userInfoStore.setInfo(userInfo.value)
+}
+</script>
+
+<style lang="scss" scoped>
+.page-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+</style>
+```
+
+```vue title:'src\views\user\UserResetPassword.vue'
+<template>
+  <el-card class="page-container">
+    <template #header>
+      <div class="header">
+        <span>重置密码</span>
+      </div>
+    </template>
+    <!-- 表单 -->
+    <el-row>
+      <el-col :span="12">
+        <el-form :model="pwdData" label-width="100px" :rules="rules">
+          <el-form-item label="原密码" prop="oldPwd">
+            <el-input
+              v-model="pwdData.oldPwd"
+              placeholder="请输入原密码"
+              type="password"
+              show-password
+            />
+          </el-form-item>
+          <el-form-item label="新密码" prop="newPwd">
+            <el-input
+              v-model="pwdData.newPwd"
+              placeholder="请输入新密码"
+              type="password"
+              show-password
+            />
+          </el-form-item>
+          <el-form-item label="确认新密码" prop="rePwd">
+            <el-input
+              v-model="pwdData.rePwd"
+              placeholder="请输入确认密码"
+              type="password"
+              show-password
+            />
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="resetPassword">修改密码</el-button>
+            <el-button type="primary" plain @click="resetPwdData">重置</el-button>
+          </el-form-item>
+        </el-form>
+      </el-col>
+    </el-row>
+  </el-card>
+</template>
+
+<script lang="ts" setup>
+import { reactive, ref } from 'vue'
+import { ElMessage, type FormRules } from 'element-plus'
+import { updateUserPasswordService } from '@/api/user'
+import { useRouter } from 'vue-router'
+import { useTokenStore } from '@/stores/token'
+import type { pwdDataDTO } from '@/api/user'
+
+const router = useRouter()
+const tokenStore = useTokenStore()
+
+const initialPwdData = {
+  oldPwd: '',
+  newPwd: '',
+  rePwd: '',
+}
+const pwdData = ref<pwdDataDTO>({ ...initialPwdData })
+
+const rules = reactive<FormRules>({
+  oldPwd: [
+    { required: true, message: '请输入原密码', trigger: 'blur' },
+    { pattern: /^\S{5,16}$/, message: '原密码必须是5-16位的非空字符串', trigger: 'blur' },
+  ],
+  newPwd: [
+    { required: true, message: '请输入新密码', trigger: 'blur' },
+    { pattern: /^\S{5,16}$/, message: '新密码必须是5-16位的非空字符串', trigger: 'blur' },
+  ],
+  rePwd: [
+    { required: true, message: '请输入确认密码', trigger: 'blur' },
+    { pattern: /^\S{5,16}$/, message: '确认密码必须是5-16位的非空字符串', trigger: 'blur' },
+  ],
+})
+
+const resetPwdData = () => {
+  pwdData.value = { ...initialPwdData }
+}
+
+const resetPassword = async () => {
+  await updateUserPasswordService(pwdData.value)
+  resetPwdData()
+  tokenStore.removeToken()
+  ElMessage.success('修改成功，请重新登录')
+  router.push('/login')
+}
+</script>
+
+<style lang="scss" scoped>
+.page-container {
+  min-height: 100%;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+</style>
+```
+
+```ts title:'src\stores\userInfo.ts'
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import type { userInfoDTO } from '@/api/user'
+
+const useUserInfoStore = defineStore(
+  'userInfo',
+  () => {
+    const initialInfo = {
+      id: undefined as number | undefined,
+      username: '',
+      password: '',
+      nickname: '',
+      email: '',
+      userPic: '',
+    }
+
+    const info = ref<userInfoDTO>({ ...initialInfo })
+
+    const setInfo = (newInfo: any) => {
+      info.value = newInfo
+    }
+
+    const removeInfo = () => {
+      info.value = { ...initialInfo }
+    }
+
+    return {
+      info,
+      setInfo,
+      removeInfo,
+    }
+  },
+  { persist: true },
+)
+
+export default useUserInfoStore
+```
+
+```vue title:'src\layout\Index.vue'
+<template>
+  <el-container class="layout-container">
+    <!-- 左侧菜单 -->
+    <el-aside width="200px">
+      <div class="el-aside__logo"></div>
+      <el-menu active-text-color="#ffd04b" background-color="#232323" text-color="#fff" router>
+        <el-menu-item index="/article/category">
+          <el-icon>
+            <Management />
+          </el-icon>
+          <span>文章分类</span>
+        </el-menu-item>
+        <el-menu-item index="/article/manage">
+          <el-icon>
+            <Promotion />
+          </el-icon>
+          <span>文章管理</span>
+        </el-menu-item>
+        <el-sub-menu>
+          <template #title>
+            <el-icon>
+              <UserFilled />
+            </el-icon>
+            <span>个人中心</span>
+          </template>
+          <el-menu-item index="/user/info">
+            <el-icon>
+              <User />
+            </el-icon>
+            <span>基本资料</span>
+          </el-menu-item>
+          <el-menu-item index="/user/avatar">
+            <el-icon>
+              <Crop />
+            </el-icon>
+            <span>更换头像</span>
+          </el-menu-item>
+          <el-menu-item index="/user/resetPassword">
+            <el-icon>
+              <EditPen />
+            </el-icon>
+            <span>重置密码</span>
+          </el-menu-item>
+        </el-sub-menu>
+      </el-menu>
+    </el-aside>
+    <!-- 右侧主区域 -->
+    <el-container>
+      <!-- 头部区域 -->
+      <el-header>
+        <div>
+          黑马程序员：
+          <strong>{{ userInfoStore.info.nickname }}</strong>
+        </div>
+        <!-- 下拉菜单 -->
+        <!-- command：条目被点击后会触发，在事件函数上可以声明一个参数，接收条目对应的指令 -->
+        <el-dropdown placement="bottom-end" @command="handleCommand">
+          <span class="el-dropdown__box">
+            <el-avatar :src="userInfoStore.info.userPic ?? avatar" />
+            <el-icon>
+              <CaretBottom />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item command="info" :icon="User">基本资料</el-dropdown-item>
+              <el-dropdown-item command="avatar" :icon="Crop">更换头像</el-dropdown-item>
+              <el-dropdown-item command="resetPassword" :icon="EditPen">重置密码</el-dropdown-item>
+              <el-dropdown-item command="logout" :icon="SwitchButton">退出登录</el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </el-header>
+      <!-- 中间区域 -->
+      <el-main>
+        <router-view />
+      </el-main>
+      <!-- 底部区域 -->
+      <el-footer>大事件 ©2023 Created by 黑马程序员</el-footer>
+    </el-container>
+  </el-container>
+</template>
+
+<script lang="ts" setup>
+import {
+  Management,
+  Promotion,
+  UserFilled,
+  User,
+  Crop,
+  EditPen,
+  SwitchButton,
+  CaretBottom,
+} from '@element-plus/icons-vue'
+import avatar from '@/assets/default.png'
+import useUserInfoStore from '@/stores/userInfo'
+import { useTokenStore } from '@/stores/token'
+import { userInfoService } from '@/api/user'
+import { onMounted } from 'vue'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { useRouter } from 'vue-router'
+
+const userInfoStore = useUserInfoStore()
+const tokenStore = useTokenStore()
+const getUserInfo = async () => {
+  const { data } = await userInfoService()
+  userInfoStore.setInfo(data)
+}
+
+const router = useRouter()
+
+const handleCommand = (command: string | number | object) => {
+  if (command === 'logout') {
+    // 退出登录
+
+    // 弹窗
+    ElMessageBox.confirm('确认要退出登录吗？', '温馨提示', {
+      confirmButtonText: '确认',
+      cancelButtonText: '取消',
+      type: 'warning',
+    })
+      .then(() => {
+        // 1.清空 pinia 中存储的 token 以及个人信息
+        tokenStore.removeToken()
+        userInfoStore.removeInfo()
+        // 2.跳转到登录页面
+        router.push('/login')
+        ElMessage.success('退出登录成功')
+      })
+      .catch(() => {
+        ElMessage.info('用户取消了退出登录')
+      })
+  } else {
+    // 路由
+    router.push('/user/' + command)
+  }
+}
+
+onMounted(() => {
+  getUserInfo()
+})
+</script>
+
+<style lang="scss" scoped>
+.layout-container {
+  height: 100vh;
+
+  .el-aside {
+    background-color: #232323;
+
+    &__logo {
+      height: 120px;
+      background: url('@/assets/logo.png') no-repeat center / 120px auto;
+    }
+
+    .el-menu {
+      border-right: none;
+    }
+  }
+
+  .el-header {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .el-dropdown__box {
+      display: flex;
+      align-items: center;
+
+      .el-icon {
+        color: #999;
+        margin-left: 10px;
+      }
+
+      &:active,
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+  .el-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #666;
+  }
+}
+</style>
+```
+
+以上为用户相关功能的主要代码，完成后项目所有功能均已实现。
