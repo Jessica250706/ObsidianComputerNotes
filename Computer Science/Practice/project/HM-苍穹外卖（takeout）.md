@@ -16,9 +16,24 @@ endDate:
 
 启动 nginx：双击 nginx.exe 即可启动 nginx 服务，访问端口号为 80。
 
-注意，必须要在全英文的目录下启动，否则无法运行。且，nginx.exe在 `hm-takeout\Documents\front-end-environment\nginx-1.20.2` 中。
+注意，必须要在全英文的目录下启动，否则无法运行。且，nginx.exe 在 `hm-takeout\Documents\front-end-environment\nginx-1.20.2` 中。
 
 ## 1.2 后端
 
+### 1.2.1 项目结构
 
+sky-common 子模块中存放的是一些公共类，可以供其他模块使用
+
+sky-pojo 子模块中存放的是一些 entity、DTO、VO
+
+| 名称     | 说明                                  |
+| ------ | ----------------------------------- |
+| POJO   | 普通 Java 对象，只有属性和对应的 getter 和 setter |
+| Entity | 实体，通常和数据库中的表对应                      |
+| DTO    | 数据传输对象，通常用于程序中各层之间传递数据              |
+| VO     | 视图对象，为前端展示数据提供的对象                   |
+
+sky-server 子模块中存放的是 配置文件、配置类、拦截器、controller、service、mapper、启动类等
+
+### 1.2.2 数据库环境
 
