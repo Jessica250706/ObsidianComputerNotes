@@ -10,6 +10,10 @@ endDate:
 
 【黑马程序员 Java 项目实战《苍穹外卖》，最适合新手的 SpringBoot+SSM 的企业级 Java 项目实战】https://www.bilibili.com/video/BV1TP411v7v6?vd_source=4e42d3c23020c1c6dc6a9aac2d11ab9c
 
+个人学习仓库：
+
+
+
 # 1.开发环境搭建
 
 ## 1.1 前端
@@ -78,4 +82,34 @@ password = DigestUtils.md5DigestAsHex(password.getBytes());
 通过 Apifox 导入接口文档即可。
 
 # 2.员工
+
+## 2.1 新增员工
+
+### 2.1.1 代码开发
+
+详见代码仓库。
+
+注意 mapper 文件中的注入 SQL 不要输入错误，必须与 Employee 实体类中的字段保持一致。
+
+### 2.1.2 功能测试
+
+如果使用的是 Apifox，先选择环境。
+
+![image-HM-苍穹外卖（takeout）-Apifox配置开发环境1.png](images/image-HM-苍穹外卖（takeout）-Apifox配置开发环境1.png)
+
+点击管理环境，输入模块的前置 URL。（一般默认是 `http://localhost:8080`）
+
+![image-HM-苍穹外卖（takeout）-Apifox配置环境2.png](images/image-HM-苍穹外卖（takeout）-Apifox配置环境2.png)
+
+调试员工登录接口，添加后置操作。
+
+![image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png](images/image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png)
+
+随后，添加全局参数。注意，在苍穹外卖项目中，参数名是 token，但在一般项目中，参数名是请求头（Authorization）。
+
+![image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png](images/image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png)
+
+然后再测试新增员工接口，若返回数据中 code 为 1，且数据库中出现新数据，则证明测试成功。
+
+## 2.2 员工分页查询
 
