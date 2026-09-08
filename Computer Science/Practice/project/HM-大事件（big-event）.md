@@ -12,6 +12,8 @@ endDate: 2026-09-07
 
 模版网站：https://fe-bigevent-web.itheima.net/login
 
+个人学习仓库：[Jessica250706/hm-big-event: 学习黑马大事件项目](https://github.com/Jessica250706/hm-big-event)
+
 # 1.环境搭建
 
 - 执行资料中的 big_event.sql 脚本，准备数据库表

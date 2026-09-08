@@ -10,9 +10,7 @@ endDate:
 
 【黑马程序员 Java 项目实战《苍穹外卖》，最适合新手的 SpringBoot+SSM 的企业级 Java 项目实战】https://www.bilibili.com/video/BV1TP411v7v6?vd_source=4e42d3c23020c1c6dc6a9aac2d11ab9c
 
-个人学习仓库：
-
-
+个人学习仓库：[Jessica250706/hm-takeout: 黑马苍穹外卖](https://github.com/Jessica250706/hm-takeout)
 
 # 1.开发环境搭建
 
