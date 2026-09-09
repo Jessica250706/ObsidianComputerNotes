@@ -149,7 +149,9 @@ public class PasswordEditDTO implements Serializable {
 
 # 4.菜品管理
 
-## 4.1 公共字段自动填充
+## 4.1 公共字段自动填充【AOP
+
+问题：代码冗余，不利于后期维护
 
 ## 4.2 新增菜品
 
