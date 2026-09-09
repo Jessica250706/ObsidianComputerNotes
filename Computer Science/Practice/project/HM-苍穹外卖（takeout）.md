@@ -12,6 +12,10 @@ endDate:
 
 个人学习仓库：[Jessica250706/hm-takeout: 黑马苍穹外卖](https://github.com/Jessica250706/hm-takeout)
 
+面试话术：[史上最强苍穹外卖话术_牛客网](https://www.nowcoder.com/discuss/634840490742972416?)
+
+
+
 # 1.开发环境搭建
 
 ## 1.1 前端
@@ -114,4 +118,34 @@ password = DigestUtils.md5DigestAsHex(password.getBytes());
 ## 2.3 启用禁用员工账号
 
 ## 2.4 编辑员工
+
+## 2.5 更新密码
+
+注意，接口文档中传入参数有误。`empId` 不是前端传递的数据，而是需要通过 `BaseContext.getCurrentId()` 获取。
+
+```text title:'实际上前端传的数据结构'
+newPassword: "456789"
+oldPassword: "123456"
+```
+
+```java title:'修改后的PasswordEditDTO'
+@Data
+public class PasswordEditDTO implements Serializable {
+
+    /**
+     * 旧密码
+     */
+    private String oldPassword;
+
+    /**
+     * 新密码
+     */
+    private String newPassword;
+
+}
+```
+
+# 3.分类管理
+
+
 
