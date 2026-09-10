@@ -366,3 +366,23 @@ Redis set 是 string 类型的无序集合。集合成员是唯一的，集合�
 
 ### 6.3.5 有序集合
 
+Redis 有序集合是 string 类型元素的集合，且不允许有重复成员。每个元素都会关联一个 double 类型的分数。
+
+| 命令                                         | 说明                          |
+| ------------------------------------------ | --------------------------- |
+| `ZADD key score1 member1 [score2 member2]` | 向有序集合添加一个或多个成员              |
+| `ZRANGE key start stop [WITHSCORES]`       | 通过索引区间返回有序集合中指定区间内的成员       |
+| `ZINCRBY key increment member`             | 有序集合中对指定成员的分数加上增量 increment |
+| `ZREM key member [member ...]`             | 移除有序集合中的一个或多个成员             |
+
+### 6.3.6 通用命令
+
+Redis 的通用命令是不分数据类型的，都可以使用的命令。
+
+| 命令             | 说明  |
+| -------------- | --- |
+| `KEYS pattern` |     |
+|                |     |
+|                |     |
+|                |     |
+
