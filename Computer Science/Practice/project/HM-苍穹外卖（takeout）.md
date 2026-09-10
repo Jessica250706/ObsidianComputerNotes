@@ -279,9 +279,90 @@ void addCategory(Category category);
 void updateCategory(Category category);
 ```
 
-## 4.2 新增菜品
+## 4.2 接口实现
 
-# 5.
+略过，详情见仓库代码。
 
+# 5.套餐管理
 
+略过，详情见仓库代码。
+
+# 6.Redis
+
+## 6.1 简介
+
+Redis 是一个基于内存的 key-value 结构数据库。
+
+官网：https://redis.io
+
+```shell title:'命令行启动redis'
+redis-server.exe redis.windows.conf
+```
+
+```shell title:'连接'
+redis-cli.exe -h localhost -p 6379
+```
+
+资料中含有图形化界面的下载包。
+
+## 6.2 常用数据类型
+
+Redis 存储的是 key-value 结构的数据，其中 key 是字符串类型，value 有 5 种常用的数据类型：
+
+- 字符串 string
+- 哈希 hash
+- 列表 list
+- 集合 set
+- 有序集合 sorted set / zset
+
+![image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png](images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png)
+
+## 6.3 常用命令
+
+### 6.3.1 字符串
+
+| 命令                        | 说明                                 |
+| ------------------------- | ---------------------------------- |
+| `SET key value`           | 设置指定 key 的值                          |
+| `GET key`                 | 获取指定 key 的值                          |
+| `SETEX key seconds value` | 设置指定 key 的值，并将 key 的过期时间设为 seconds 秒 |
+| `SETNX key value`         | 只有在 key 不存在时设置 key 的值              |
+
+### 6.3.2 哈希
+
+Redis hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象。
+
+| 命令                     | 说明                             |
+| ---------------------- | ------------------------------ |
+| `HSET key field value` | 将哈希表 key 中的字段 field 的值设为 value |
+| `HGET key field`       | 获取存储在哈希表中指定字段的值                |
+| `HDEL key field`       | 删除存储在哈希表中的指定字段                 |
+| `HKEYS key`            | 获取哈希表中所有字段                     |
+| `HVALS key`            | 获取哈希表中所有值                      |
+
+### 6.3.3 列表
+
+Redis 列表是简单的字符串列表，按照插入顺序排序。
+
+| 命令                          | 说明                 |
+| --------------------------- | ------------------ |
+| `LPUSH key value1 [value2]` | 将一个或多个值插入到列表头部（左边） |
+| `LRANGE key start stop`     | 获取列表指定范围内的元素       |
+| `RPOP key`                  | 移除并获取列表最后一个元素（右边）  |
+| `LLEN key`                  | 获取列表长度             |
+
+### 6.3.4 集合
+
+Redis set 是 string 类型的无序集合。集合成员是唯一的，集合中不能出现重复的数据。
+
+| 命令                           | 说明           |
+| ---------------------------- | ------------ |
+| `SADD key member1 [member2]` | 向集合添加一个或多个成员 |
+| `SMEMBERS key`               | 返回集合中的所有成员   |
+| `SCARD key`                  | 获取集合的成员数     |
+| `SINTER key1 [key2]`         | 返回给定所有集合的交集  |
+| `SUNION key1 [key2]`         | 返回所有给定集合的并集  |
+| `SREM key member1 [member2]` | 删除集合中一个或多个成员 |
+
+### 6.3.5 有序集合
 
