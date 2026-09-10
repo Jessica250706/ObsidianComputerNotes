@@ -257,7 +257,7 @@ public class AutoFillAspect {
 
 然后在 Mapper 文件添加注解，比如：
 
-```java title:'com/sky/mapper/CategoryMapper.java' hl:9,
+```java title:'com/sky/mapper/CategoryMapper.java' hl:9,18
 /**
  * 新增分类
  *
@@ -281,7 +281,7 @@ void updateCategory(Category category);
 
 ## 4.2 新增菜品
 
-
+# 5.
 
 
 
