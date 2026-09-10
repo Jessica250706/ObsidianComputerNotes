@@ -379,12 +379,41 @@ Redis 有序集合是 string 类型元素的集合，且不允许有重复成员
 
 Redis 的通用命令是不分数据类型的，都可以使用的命令。
 
-| 命令             | 说明                        |
-| -------------- | ------------------------- |
-| `KEYS pattern` | 查找所有符合给定模式( pattern)的 key |
-| `EXISTS key`   | 检查给定 key 是否存在             |
-| `TYPE key`     | 返回 key 所储存的值的类型           |
-| `DEL key`      | 该命令用于在 key 存在是删除 key      |
+| 命令             | 说明                       |
+| -------------- | ------------------------ |
+| `KEYS pattern` | 查找所有符合给定模式（pattern）的 key |
+| `EXISTS key`   | 检查给定 key 是否存在            |
+| `TYPE key`     | 返回 key 所储存的值的类型          |
+| `DEL key`      | 该命令用于在 key 存在是删除 key     |
 
 ## 6.4 在 Java 中操作 Redis
+
+### 6.4.1 Redis 的 Java 客户端
+
+Redis 的 Java 客户端很多，常用的几种：
+
+- Jedis
+- Lettuce
+- Spring Data Redis
+
+Spring Data Redis 是 Spring 的一部分，对 Redis 底层开发包进行了高度封装。在 Spring 项目中，可以使用 Spring Data Redis 来简化操作。
+
+### 6.4.2 Spring Data Redis 使用方式
+
+操作步骤：
+
+1. 导入 Spring Data Redis 的 maven 坐标
+2. 配置 Redis 数据源
+3. 编写配置类，创建 RedisTemplate 对象
+4. 通过 RedisTemplate 对象操作 Redis
+
+RedisTemplate 针对大量 api 进行了归类封装,将同一数据类型的操作封装为对应的 Operation 接口，具体分类如下。
+
+| 分类                | 说明          |
+| ----------------- | ----------- |
+| `ValueOperations` | string数据操作  |
+| `SetOperations`   | set类型数据操作   |
+| `ZSetOperations`  | zset类型数据操作  |
+| `HashOperations`  | hash类型的数据操作 |
+| `ListOperations`  | list类型的数据操作 |
 
