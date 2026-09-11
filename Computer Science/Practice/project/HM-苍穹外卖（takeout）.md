@@ -411,9 +411,124 @@ RedisTemplate 针对大量 api 进行了归类封装,将同一数据类型的操
 
 | 分类                | 说明          |
 | ----------------- | ----------- |
-| `ValueOperations` | string数据操作  |
-| `SetOperations`   | set类型数据操作   |
-| `ZSetOperations`  | zset类型数据操作  |
-| `HashOperations`  | hash类型的数据操作 |
-| `ListOperations`  | list类型的数据操作 |
+| `ValueOperations` | string 数据操作  |
+| `SetOperations`   | set 类型数据操作   |
+| `ZSetOperations`  | zset 类型数据操作  |
+| `HashOperations`  | hash 类型的数据操作 |
+| `ListOperations`  | list 类型的数据操作 |
 
+# 7.微信登录、商品浏览
+
+## 7.1 HttpClient
+
+HttpClient 是 Apache Jakarta Common 下的子项目，可以用来提供高效的、最新的、功能丰富的支持 HTTP 协议的客户端编程工具包，并且它支持 HTTP 协议最新的版本和建议。
+
+核心 API：
+
+- HttpClient
+- HttpClients
+- CloseableHttpClient
+- HttpGet
+- HttpPost
+
+发送请求步骤：
+
+- 创建 HttpClient 对象
+- 创建 Http 请求对象
+- 调用 HttpClient 的 execute 方法发送请求
+
+```java title:'com/sky/test/HttpClientTest.java'
+package com.sky.test;
+
+import com.google.gson.JsonObject;
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.util.EntityUtils;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.IOException;
+
+@SpringBootTest
+public class HttpClientTest {
+
+    /**
+     * 测试通过 HttpClient 发送 GET 方式的请求
+     */
+    @Test
+    public void testGet() throws IOException {
+        // 创建 HttpClient 对象
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        // 创建请求对象
+        HttpGet httpGet = new HttpGet("http://localhost:8080/user/shop/status");
+
+        // 发送请求，接受响应结果
+        CloseableHttpResponse response = httpclient.execute(httpGet);
+
+        // 获取服务端返回的状态码
+        int statusCode = response.getStatusLine().getStatusCode();
+        System.out.println("服务端返回的状态码为：" + statusCode);
+
+        HttpEntity entity = response.getEntity();
+        String body = EntityUtils.toString(entity);
+        System.out.println("服务端返回的数据为：" + body);
+
+        // 关闭资源
+        response.close();
+        httpclient.close();
+    }
+
+    /**
+     * 测试通过 HttpClient 发送 POST 方式的请求
+     */
+    @Test
+    public void testPost() throws IOException {
+        // 创建 HttpClient 对象
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+
+        // 创建请求对象
+        HttpPost httpPost = new HttpPost("http://localhost:8080/admin/employee/login");
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("username", "admin");
+        jsonObject.addProperty("password", "123456");
+
+        StringEntity stringEntity = new StringEntity(jsonObject.toString());
+        // 指定请求的编码方式
+        stringEntity.setContentEncoding("UTF-8");
+        // 指定请求的数据格式
+        stringEntity.setContentType("application/json");
+        httpPost.setEntity(stringEntity);
+
+        // 发送请求，接受响应结果
+        CloseableHttpResponse response = httpclient.execute(httpPost);
+
+        // 解析返回结果
+        int statusCode = response.getStatusLine().getStatusCode();
+        System.out.println("服务端返回的状态码为：" + statusCode);
+
+        HttpEntity entity = response.getEntity();
+        String body = EntityUtils.toString(entity);
+        System.out.println("服务端返回的数据为：" + body);
+
+        // 关闭资源
+        response.close();
+        httpclient.close();
+    }
+
+}
+```
+
+## 7.2 微信小程序开发
+
+
+
+## 7.3 微信登录
+
+## 7.4 导入商品浏览功能代码
