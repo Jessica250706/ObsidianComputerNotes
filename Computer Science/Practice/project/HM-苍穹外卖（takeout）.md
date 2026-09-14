@@ -618,3 +618,13 @@ WebSocket 缺点：
 
 # 11.Apache ECharts
 
+Apache ECharts 是一款基于 Javascript 的数据可视化图表库，提供直观，生动，可交互，可个性化定制的数据可视化图表。
+
+官网地址：https://echarts.apache.org/zh/index.html
+
+Apache Echarts 官方提供的快速入门：https://echarts.apache.org/handbook/zh/get-started/
+
+总结：使用 Echarts，重点在于研究当前图表所需的数据格式。通常是需要后端提供符合格式要求的动态数据，然后响应给前端来展示图表。
+
+
+
