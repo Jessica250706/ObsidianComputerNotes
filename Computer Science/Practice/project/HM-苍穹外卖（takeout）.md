@@ -626,5 +626,15 @@ Apache Echarts 官方提供的快速入门：https://echarts.apache.org/handbook
 
 总结：使用 Echarts，重点在于研究当前图表所需的数据格式。通常是需要后端提供符合格式要求的动态数据，然后响应给前端来展示图表。
 
+# 12.Apache POI
 
+Apache POI 是一个处理 Miscrosoft Office 各种文件格式的开源项目。简单来说就是，我们可以使用 POI 在 Java 程序中对 Miscrosoft Office 各种文件进行读写操作。
+
+一般情况下，POI 都是用于操作 Excel 文件。
+
+Apache POI 的应用场景：
+
+- 银行网银系统导出交易明细
+- 各种业务系统导出 Excel 报表
+- 批量导入业务数据
 
