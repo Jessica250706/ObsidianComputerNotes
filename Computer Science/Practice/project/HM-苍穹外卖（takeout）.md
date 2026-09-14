@@ -587,3 +587,32 @@ Spring Task 使用步骤：
 - 启动类添加注解 @EnableScheduling 开启任务调度
 - 自定义定时任务类
 
+# 10.WebSocket
+
+WebSocket 是基于 TCP 的一种新的**网络协议**。它实现了浏览器与服务器全双工通信——浏览器和服务器只需要完成一次握手，两者之间就可以创建**持久性**的连接， 并进行**双向**数据传输。
+
+![image-HM-苍穹外卖（takeout）-HTTP和WebSocket协议对比.png](images/image-HM-苍穹外卖（takeout）-HTTP和WebSocket协议对比.png)
+
+应用场景：
+
+- 视频弹幕
+- 网页聊天
+- 体育实况更新
+- 股票基金报价实时更新
+
+实现步骤：
+
+1. 直接使用 websocket.html 页面作为 WebSocket 客户端
+2. 导入 WebSocket 的 maven 坐标
+3. 导入 WebSocket 服务端组件 WebSocketServer，用于和客户端通信
+4. 导入配置类 WebSocketConfiguration，注册 WebSocket 的服务端组件
+5. 导入定时任务类 WebSocketTask，定时向客户端推送数据
+
+WebSocket 缺点：
+
+- 服务器长期维护长连接需要一定的成本
+- 各个浏览器支持程度不一
+- WebSocket 是长连接，受网络限制比较大，需要处理好重连
+
+结论：WebSocket 并不能完全取代 HTTP，它只适合在特定的场景下使用
+
