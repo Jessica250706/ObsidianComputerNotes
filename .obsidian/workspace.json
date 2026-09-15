@@ -108,6 +108,30 @@
             }
           },
           {
+            "id": "b67ca543d690159e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computer Science/Practice/project/FirstProject.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "icon": "lucide-file",
+              "title": "FirstProject"
+            }
+          },
+          {
             "id": "93c0c35707cedb3d",
             "type": "leaf",
             "state": {
@@ -130,33 +154,9 @@
               "icon": "lucide-file",
               "title": "VUE3"
             }
-          },
-          {
-            "id": "b67ca543d690159e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Computer Science/Front End/TypeScript.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "TypeScript"
-            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -296,7 +296,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+                "file": "Computer Science/Front End/VUE3.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -336,15 +336,20 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "6f36307a2f265ba5",
+  "active": "93c0c35707cedb3d",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+    "Computer Science/Front End/VUE3.md",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
+    "Computer Science/Practice/project/FirstProject.md",
+    "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
+    "Computer Science/Practice/project/zero-one-12psi/init.md",
+    "Computer Science/Front End/TypeScript.md",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-HTTP和WebSocket协议对比.png",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png",
     "Computer Science/Practice/project/HM-大事件（big-event）.md.baiduyun.uploading.cfg",
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
-    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置环境2.png.baiduyun.uploading.cfg",
@@ -356,9 +361,6 @@
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-nigix反向代理.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-nigix反向代理.png",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
-    "Computer Science/Practice/project/FirstProject.md",
-    "Computer Science/Front End/TypeScript.md",
-    "Computer Science/Front End/VUE3.md",
     "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-22_185754.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-21_223934.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/统计代码行数-工具汇总.md",
@@ -371,7 +373,6 @@
     "Computer Science/Front End/images/image-VUE3-Vue目录结构.png",
     "Computer Science/Front End/images/image-VUE3-Vue生命周期.png",
     "Computer Science/Practice/project/images/image-HM-大事件（big-event）-多环境开发-Profiles-分组.png",
-    "Computer Science/Practice/project/images/image-HM-大事件（big-event）-1788419599599.png",
     "Computer Science/Practice/微信小程序/微信小程序.md",
     "Computer Science/High-Level Language/Python/Tuple-元组.md",
     "Computer Science/High-Level Language/Python/String-字符串.md",
@@ -382,7 +383,6 @@
     "Computer Science/High-Level Language/JAVA/函数/Scanner.md",
     "Computer Science/High-Level Language/JAVA/高级/XML解析.md",
     "Computer Science/High-Level Language/JAVA/高级/Stream流.md",
-    "Computer Science/High-Level Language/JAVA/高级/集合与泛型.md",
-    "Computer Science/High-Level Language/JAVA/高级/函数式接口和方法引用.md"
+    "Computer Science/High-Level Language/JAVA/高级/集合与泛型.md"
   ]
 }

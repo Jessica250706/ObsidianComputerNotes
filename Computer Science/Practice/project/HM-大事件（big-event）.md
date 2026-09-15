@@ -17,8 +17,8 @@ endDate: 2026-09-07
 # 1.环境搭建
 
 - 执行资料中的 big_event.sql 脚本，准备数据库表
-- 创建 springboot 工程，引入对应的依赖（web、mybatis、mysql 驱动）
-- 配置文件 application.yml 中引入 mybatis 的配置信息
+- 创建 SpringBoot 工程，引入对应的依赖（web、mybatis、mysql 驱动）
+- 配置文件 `application.yml` 中引入 mybatis 的配置信息
 - 创建包结构，并准备实体类
 
 ![Pasted image 20260829111914](images/Pasted%20image%2020260829111914.png)
@@ -2867,7 +2867,6 @@ export default instance
 另外，博主为了写代码方便，使用了 Prettier 插件对代码进行格式化，以下是配置文件。
 
 ```json title:'.prettierrc.json'
-
 {
   "printWidth": 100,
   "bracketSameLine": false,
@@ -3720,7 +3719,7 @@ import avatar from '@/assets/default.png'
 
 ### 14.2.1 基本使用
 
-- 安装 vue-router    `npm install vue-router@4 `
+- 安装 vue-router    `npm install vue-router@4`
 - 在 `src/router/index.js` 中创建路由器，并导出
 - 在 vue 应用实例中使用 vue-router
 - 声明 router-view 标签，展示组件内容

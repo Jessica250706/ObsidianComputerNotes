@@ -19,19 +19,19 @@ LineFeed：自动换行组件，该页面在使用它时，内部仍为el-form-i
 
 ### 2.2.1.采购（all）
 
-![](images/8e3efd6d1bf7ada193d71ccc48ddbeaf.png)
+![243](images/8e3efd6d1bf7ada193d71ccc48ddbeaf.png)
 
 ### 2.2.2.销售（all）
 
-![](images/e85575c62016d82e9794093c44b0acbb.png)
+![244](images/e85575c62016d82e9794093c44b0acbb.png)
 
 ### 2.2.3.仓库
 
-![](images/c424a245f44a426574b5a58438bbb9f2.png)
+![254](images/c424a245f44a426574b5a58438bbb9f2.png)
 
 ### 2.2.4.资金
 
-![](images/1db87c2ad39bafee2cc8818f70a293af.png)
+![286](images/1db87c2ad39bafee2cc8818f70a293af.png)
 
 # 3.自定义表格相关
 
@@ -47,11 +47,11 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 ### 3.2.1.仓库
 
-![](images/Pasted%20image%2020251016093352.png)
+![256](images/Pasted%20image%2020251016093352.png)
 
 ### 3.2.2.资金
 
-![](images/Pasted%20image%2020251016093553.png)
+![294](images/Pasted%20image%2020251016093553.png)
 
 ### 3.2.3.报表
 
@@ -59,7 +59,7 @@ PageStatus：页面状态统计组件，用于动态显示数据的汇总信息�
 
 # 4.自定义弹出框-表格搜索
 
-![](images/4352ec7e3ffcf6d193ae66457e2bcc3c.png)
+![347](images/4352ec7e3ffcf6d193ae66457e2bcc3c.png)
 
 在 `el-popover` 内嵌套 `el-form`
 

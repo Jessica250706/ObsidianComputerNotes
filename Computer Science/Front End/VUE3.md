@@ -26,6 +26,109 @@ p.s.本笔记主要摘录自尚硅谷，部分为 AI 或本人补充
 // eslint-disable-next-line no-console
 ```
 
+## 0.1 创建项目
+
+Step 1）创建 Vue 工程
+
+```shell
+npm init vue@latest
+```
+
+Step 2）安装依赖
+
+```shell
+# Element-Plus
+npm install element-plus --save
+# 注册图标
+npm install @element-plus/icons-vue
+# Axios
+npm install axios
+# Sass
+npm install sass -D
+# 路由
+npm install vue-router@4
+# pinia
+npm install pinia
+# pinia 持久化插件
+npm install pinia-plugin-persistedstate
+```
+
+Step 3）调整目录
+
+- 删除 components 下面自动生成的内容
+- 新建目录 `api`、`utils`、`views`
+- 将资料中的静态资源拷贝到 assets 目录下
+- 删除 App.uve 中自动生成的内容
+
+```ts title:'src\main.ts'
+import './assets/main.css'
+import { createApp } from 'vue'
+import App from './App.vue'
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import router from '@/router'
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { zhCn } from 'element-plus/es/locales.mjs'
+
+const app = createApp(App)
+const pinia = createPinia()
+const persist = createPersistedState()
+pinia.use(persist)
+app.use(pinia)
+app.use(router)
+app.use(ElementPlus, {
+  locale: zhCn,
+})
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+```ts title:'vite.config.ts'
+import { fileURLToPath, URL } from 'node:url'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+import vueDevTools from 'vite-plugin-vue-devtools'
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [vue(), vueDevTools()],
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace('/^\/api/', ''),
+      },
+    },
+  },
+})
+```
+
+另外，博主为了写代码方便，使用了 Prettier 插件对代码进行格式化，以下是配置文件。
+
+```json title:'.prettierrc.json'
+{
+  "printWidth": 100,
+  "bracketSameLine": false,
+  "semi": false,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "bracketSpacing": true,
+  "jsxBracketSameLine": false,
+  "vueIndentScriptAndStyle": false,
+  "htmlWhitespaceSensitivity": "ignore"
+}
+```
+
 # 1. Vue 3 简介
 
 - 2020 年 9 月 18 日，`Vue.js` 发布版 `3.0` 版本，代号：`One Piece`（海贼王）
