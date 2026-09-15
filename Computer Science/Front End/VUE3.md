@@ -51,6 +51,8 @@ npm install vue-router@4
 npm install pinia
 # pinia 持久化插件
 npm install pinia-plugin-persistedstate
+# echarts
+npm install echarts --save
 ```
 
 Step 3）调整目录

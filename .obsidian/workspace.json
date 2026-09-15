@@ -180,7 +180,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -320,7 +320,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "Computer Science/Front End/VUE3.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -360,12 +360,12 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "05256777d943d52f",
+  "active": "93c0c35707cedb3d",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Front End/VUE3.md",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
-    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
     "Computer Science/Practice/project/zero-one-12psi/init.md",
     "Computer Science/Front End/TypeScript.md",
