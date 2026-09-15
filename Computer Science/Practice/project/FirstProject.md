@@ -589,7 +589,6 @@ const chlickMenu=(item)=>{
 }
 </script>
 
-
 <!-- 样式 -->
 <style lang="less" scoped>
 .icons {
@@ -614,9 +613,7 @@ const chlickMenu=(item)=>{
 
 在 `Main.vue` 中引入 `CommonAside.vue`
 
-```vue
-<!-- src\views\Main.vue -->
-
+```vue title:'src\views\Main.vue'
 <script setup>
 import CommonAside from '@/components/CommonAside.vue';
 </script>
@@ -718,16 +715,13 @@ URL 参考文档：[[https://developer.mozilla.org/zh-CN/docs/Web/API/URL]]
     </div>
 </template>
 
-
 <script setup>
 import { ref, computed } from 'vue'
 const getImageUrl = (user) => {
     return new URL(`../assets/images/${user}.png`, import.meta.url).href
     // 是``，而不是单引号''
 }
-
 </script>
-
 
 <!-- 样式 -->
 <style lang="less" scoped>
@@ -776,22 +770,22 @@ import CommonHeader from '@/components/CommonHeader.vue';
 </script>
 
 <template>
-<div class="common-layout">
-    <el-container class="lay-container">
-        <!-- 自定义左侧组件 -->
-        <common-aside />
-        <!-- 右侧 -->
-        <el-container>
-            <el-header class="el-header">
-                <!-- 自定义 -->
-                <common-header />
-            </el-header>
-            <el-main class="right-main">
-                main
-            </el-main>
-        </el-container>
-    </el-container>
-</div>
+	<div class="common-layout">
+	    <el-container class="lay-container">
+	        <!-- 自定义左侧组件 -->
+	        <common-aside />
+	        <!-- 右侧 -->
+	        <el-container>
+	            <el-header class="el-header">
+	                <!-- 自定义 -->
+	                <common-header />
+	            </el-header>
+	            <el-main class="right-main">
+	                main
+	            </el-main>
+	        </el-container>
+	    </el-container>
+	</div>
 </template>
 
 <style scoped lang="less">
@@ -850,7 +844,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 在 `src` 下创建 `stores` 文件夹，在其中创建 `index.js`
 
-![](images/Pasted%20image%2020250516080457.png)
+![194](images/Pasted%20image%2020250516080457.png)
 
 ```js
 // src\stores\index.js
