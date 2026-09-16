@@ -228,7 +228,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 8
       }
     ],
     "direction": "vertical"
@@ -408,12 +408,12 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "b67ca543d690159e",
+  "active": "05256777d943d52f",
   "lastOpenFiles": [
     "Computer Science/Front End/VUE3.md",
+    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/Front End/HTML/CSS.md",
-    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
