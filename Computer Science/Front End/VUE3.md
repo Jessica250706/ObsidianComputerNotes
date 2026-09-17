@@ -57,6 +57,8 @@ npm install echarts --save
 npm install -D unplugin-auto-import
 # unplugin-vue-components
 npm install -D unplugin-vue-components
+# vueuse
+npm i @vueuse/core
 ```
 
 Step 3）调整目录
