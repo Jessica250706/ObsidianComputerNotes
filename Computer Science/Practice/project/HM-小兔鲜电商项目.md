@@ -112,3 +112,86 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 }
 ```
 
+# 2.首页
+
+## 2.1 图片懒加载插件
+
+插件实现。
+
+```ts title:'src\directives\lazy.ts'
+import type { App, DirectiveBinding } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+
+// 定义懒加载插件
+export const lazyPlugin = {
+  install(app: App) {
+    // 定义全局指令
+    app.directive('img-lazy', {
+      mounted(el: HTMLImageElement, binding: DirectiveBinding<string>) {
+        // el：指令绑定的那个元素 img
+        // binding.value 指令等于号后面绑定的表达式的值 图片url
+
+        const { stop } = useIntersectionObserver(el, ([entry]) => {
+          if (entry?.isIntersecting) {
+            // 进入视口区域
+            el.src = binding.value
+            stop()
+          }
+        })
+      },
+    })
+  },
+}
+```
+
+全局导入。
+
+```ts title:'src\main.ts' hl:8,19
+import { createApp } from 'vue'
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+// import ElementPlus from 'element-plus'
+// import 'element-plus/dist/index.css'
+// import { zhCn } from 'element-plus/es/locales.mjs'
+import { createPinia } from 'pinia'
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+import { lazyPlugin } from '@/directives/lazy.ts'
+import router from '@/router'
+import App from './App.vue'
+import '@/styles/common.scss'
+
+const app = createApp(App)
+const pinia = createPinia()
+const persist = createPersistedState()
+pinia.use(persist)
+app.use(pinia)
+app.use(router)
+app.use(lazyPlugin)
+// app.use(ElementPlus, {
+//   locale: zhCn,
+// })
+app.mount('#app')
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+```
+
+使用，把 `:src="item.picture"` 改成 `v-img-lazy="item.picture"`。
+
+```vue title:'src\views\Home\components\HomeNew.vue' hl:7
+<template>
+  <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
+    <template #main>
+      <ul class="goods-list">
+        <li v-for="item in newList" :key="item.id">
+          <RouterLink :to="`/detail/${item.id}`">
+            <img v-img-lazy="item.picture" alt="" />
+            <p class="name">{{ item.name }}</p>
+            <p class="price">&yen;{{ item.price }}</p>
+          </RouterLink>
+        </li>
+      </ul>
+    </template>
+  </HomePanel>
+</template>
+```
+
