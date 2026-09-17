@@ -53,6 +53,10 @@ npm install pinia
 npm install pinia-plugin-persistedstate
 # echarts
 npm install echarts --save
+# unplugin-auto-import
+npm install -D unplugin-auto-import
+# unplugin-vue-components
+npm install -D unplugin-vue-components
 ```
 
 Step 3）调整目录

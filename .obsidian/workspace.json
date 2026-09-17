@@ -60,6 +60,32 @@
             }
           },
           {
+            "id": "93c0c35707cedb3d",
+            "type": "leaf",
+            "pinned": true,
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": true,
+                "backlinkOpts": {
+                  "collapseAll": false,
+                  "extraContext": false,
+                  "sortOrder": "alphabetical",
+                  "showSearch": false,
+                  "searchQuery": "",
+                  "backlinkCollapsed": false,
+                  "unlinkedCollapsed": true
+                }
+              },
+              "pinned": true,
+              "icon": "lucide-file",
+              "title": "HM-小兔鲜电商项目"
+            }
+          },
+          {
             "id": "d82495bc199ad874",
             "type": "leaf",
             "state": {
@@ -89,30 +115,6 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "插件下载.md",
-                "mode": "source",
-                "source": false,
-                "backlinks": true,
-                "backlinkOpts": {
-                  "collapseAll": false,
-                  "extraContext": false,
-                  "sortOrder": "alphabetical",
-                  "showSearch": false,
-                  "searchQuery": "",
-                  "backlinkCollapsed": false,
-                  "unlinkedCollapsed": true
-                }
-              },
-              "icon": "lucide-file",
-              "title": "插件下载"
-            }
-          },
-          {
-            "id": "93c0c35707cedb3d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "Computer Science/Front End/VUE3.md",
                 "mode": "source",
                 "source": false,
@@ -132,7 +134,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -272,7 +274,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -314,12 +316,16 @@
   },
   "active": "93c0c35707cedb3d",
   "lastOpenFiles": [
+    "Computer Science/Front End/VUE3.md",
+    "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
+    "插件下载.md",
+    "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
+    "Computer Science/Practice/project/HM-小兔鲜电商项目.md.baiduyun.uploading.cfg",
+    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+    "Computer Science/Practice/project/未命名.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
-    "Computer Science/Front End/VUE3.md",
-    "插件下载.md",
     "Computer Science/Practice/project/FirstProject.md",
-    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/Front End/HTML/CSS.md",
     "Computer Science/Practice/project/zero-one-12psi/reference-project-analysis.md",
@@ -338,10 +344,7 @@
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置环境2.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置开发环境1.png",
-    "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-nigix反向代理.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-nigix反向代理.png",
-    "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-22_185754.png.baiduyun.uploading.cfg",
-    "Computer Science/Practice/微信小程序/images/屏幕截图_2025-02-21_223934.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/统计代码行数-工具汇总.md",
     "Computer Science/Practice/Docker.md",
     "Computer Science/Practice/project/tips/如何使用 Vite 创建一个 Vue 项目.md",
@@ -357,8 +360,6 @@
     "Computer Science/High-Level Language/Python/Set-集合.md",
     "Computer Science/High-Level Language/Python/Python.md",
     "Computer Science/High-Level Language/Python/List-列表.md",
-    "Computer Science/High-Level Language/Python/Dict-字典.md",
-    "Computer Science/High-Level Language/JAVA/函数/Scanner.md",
-    "Computer Science/High-Level Language/JAVA/高级/XML解析.md"
+    "Computer Science/High-Level Language/Python/Dict-字典.md"
   ]
 }
