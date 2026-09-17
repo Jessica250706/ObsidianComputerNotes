@@ -9,6 +9,10 @@ endDate:
 
 【黑马程序员前端 Vue 3 小兔鲜电商项目实战，vue 3 全家桶从入门到实战电商项目一套通关】https://www.bilibili.com/video/BV1Ac411K7EQ?p=24&vd_source=4e42d3c23020c1c6dc6a9aac2d11ab9c
 
+接口文档：[https://www.apifox.cn/apidoc/shared-c05cb8d7-e591-4d9c-aff8-11065a0ec1de/api-67132167](https://www.apifox.cn/apidoc/shared-c05cb8d7-e591-4d9c-aff8-11065a0ec1de/api-67132167)
+
+
+
 
 # 1.项目起步
 
@@ -106,5 +110,5 @@ app.mount('#app')
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
-
 ```
+
