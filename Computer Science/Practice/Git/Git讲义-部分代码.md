@@ -499,6 +499,14 @@ git pull --rebase origin master
 git push -u origin master
 ```
 
+## 7.4 切换远程仓库
+
+把 `origin` 的地址改成新的仓库地址。
+
+```shell
+git remote set-url origin <新仓库地址>
+```
+
 # 附
 
 ## 要点 1
