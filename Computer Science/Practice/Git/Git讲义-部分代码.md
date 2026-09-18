@@ -501,6 +501,12 @@ git push -u origin master
 
 ## 7.4 切换远程仓库
 
+查看远程仓库地址。
+
+```shell
+git remote -v
+```
+
 把 `origin` 的地址改成新的仓库地址。
 
 ```shell
