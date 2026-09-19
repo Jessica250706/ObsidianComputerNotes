@@ -139,7 +139,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Practice/project/FirstProject.md",
+                "file": "Computer Science/Front End/TypeScript.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -154,11 +154,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "FirstProject"
+              "title": "TypeScript"
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -298,7 +298,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
+                "file": "Computer Science/Front End/TypeScript.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -338,14 +338,14 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "93c0c35707cedb3d",
+  "active": "6ada77e70f257837",
   "lastOpenFiles": [
+    "Computer Science/Practice/project/FirstProject.md",
+    "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
     "Computer Science/Android/Android Study Notes.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md.baiduyun.uploading.cfg",
-    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Front End/VUE3.md",
-    "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md.baiduyun.uploading.cfg",
