@@ -59,6 +59,8 @@ npm install -D unplugin-auto-import
 npm install -D unplugin-vue-components
 # vueuse
 npm i @vueuse/core
+# dayjs
+npm i dayjs
 ```
 
 Step 3）调整目录
