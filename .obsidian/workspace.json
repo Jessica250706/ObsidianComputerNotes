@@ -182,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Android/Android Study Notes.md",
+                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -362,8 +362,9 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "3194d4b434541742",
+  "active": "6f36307a2f265ba5",
   "lastOpenFiles": [
+    "Computer Science/Android/Android Study Notes.md",
     "Computer Science/Practice/Docker.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
@@ -378,7 +379,6 @@
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
-    "Computer Science/Android/Android Study Notes.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md.baiduyun.uploading.cfg",
     "插件下载.md",
     "Computer Science/Practice/project/未命名.md.baiduyun.uploading.cfg",
