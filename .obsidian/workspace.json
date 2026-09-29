@@ -182,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/Git/Git讲义-部分代码.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -362,8 +362,9 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "83f2ca6ed84d31d9",
+  "active": "d82495bc199ad874",
   "lastOpenFiles": [
+    "Computer Science/Front End/VUE3.md",
     "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/TypeScript.md",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
@@ -375,7 +376,6 @@
     "Computer Science/Practice/project/EducationalManagementSystem.md",
     "Computer Science/JAVA学习目录.md",
     "Computer Science/Back End/GO.md",
-    "Computer Science/Front End/VUE3.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Practice/Git/Git讲义-部分代码.md",
