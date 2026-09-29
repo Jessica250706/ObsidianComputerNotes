@@ -71,6 +71,10 @@ npm install -D eslint-config-prettier eslint-plugin-oxlint
 npm install -D @vue/eslint-config-typescript eslint-plugin-import-x
 ```
 
+```shell
+npm install tailwindcss @tailwindcss/vite
+```
+
 Step 3）调整目录
 
 - 删除 components 下面自动生成的内容
