@@ -163,7 +163,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Android/Android Study Notes.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -178,11 +178,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "Android Study Notes"
+              "title": "HM-大事件（big-event）"
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+                "file": "Computer Science/Practice/project/HM-大事件（big-event）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -362,19 +362,19 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "6f36307a2f265ba5",
+  "active": "3194d4b434541742",
   "lastOpenFiles": [
-    "Computer Science/Practice/project/HM-大事件（big-event）.md",
-    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
-    "Computer Science/Practice/Git/Git讲义-部分代码.md",
-    "Computer Science/Front End/VUE3.md",
-    "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
-    "Computer Science/Front End/TypeScript.md",
+    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Android/Android Study Notes.md",
+    "Computer Science/Front End/TypeScript.md",
+    "Computer Science/Front End/VUE3.md",
+    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+    "Computer Science/Practice/project/HM-大事件（big-event）.md",
+    "Computer Science/Practice/Git/Git讲义-部分代码.md",
+    "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/Docker.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
     "Computer Science/Practice/project/ForumProject.md",
-    "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/EducationalManagementSystem.md",
     "Computer Science/JAVA学习目录.md",
     "Computer Science/Back End/GO.md",
