@@ -63,6 +63,14 @@ npm i @vueuse/core
 npm i dayjs
 ```
 
+没选 Eslint 就需要下载：
+
+```shell
+npm install eslint-plugin-vue --save-dev
+npm install -D eslint-config-prettier eslint-plugin-oxlint
+npm install -D @vue/eslint-config-typescript eslint-plugin-import-x
+```
+
 Step 3）调整目录
 
 - 删除 components 下面自动生成的内容
