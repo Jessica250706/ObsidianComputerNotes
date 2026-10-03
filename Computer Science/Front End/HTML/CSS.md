@@ -341,12 +341,12 @@ p {
 
 ### 2.4.1 边框
 
-|属性|含义|示例|
-|---|---|---|
-|border-color|边框颜色|div{border-color:red;}|
-|border-width|边框粗细|div{borfrt-width:8 px}|
-|border-style|边框样式|div{border-style:solid;}|
-|border|边框属性|div{border:8 px solid red;}|
+| 属性           | 含义   | 示例                          |
+| ------------ | ---- | --------------------------- |
+| border-color | 边框颜色 | div{border-color:red;}      |
+| border-width | 边框粗细 | div{borfrt-width:8 px}      |
+| border-style | 边框样式 | div{border-style:solid;}    |
+| border       | 边框属性 | div{border:8 px solid red;} |
 
 边距分为外边距和内边距。边距有 4 个方向：上、下、左、右。
 
