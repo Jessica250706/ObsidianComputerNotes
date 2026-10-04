@@ -1,6 +1,7 @@
 ---
 tags:
   - 前端
+  - 面试
 ---
 # 1.HTML&CSS
 
@@ -2175,6 +2176,470 @@ obj = {}; // TypeError
 ## 2.9 常用函数
 
 [[函数&方法]]
+
+## 2.10 JS 的 call / apply / bind 详解
+
+这三个方法都和 **手动指定函数执行时的 `this` ** 有关，也就是“显式绑定 `this`”。面试/笔试常考：
+
+1. 三者区别；
+2. `this` 绑定规则；
+3. 手写 `call/apply/bind`；
+4. `bind` 和 `new`、偏函数、多次 bind；
+5. 箭头函数为什么绑定不了；
+6. 常见输出题。
+
+---
+
+### 一、一句话理解
+
+| 方法 | 作用 | 是否立即执行 | 参数形式 | 返回值 |
+|---|---|---|---|---|
+| `call` | 调用函数并指定 `this` | 是 | 一个个参数 | 函数返回值 |
+| `apply` | 调用函数并指定 `this` | 是 | 数组/类数组 | 函数返回值 |
+| `bind` | 返回一个绑定了 `this` 的新函数 | 否 | 一个个参数，可预设 | 新函数 |
+
+示例：
+
+```js
+function say(a, b) {
+  console.log(this.name, a, b);
+}
+
+const obj = { name: '张三' };
+
+say.call(obj, 1, 2);      // 张三 1 2
+say.apply(obj, [1, 2]);   // 张三 1 2
+
+const fn = say.bind(obj, 1);
+fn(2);                    // 张三 1 2
+```
+
+区别核心：
+
+- `call` / `apply`：立即执行函数。
+- `bind`：不执行，返回新函数。
+- `call` / `bind` 参数是逐个传，`apply` 参数是数组或类数组。
+
+ES 6 后，`call` 也可以配合展开运算符替代 `apply`：
+
+```js
+fn.call(obj, ...args);
+// 等价于
+fn.apply(obj, args);
+```
+
+---
+
+### 二、`thisArg` 的规则
+
+`call/apply/bind` 的第一个参数都是 `thisArg`，也就是你希望函数执行时的 `this`。
+
+但注意：
+
+#### 1. 非严格模式
+
+如果传入 `null` 或 `undefined`，`this` 会指向全局对象：
+
+```js
+function fn() {
+  console.log(this);
+}
+
+fn.call(null);      // window / globalThis
+fn.call(undefined); // window / globalThis
+```
+
+如果传入原始值，比如数字、字符串、布尔值，会被包装成对象：
+
+```js
+function fn() {
+  console.log(this);
+}
+
+fn.call(1); // Number {1}
+```
+
+#### 2. 严格模式
+
+严格模式下，传入什么就是什么：
+
+```js
+'use strict';
+
+function fn() {
+  console.log(this);
+}
+
+fn.call(null); // null
+fn.call(1);    // 1
+```
+
+所以 `call/apply/bind` 的 `thisArg` 行为，还取决于被调用函数本身是否处于严格模式。
+
+---
+
+### 三、常见使用场景
+
+#### 1. 借用方法
+
+比如把类数组转成数组：
+
+```js
+function toArray() {
+  return Array.prototype.slice.call(arguments);
+}
+```
+
+判断数据类型：
+
+```js
+Object.prototype.toString.call([]);    // [object Array]
+Object.prototype.toString.call(null);  // [object Null]
+```
+
+#### 2. 继承时调用父构造函数
+
+```js
+function Parent(name) {
+  this.name = name;
+}
+
+function Child(name) {
+  Parent.call(this, name);
+}
+```
+
+#### 3. 固定回调函数的 `this`
+
+```js
+const obj = {
+  name: 'obj',
+  say() {
+    console.log(this.name);
+  }
+};
+
+setTimeout(obj.say.bind(obj), 0);
+```
+
+如果不 `bind`，`obj.say` 被单独传递后，`this` 会丢失。
+
+#### 4. 偏函数 / 柯里化
+
+```js
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const add1 = add.bind(null, 1);
+console.log(add1(2, 3)); // 6
+```
+
+---
+
+### 四、手写 call
+
+面试手写版：
+
+```js
+Function.prototype.myCall = function(context, ...args) {
+  if (typeof this !== 'function') {
+    throw new TypeError('myCall must be called on a function');
+  }
+
+  // null / undefined 指向全局对象
+  context = (context === null || context === undefined)
+    ? globalThis
+    : Object(context);
+
+  const key = Symbol('fn');
+  context[key] = this;
+
+  const result = context[key](...args);
+
+  delete context[key];
+
+  return result;
+};
+```
+
+测试：
+
+```js
+function fn(a, b) {
+  console.log(this.name, a, b);
+  return a + b;
+}
+
+const obj = { name: 'obj' };
+
+console.log(fn.myCall(obj, 1, 2));
+// obj 1 2
+// 3
+```
+
+核心思路：
+
+1. 把函数临时挂到 `context` 上；
+2. 通过 `context.fn()` 调用，这样 `this` 就指向 `context`；
+3. 调用完删除临时属性；
+4. 返回结果。
+
+注意：手写版主要模拟非严格模式，和原生在严格模式、不可扩展对象等细节上不完全一致。生产环境直接用原生或 `Reflect.apply`。
+
+---
+
+### 五、手写 apply
+
+`apply` 和 `call` 几乎一样，只是第二个参数是数组或类数组。
+
+```js
+Function.prototype.myApply = function(context, args) {
+  if (typeof this !== 'function') {
+    throw new TypeError('myApply must be called on a function');
+  }
+
+  context = (context === null || context === undefined)
+    ? globalThis
+    : Object(context);
+
+  const key = Symbol('fn');
+  context[key] = this;
+
+  let result;
+
+  if (args === null || args === undefined) {
+    result = context[key]();
+  } else {
+    result = context[key](...Array.from(args));
+  }
+
+  delete context[key];
+
+  return result;
+};
+```
+
+测试：
+
+```js
+function fn(a, b) {
+  console.log(this.name, a, b);
+}
+
+const obj = { name: 'obj' };
+
+fn.myApply(obj, [1, 2]); // obj 1 2
+```
+
+---
+
+### 六、手写 bind
+
+`bind` 比 `call/apply` 复杂，因为它要：
+
+1. 返回新函数；
+2. 调用新函数时，`this` 固定为传入的 `context`；
+3. 支持预设参数，也就是偏函数；
+4. 支持 `new` 调用：`new` 优先级高于 `bind`，此时绑定的 `this` 失效；
+5. 尽量保持原型链。
+
+面试常用实现：
+
+```js
+Function.prototype.myBind = function(context, ...bindArgs) {
+  if (typeof this !== 'function') {
+    throw new TypeError('myBind must be called on a function');
+  }
+
+  const target = this;
+
+  function bound(...callArgs) {
+    // 通过 new 调用时，this 会指向新对象
+    // 此时忽略 context，使用 target 作为构造函数
+    if (this instanceof bound) {
+      return new target(...bindArgs, ...callArgs);
+    }
+
+    // 普通调用，绑定 context
+    return target.apply(context, [...bindArgs, ...callArgs]);
+  }
+
+  // 保持原型链，便于 instanceof
+  if (target.prototype) {
+    bound.prototype = Object.create(target.prototype);
+  }
+
+  return bound;
+};
+```
+
+测试：
+
+```js
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+const BoundPerson = Person.myBind(null, '张三');
+
+const p = new BoundPerson(18);
+console.log(p.name, p.age); // 张三 18
+```
+
+普通调用：
+
+```js
+function fn(a, b) {
+  console.log(this.name, a, b);
+}
+
+const obj = { name: 'obj' };
+const boundFn = fn.myBind(obj, 1);
+
+boundFn(2); // obj 1 2
+```
+
+---
+
+## 七、`bind` 重点：new 优先级、多次 bind、箭头函数
+
+### 1. `new` 优先级高于 `bind`
+
+```js
+function Fn() {
+  console.log(this);
+}
+
+const obj = { name: 'obj' };
+const BoundFn = Fn.bind(obj);
+
+new BoundFn(); // this 是新实例，不是 obj
+```
+
+所以：
+
+- 普通调用：`this` 是 `bind` 指定的对象；
+- `new` 调用：`this` 是新创建的实例，`bind` 的 `this` 被忽略。
+
+---
+
+### 2. 多次 bind，只有第一次生效
+
+```js
+function fn() {
+  console.log(this.name);
+}
+
+const obj1 = { name: 'obj1' };
+const obj2 = { name: 'obj2' };
+
+const fn1 = fn.bind(obj1);
+const fn2 = fn1.bind(obj2);
+
+fn2(); // obj1
+```
+
+原因：`fn1` 已经是硬绑定函数，它的 `this` 已经固定为 `obj1`。再 `bind(obj2)` 不会改变它。
+
+但参数会叠加：
+
+```js
+function fn(a, b, c) {
+  console.log(this.name, a, b, c);
+}
+
+const obj = { name: 'obj' };
+
+const fn1 = fn.bind(obj, 1);
+const fn2 = fn1.bind(null, 2);
+
+fn2(3); // obj 1 2 3
+```
+
+---
+
+### 3. 箭头函数无法被 call/apply/bind 改变 this
+
+箭头函数没有自己的 `this`，它的 `this` 来自外层词法作用域。
+
+```js
+const obj = {
+  name: 'obj',
+  arrow: () => {
+    console.log(this.name);
+  },
+  normal() {
+    console.log(this.name);
+  }
+};
+
+obj.arrow.call({ name: 'xxx' });  // 不是 xxx，取决于外层 this
+obj.normal.call({ name: 'xxx' }); // xxx
+```
+
+`bind` 箭头函数也不能改变它的 `this`，但可以绑定参数：
+
+```js
+const add = (a, b) => a + b;
+const add1 = add.bind(null, 1);
+
+console.log(add1(2)); // 3
+```
+
+这里 `this` 没变，但参数被预设了。
+
+---
+
+## 八、常见输出题
+
+```js
+var name = 'global';
+
+const obj = {
+  name: 'obj',
+  getName() {
+    return this.name;
+  }
+};
+
+const fn = obj.getName;
+
+console.log(fn());             // global，非严格模式下 this 是全局
+console.log(fn.call(obj));     // obj
+console.log(fn.apply(null));   // global
+console.log(fn.bind(obj)());   // obj
+```
+
+再看 `new`：
+
+```js
+function Fn() {
+  this.name = 'instance';
+  console.log(this.name);
+}
+
+const obj = { name: 'obj' };
+const BoundFn = Fn.bind(obj);
+
+BoundFn();      // obj
+new BoundFn();  // instance
+```
+
+---
+
+## 九、总结记忆
+
+- `call`：立即执行，参数逐个传。
+- `apply`：立即执行，参数用数组/类数组传。
+- `bind`：不立即执行，返回新函数，参数可预设。
+- 三者都用于显式绑定 `this`。
+- `bind` 是硬绑定，但 `new` 优先级更高。
+- 多次 `bind`，只有第一次的 `this` 生效，参数会叠加。
+- 箭头函数没有自己的 `this`，`call/apply/bind` 改不了。
+- 非严格模式下，`null/undefined` 会指向全局对象；严格模式下保持原样。
+- 生产环境优先用原生方法，手写实现主要用于理解原理和面试。
 
 # 3.VUE 3
 
