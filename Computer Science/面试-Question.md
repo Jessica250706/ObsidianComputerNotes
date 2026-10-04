@@ -2503,9 +2503,9 @@ boundFn(2); // obj 1 2
 
 ---
 
-## 七、`bind` 重点：new 优先级、多次 bind、箭头函数
+### 七、`bind` 重点：new 优先级、多次 bind、箭头函数
 
-### 1. `new` 优先级高于 `bind`
+#### 1. `new` 优先级高于 `bind`
 
 ```js
 function Fn() {
@@ -2525,7 +2525,7 @@ new BoundFn(); // this 是新实例，不是 obj
 
 ---
 
-### 2. 多次 bind，只有第一次生效
+#### 2. 多次 bind，只有第一次生效
 
 ```js
 function fn() {
@@ -2560,7 +2560,7 @@ fn2(3); // obj 1 2 3
 
 ---
 
-### 3. 箭头函数无法被 call/apply/bind 改变 this
+#### 3. 箭头函数无法被 call/apply/bind 改变 this
 
 箭头函数没有自己的 `this`，它的 `this` 来自外层词法作用域。
 
@@ -2592,7 +2592,7 @@ console.log(add1(2)); // 3
 
 ---
 
-## 八、常见输出题
+### 八、常见输出题
 
 ```js
 var name = 'global';
@@ -2629,7 +2629,7 @@ new BoundFn();  // instance
 
 ---
 
-## 九、总结记忆
+### 九、总结记忆
 
 - `call`：立即执行，参数逐个传。
 - `apply`：立即执行，参数用数组/类数组传。
