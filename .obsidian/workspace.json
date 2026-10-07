@@ -182,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 6
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/HTML/CSS.md",
+                "file": "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -362,10 +362,10 @@
       "markdown-importer:打开 Markdown 格式转换器": false
     }
   },
-  "active": "3194d4b434541742",
+  "active": "93c0c35707cedb3d",
   "lastOpenFiles": [
-    "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/Front End/HTML/CSS.md",
+    "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/面试-Question.md",
     "Computer Science/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/VUE3.md",
