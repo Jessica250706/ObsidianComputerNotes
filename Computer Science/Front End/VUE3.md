@@ -75,6 +75,14 @@ npm install -D @vue/eslint-config-typescript eslint-plugin-import-x
 npm install tailwindcss @tailwindcss/vite
 ```
 
+```shell title:'富文本编辑器'
+# 安装核心包
+npm install @wangeditor/editor
+
+# 安装 Vue3 专用适配器（注意 @next）
+npm install @wangeditor/editor-for-vue@next
+```
+
 Step 3）调整目录
 
 - 删除 components 下面自动生成的内容
