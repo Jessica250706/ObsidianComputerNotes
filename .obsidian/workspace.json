@@ -115,7 +115,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/面试/大四上-前端.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -130,7 +130,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "VUE3"
+              "title": "大四上-前端"
             }
           },
           {
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/面试/大四上-前端.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -364,12 +364,14 @@
   },
   "active": "83f2ca6ed84d31d9",
   "lastOpenFiles": [
+    "Computer Science/面试/面试-Question.md",
+    "Computer Science/面试/大四上-前端.md",
+    "Computer Science/面试",
+    "Computer Science/Front End/VUE3.md",
     "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/HTML/CSS.md",
-    "Computer Science/Front End/VUE3.md",
     "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
-    "Computer Science/面试-Question.md",
     "Computer Science/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/HTML/CSS.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
@@ -394,7 +396,6 @@
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png",
     "Computer Science/Practice/project/HM-大事件（big-event）.md.baiduyun.uploading.cfg",
-    "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置环境2.png",
