@@ -134,18 +134,6 @@
             }
           },
           {
-            "id": "4b6bc8fd5ebf32b7",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.15.0"
-              },
-              "icon": "lucide-book-up",
-              "title": "版本说明 1.15.0"
-            }
-          },
-          {
             "id": "6ada77e70f257837",
             "type": "leaf",
             "state": {
@@ -194,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 4
       }
     ],
     "direction": "vertical"
@@ -334,6 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "Computer Science/面试/大四上-前端.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -372,8 +361,9 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "4b6bc8fd5ebf32b7",
+  "active": "83f2ca6ed84d31d9",
   "lastOpenFiles": [
+    "Computer Science/Front End/TypeScript.md",
     "Computer Science/面试/大四上-前端.md.baiduyun.uploading.cfg",
     "Computer Science/面试/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/面试/面试-Question.md",
@@ -387,7 +377,6 @@
     "Computer Science/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/HTML/CSS.md.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
-    "Computer Science/Front End/TypeScript.md",
     "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Android/Android Study Notes.md",
@@ -405,7 +394,6 @@
     "Computer Science/Practice/project/zero-one-12psi/init.md",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-HTTP和WebSocket协议对比.png",
     "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md.baiduyun.uploading.cfg",
-    "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png.baiduyun.uploading.cfg",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Redis中各种数据类型的特点.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox配置全局参数.png",
     "Computer Science/Practice/project/images/image-HM-苍穹外卖（takeout）-Apifox添加后置操作获取登录token.png",
