@@ -182,7 +182,7 @@
             }
           }
         ],
-        "currentTab": 4
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/面试/大四上-前端.md",
+                "file": "Computer Science/Front End/TypeScript.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -361,11 +361,11 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "83f2ca6ed84d31d9",
+  "active": "6ada77e70f257837",
   "lastOpenFiles": [
+    "Computer Science/面试/大四上-前端.md",
     "Computer Science/面试/大四上-前端.md.baiduyun.uploading.cfg",
     "Computer Science/面试/面试-Question.md",
-    "Computer Science/面试/大四上-前端.md",
     "Computer Science/Front End/TypeScript.md",
     "Computer Science/面试/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/面试",
