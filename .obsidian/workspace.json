@@ -139,7 +139,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -154,7 +154,7 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "VUE3"
+              "title": "HM-苍穹外卖（takeout）"
             }
           },
           {
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Front End/VUE3.md",
+                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -361,15 +361,15 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "d0b9917309f617d8",
+  "active": "6ada77e70f257837",
   "lastOpenFiles": [
+    "Computer Science/Front End/VUE3.md",
     "Computer Science/面试/大四上-前端.md",
     "Computer Science/Front End/TypeScript.md",
     "Computer Science/面试/大四上-前端.md.baiduyun.uploading.cfg",
     "Computer Science/面试/面试-Question.md",
     "Computer Science/面试/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/面试",
-    "Computer Science/Front End/VUE3.md",
     "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/HTML/CSS.md",
     "Computer Science/Front End/HTML/页面布局.md",
