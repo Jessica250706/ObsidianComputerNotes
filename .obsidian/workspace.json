@@ -163,7 +163,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Computer Science/Front End/HTML/CSS.md",
+                "file": "Computer Science/Front End/HTML/页面布局.md",
                 "mode": "source",
                 "source": false,
                 "backlinks": true,
@@ -178,11 +178,11 @@
                 }
               },
               "icon": "lucide-file",
-              "title": "CSS"
+              "title": "页面布局"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 6
       }
     ],
     "direction": "vertical"
@@ -322,7 +322,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
+                "file": "Computer Science/Front End/HTML/页面布局.md",
                 "followCursor": false,
                 "showSearch": true,
                 "searchQuery": ""
@@ -361,8 +361,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "6ada77e70f257837",
+  "active": "3194d4b434541742",
   "lastOpenFiles": [
+    "Computer Science/Front End/HTML/CSS.md",
+    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Front End/VUE3.md",
     "Computer Science/面试/大四上-前端.md",
     "Computer Science/Front End/TypeScript.md",
@@ -371,12 +373,10 @@
     "Computer Science/面试/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/面试",
     "Computer Science/Front End/VUE3.md.baiduyun.uploading.cfg",
-    "Computer Science/Front End/HTML/CSS.md",
     "Computer Science/Front End/HTML/页面布局.md",
     "Computer Science/Practice/project/HM-小兔鲜电商项目.md",
     "Computer Science/面试-Question.md.baiduyun.uploading.cfg",
     "Computer Science/Front End/HTML/CSS.md.baiduyun.uploading.cfg",
-    "Computer Science/Practice/project/HM-苍穹外卖（takeout）.md",
     "Computer Science/Practice/project/FirstProject.md",
     "Computer Science/Practice/project/HM-大事件（big-event）.md",
     "Computer Science/Android/Android Study Notes.md",
